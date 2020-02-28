@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "IBM Plex Sans";
+}
+
+.container{
+    display: flex;
+    position: absolute;
+    width: 90%;
+    height: 80vh;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.sidebar{
+    width: 20%;
+    margin-right: 20px;
+    height: 80vh;
+    display: inline-block;
+}
+.sidebar ul li{
+    list-style: none;
+    margin:0px;
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a{
+    list-style: none;
+    margin:0px;
+    margin-bottom: -5px;
+}
+.sidebar ul li a,.sidebar ul li .drop, .sidebar ul li input[type="button"]{
+    width: 100%;
+    height: 48px;
+    display: inline-block;
+    /* margin: -10px;
+    margin-bottom: 10px; */
+    text-decoration: none;
+    text-align: center;
+    line-height: 48px;
+    color:white;
+    background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
+    /* box-shadow: 2px 2px 5px rgba(0,0,0,0.30); */
+    background-position: left;
+    background-size: 200%;
+    transition: all 0.7s ease;
+    overflow: hidden;
+    border: none;
+}
+
+.sidebar ul li .drop{
+    transition: 1s;
+    margin: 0;
+    display: none;
+    margin-bottom: -5px;
+   /* position: absolute; */
+}
+
+.sidebar ul li .drop{
+    transition: 1s;
+    margin: 0;
+    display: none;
+    margin-bottom: -5px;
+   /* position: absolute; */
+}
+.sidebar ul li .drop:last-child{
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+   /* position: absolute; */
+}
+
+.sidebar ul li:hover .drop{
+    display: inline-block;
+    transition: 5s;
+
+
+   /*position: absolute; */
+}
+
+input[type="button"]:focus{
+
+    outline: none;
+}
+.sidebar ul li  input[type="button"]:focus +.drop{
+    display: inline-block;
+    transition: 5s;
+    outline: none;
+    
+
+
+   /*position: absolute; */
+}
+.sidebar ul li a:hover{
+    
+    box-shadow: 2px 2px 7px rgba(0,0,0,0.50);
+    /* background-position: right; */
+    /* transition: 0.5s; */
+    background-position: right;
+    display: inline-block;
+
+    /* animation: mymove 5s infinite; */
+}
+
+
+.editor{
+    display: inline-block;
+    /* position: absolute; */
+    width: 80%;
+    height: 80vh;
+    background-color: white;
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%,-50%); */
+    box-shadow: 3px 5px 7px rgba(0,0,0,0.30);
+}
+
+.bar{
+    width: 100%;
+    height: 48px;
+    border: 1px solid rgb(218, 218, 218);
+
+    /* display: flex; */
+}
+.title, .btns{
+    position: relative;
+    top:50%;
+    transform: translateY(-50%);
+}
+/* .btn a{
+    text-align: center;
+    display: inline-block;
+    margin: 2px;
+    background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    color:white;
+} */
+.btns a{
+    margin-right:10px ;
+}
+.title{
+    display: inline-block;
+    /* color: rgb(127, 0, 231); */
+    font-size: 1.5em;
+    font-weight: 900;
+    font-family: sans-serif;
+    margin-left: 10px;
+    background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-position: center;
+    background-size: 200%;
+    
+}
+.title:hover{
+    background-position: right;
+}
+.btns{
+    float: right;
+    display: flex;
+}
+
+textarea{
+    width: 100%;
+    height: calc(80vh - 48px);
+    outline: none;
+    resize: none;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border: 1px solid  rgb(218, 218, 218);
+    border-top: none;
+    font-size: 1em;
+/*     font-weight: 300;
+ */    font-family: "IBM Plex Sans";
+    word-spacing: 0.3em;
+    
+}
+
+@media only screen and (max-width:800px)
+{
+    .sidebar{
+        display: none;
+    }
+    .editor{
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width:800px)
+{
+    .btns{
+        display: none;
+    }
+}
+
+
+

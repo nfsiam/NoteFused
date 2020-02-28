@@ -1,0 +1,133 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.dark{
+    margin: 0 auto;
+    width:100%;
+    padding: 100px;
+    text-decoration: none;
+    
+    background: #031321;
+    font-family: consolas;
+    text-align: center;
+}
+.grad,.wht{
+    margin: 0 auto;
+    width:100%;
+    padding: 100px;
+    text-decoration: none;
+    
+    font-family: consolas;
+    text-align: center;
+}
+.grad{
+    background:
+        linear-gradient(red, transparent),
+        linear-gradient(to top left, lime, transparent),
+        linear-gradient(to top right, blue, transparent);
+    background-blend-mode: screen;
+}
+.grad a{
+    margin: 0 auto;
+    margin-bottom: 30px;
+
+    position: static;
+    display: inline-block;
+    padding: 15px 30px;
+    display: block;
+    width: 200px;
+    
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 900;
+    overflow: hidden;
+    transition: 0.2s;
+    background: rgba(255,255,255,0.50);
+
+}
+.grad a:hover{
+    /* color:#255784; */
+    /* background: #2196f3; */
+    box-shadow: 0 0 10px #2196f3,  0 0 40px #2196f3,
+    0 0 80px #2196f3;
+    /* transition: 0.5s;
+    transition-delay: 1s; */
+}
+
+.dark a{
+    margin: 0 auto;
+    margin-bottom: 30px;
+
+    position: static;
+    display: inline-block;
+    padding: 15px 30px;
+    display: block;
+    width: 200px;
+    
+    color: #2196f3;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 900;
+    overflow: hidden;
+    transition: 0.2s;
+    border: 2px solid #2196f3;
+    border-radius: 10px;
+
+}
+.dark a:hover{
+    /* color:#255784; */
+    /* background: #2196f3; */
+    box-shadow: 0 0 10px #2196f3,  0 0 40px #2196f3,
+    0 0 80px #2196f3;
+    /* transition: 0.5s;
+    transition-delay: 1s; */
+}
+
+.wht a{
+    margin: 0 auto;
+    margin-bottom: 30px;
+
+    position: static;
+    display: inline-block;
+    padding: 15px 30px;
+    display: block;
+    width: 200px;
+    
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 900;
+    overflow: hidden;
+    transition: 0.2s;
+    border: 2px linear-gradient(red,pink,purple);
+    background: linear-gradient(120deg,rgb(108, 0, 209),rgb(132, 0, 255),rgb(112, 0, 112));
+    background-size: 200%;
+    background-position: left;
+}
+.wht a:hover{
+    background-position: right;
+    box-shadow: 2px 5px 5px rgba(0,0,0,0.30);
+    /* transition: 0.5s;
+    transition-delay: 1s; */
+}
+
+
+
+.container{
+    margin: 0 auto;
+    background-color: darkgrey;
+    width: 600px;
+    height: 100vh;
+    border-left: 1px solid black;
+    /* height: 800px; */
+    
+}
