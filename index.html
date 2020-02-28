@@ -5,14 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="side2.css">
+
+
 </head>
 
 <body>
     <div class="container">
         <div class="sidebar">
-            <ul>
-                <li>
+            <ul class="top">
+                <li id="prof">
+                    <!-- <input type="button" value="Profile" class="parentButton"> -->
+                    <button class="parentButton">Profile</button>
+                    <ul class="drp">
+                        <li><input type="button" value="Login" class="childButton"></li>
+                        <li><input type="button" value="Log out" class="childButton"></li>
+                    </ul>
+                </li>
+                <!-- <li>
+                    
                     <a href="">User Panel</a>
                     <div class="drop">
                         <a href="">Log In</a>
@@ -23,15 +36,23 @@
                     <div class="drop">
                         <a href="">Log In</a>
                     </div>
-                </li>
-                <li><a href="">Settings</a></li>
+                </li> -->
+                <!-- <li><a href="">Settings</a></li>
                 <li><a href="">About</a></li>
-                <li><a href="">Contacts</a></li>
+                <li><a href="">Contacts</a></li> -->
                 <li>
-                    <input type="button" value="Button">
-                    <div class="drop">
-                        <input type="button" value="Log In">
+                    <button class="parentButton">Settings</button>
+                    <div class="drp">
+                        <input type="button" value="Log In" class="childButton">
                     </div>
+                </li>
+                <li>
+                    <button class="parentButton">Contact</button>
+                    <div class="drp">
+                        <input type="button" value="Log In" class="childButton">
+
+                    </div>
+
                 </li>
             </ul>
         </div>
@@ -59,6 +80,7 @@
             <div class="notepad">
                 <textarea name="" id="" spellcheck="false" placeholder="Start typing notes here..."></textarea>
             </div>
+
         </div>
     </div>
 </body>
