@@ -62,7 +62,7 @@
 
 .parentButton:focus+.drp
 {
-    display: block;
+    /* display: block; */
 }
 
 .childButton

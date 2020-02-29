@@ -17,38 +17,21 @@
         <div class="sidebar">
             <ul class="top">
                 <li id="prof">
-                    <!-- <input type="button" value="Profile" class="parentButton"> -->
-                    <button class="parentButton">Profile</button>
-                    <ul class="drp">
-                        <li><input type="button" value="Login" class="childButton"></li>
+                    <button class="parentButton" onclick="showChild(this)" id="p1">Profile</button>
+                    <ul class="drp" id="drp1">
+                        <li><button class="childButton" onclick="openForm(this)">Log In</button></li>
                         <li><input type="button" value="Log out" class="childButton"></li>
                     </ul>
                 </li>
-                <!-- <li>
-                    
-                    <a href="">User Panel</a>
-                    <div class="drop">
-                        <a href="">Log In</a>
-                    </div>
-                    <div class="drop">
-                        <a href="">Log In</a>
-                    </div>
-                    <div class="drop">
-                        <a href="">Log In</a>
-                    </div>
-                </li> -->
-                <!-- <li><a href="">Settings</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Contacts</a></li> -->
                 <li>
-                    <button class="parentButton">Settings</button>
-                    <div class="drp">
+                    <button class="parentButton" onclick="showChild(this)" id="p2">Settings</button>
+                    <div class="drp" id="drp2">
                         <input type="button" value="Log In" class="childButton">
                     </div>
                 </li>
                 <li>
-                    <button class="parentButton">Contact</button>
-                    <div class="drp">
+                    <button class="parentButton" onclick="showChild(this)" id="p3">Contact</button>
+                    <div class="drp" id="drp3">
                         <input type="button" value="Log In" class="childButton">
 
                     </div>
@@ -62,15 +45,6 @@
                     NoteFused
                 </div>
                 <div class="btns">
-                    <!-- <div class="btn">
-                    <a href="">+</a>
-                </div>
-                <div class="btn">
-                    <a href="">-</a>
-                </div>
-                <div class="btn">
-                    <a href="">x</a>
-                </div> -->
                     <a href="">
                         <img src="ham.svg" alt="">
                     </a>
@@ -78,11 +52,55 @@
                 </div>
             </div>
             <div class="notepad">
-                <textarea name="" id="" spellcheck="false" placeholder="Start typing notes here..."></textarea>
+                <textarea name="" id="pad" spellcheck="false" placeholder="Start typing notes here..."></textarea>
             </div>
 
         </div>
     </div>
+    <div id="disableDiv">
+
+    </div>
+    <div class="loginform" id="loginForm">
+        <button id="close" onclick="closeForm()">Close</button>
+    </div>
+    <script>
+
+        function hideChild() {
+            document.getElementById("drp1").display = "none";
+
+        }
+        function openForm() {
+            document.getElementById("disableDiv").style.display = "block";
+            document.getElementById("loginForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("disableDiv").style.display = "none";
+            document.getElementById("loginForm").style.display = "none";
+        }
+        function showChild(ele) {
+            var id = ele.id;
+            if (id == "p1") {
+                document.getElementById("drp1").style.display = "block";
+                document.getElementById("drp1").focus();
+                document.getElementById("drp2").style.display = "none";
+                document.getElementById("drp3").style.display = "none";
+            }
+            if (id == "p2") {
+                document.getElementById("drp2").style.display = "block";
+                document.getElementById("drp2").focus();
+                document.getElementById("drp1").style.display = "none";
+                document.getElementById("drp3").style.display = "none";
+            }
+            if (id == "p3") {
+                document.getElementById("drp3").style.display = "block";
+                document.getElementById("drp3").focus();
+                document.getElementById("drp1").style.display = "none";
+                document.getElementById("drp2").style.display = "none";
+            }
+
+        }
+    </script>
 </body>
 
 </html>
