@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="side2.css">
+    <link rel="stylesheet" href="login.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
 </head>
@@ -61,7 +63,23 @@
 
     </div>
     <div class="loginform" id="loginForm">
-        <button id="close" onclick="closeForm()">Close</button>
+        <button id="close" onclick="closeForm()">x</button>
+        <form action="" id="logForm">
+            <h1>Login</h1>
+            <div class="input-sec">
+                <input type="text" name="" id="">
+                <span data-placeholder="username"></span>
+            </div>
+            <div class="input-sec">
+                <input type="password" name="" id="">
+                <span data-placeholder="password"></span>
+            </div>
+            <input type="submit" value="Login" class="logBtn">
+            <div class="regText">
+                Don't have an account? <a href="">Register Now</a>
+            </div>
+
+        </form>
     </div>
     <script>
 
@@ -100,6 +118,16 @@
             }
 
         }
+
+
+        $(".input-sec input").on("focus", function () {
+            $(this).addClass("focus");
+        });
+        $(".input-sec input").on("blur", function () {
+            if ($(this).val() == "") {
+                $(this).removeClass('focus');
+            }
+        });
     </script>
 </body>
 
