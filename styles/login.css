@@ -1,0 +1,14 @@
+html
+{
+   -ms-overflow-style: -ms-autohiding-scrollbar
+}
+#close
+{
+    position: relative;
+    top: -25px;
+    left:306px;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 20px;
+}

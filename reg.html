@@ -5,14 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="reg.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="styles/reg.css">
+    <!-- <link rel="stylesheet" href="login.css"> -->
+    <link rel="stylesheet" href="styles/form.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 
 <body>
     <div class="form-wrap">
-        <form action="" id="logForm">
-            <h1>Registration</h1>
+        <form action="">
+            <h1 class="form-heading">Registration</h1>
 
 
             <div class="input-sec">
@@ -35,14 +38,29 @@
                 <input type="password" name="" id="cpassbox">
                 <span data-placeholder="confirm password"></span>
             </div>
-            <input type="submit" value="Login" class="logBtn">
-            <div class="regText">
-                Don't have an account? <a href="reg.html">Register Now</a>
+            <div class="button-holder">
+                <input type="reset" value="Clear Form" class="resBtn">
+                <div class="gap"></div>
+                <input type="submit" value="Register" class="subBtn">
+            </div>
+            <div class="bottomText">
+                Already have an account? <a href="index.html">Login Instead</a>
             </div>
 
 
         </form>
     </div>
+
+    <script>
+        $(".input-sec input").on("focus", function () {
+            $(this).addClass("focus");
+        });
+        $(".input-sec input").on("blur", function () {
+            if ($(this).val() == "") {
+                $(this).removeClass('focus');
+            }
+        });
+    </script>
 </body>
 
 </html>

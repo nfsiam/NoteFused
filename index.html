@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteFused</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="side2.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/side2.css">
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/form.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
@@ -65,8 +67,8 @@
     </div>
     <div class="loginform" id="loginForm">
         <button id="close" onclick="closeForm()">x</button>
-        <form action="" id="logForm">
-            <h1>Login</h1>
+        <form action="" id="">
+            <h1 class="form-heading">Login</h1>
             <div class="input-sec">
                 <input type="text" name="" id="unamebox">
                 <span data-placeholder="username"></span>
@@ -75,8 +77,10 @@
                 <input type="password" name="" id="passbox">
                 <span data-placeholder="password"></span>
             </div>
-            <input type="submit" value="Login" class="logBtn">
-            <div class="regText">
+            <div class="button-holder">
+                <input type="submit" value="Login" class="subBtn">
+            </div>
+            <div class="bottomText">
                 Don't have an account? <a href="reg.html">Register Now</a>
             </div>
 
@@ -84,7 +88,6 @@
     </div>
     <script>
 
-        var z;
         function hideChild() {
             document.getElementById("drp1").display = "none";
 
@@ -133,11 +136,11 @@
                 $(this).removeClass('focus');
             }
         });
-        $(".sidebar button").on("focus", function () {
+        /* $(".sidebar button").on("focus", function () {
             var n = $(this).atrr('id');
             alert(n);
 
-        });
+        }); */
         /* $(".sidebar button").on("blur", function () {
             //alert($(this).attr('id'));
             /* if ($(this).attr('id') == "p1") {
