@@ -9,6 +9,7 @@
 .drp
 {
     display: none;
+    transition: 0.3s;
 }
 
 .parentButton
@@ -19,6 +20,7 @@
     line-height: 48px;
     color:white;
     background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
+    background: -ms-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
     background-position: left;
     background-size: 200%;
     transition: all 0.7s ease;
@@ -45,12 +47,12 @@
 {
     background-position: right;
 }
-.parentButton:focus::after
+/* .parentButton:focus::after
 {
     top: 15px;
     right: 20px;
     border-color: transparent transparent #ffffff transparent;
-}
+} */
 
 
 
@@ -76,12 +78,15 @@
     transition: all 0.7s ease;
     overflow: hidden;
     border: none;
-/*     box-shadow: 2px 2px 2px rgba(0,0,0,0.10);
- */    background: -webkit-linear-gradient(120deg, #bdbdbd,#ffffff);
+/*     box-shadow: 2px 2px 2px rgba(0,0,0,0.10);*/ 
+    background: -webkit-linear-gradient(120deg, #bdbdbd,#ffffff);
+    background: -ms-linear-gradient(120deg,#bdbdbd,#ffffff);
+   
     background-position: left;
     background-size: 200%;
     transition: 0.2s ease-in-out;
     font-size: 0.9em;
+    outline: none;
 
 }
 .childButton:hover
@@ -92,6 +97,10 @@
     font-weight: 700;
 
 
+}
+.childButton:focus, .parentButton:focus
+{
+    outline: none;
 }
 
 .top li input[type="button"]:focus

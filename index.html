@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NoteFused</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="side2.css">
@@ -47,9 +47,10 @@
                     NoteFused
                 </div>
                 <div class="btns">
-                    <a href="">
-                        <img src="ham.svg" alt="">
-                    </a>
+                    <!-- <a href="">
+                        <img src="ham.svg" alt="" onclick="openForm()">
+                    </a> -->
+                    <button onclick="openForm()" id="ham"></button>
 
                 </div>
             </div>
@@ -67,22 +68,23 @@
         <form action="" id="logForm">
             <h1>Login</h1>
             <div class="input-sec">
-                <input type="text" name="" id="">
+                <input type="text" name="" id="unamebox">
                 <span data-placeholder="username"></span>
             </div>
             <div class="input-sec">
-                <input type="password" name="" id="">
+                <input type="password" name="" id="passbox">
                 <span data-placeholder="password"></span>
             </div>
             <input type="submit" value="Login" class="logBtn">
             <div class="regText">
-                Don't have an account? <a href="">Register Now</a>
+                Don't have an account? <a href="reg.html">Register Now</a>
             </div>
 
         </form>
     </div>
     <script>
 
+        var z;
         function hideChild() {
             document.getElementById("drp1").display = "none";
 
@@ -93,6 +95,9 @@
         }
 
         function closeForm() {
+            document.getElementById("unamebox").value = "";
+            document.getElementById("passbox").value = "";
+            $(".input-sec input").removeClass('focus');
             document.getElementById("disableDiv").style.display = "none";
             document.getElementById("loginForm").style.display = "none";
         }
@@ -128,6 +133,19 @@
                 $(this).removeClass('focus');
             }
         });
+        $(".sidebar button").on("focus", function () {
+            var n = $(this).atrr('id');
+            alert(n);
+
+        });
+        /* $(".sidebar button").on("blur", function () {
+            //alert($(this).attr('id'));
+            /* if ($(this).attr('id') == "p1") {
+                document.getElementById("drp1").style.display = "none";
+            }
+            alert(z);
+        }); */
+
     </script>
 </body>
 

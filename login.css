@@ -1,3 +1,7 @@
+html
+{
+   -ms-overflow-style: -ms-autohiding-scrollbar
+}
 #close
 {
     position: relative;
@@ -18,6 +22,11 @@
 {
     text-align: center;
     margin-bottom:60px;
+    background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
+    /*background: -ms-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);*/
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .input-sec
@@ -56,12 +65,23 @@
     content: '';
     position: absolute;
     width: 0%;
-    height: 2px;
+    height: 3px;
     left:0px;
     top: 39.5px;
-    background: linear-gradient(120deg,#efef78,#df435e);
+    background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
+    background: -ms-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
     z-index: 2;
     transition: 0.3s;
+}
+
+.input-sec input:focus + span::before
+{
+    top:-15px;
+}
+
+.input-sec input:focus + span::after
+{
+    width: 100%;
 }
 
 .focus + span::before
@@ -81,6 +101,7 @@
     border:none;
     outline: none;
     background:-webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
+    background: -ms-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
     background-size: 200%;
     background-position: left;
     transition: 0.5s;

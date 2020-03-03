@@ -1,0 +1,56 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+ html
+ {
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    /* overflow: hidden; */
+ }
+
+body
+{
+    background: -webkit-linear-gradient(140deg, #3a1c71, #d76d77);
+    background: linear-gradient(140deg, #3a1c71, #d76d77);
+    /* transform: rotate(120deg); */
+    background-size: 100% 100%;
+    /* background-repeat: no-repeat;
+    background-position: center; */
+    z-index: -5;
+    height: 100vh;
+
+}
+
+.form-wrap
+{
+    padding: 25px;
+    margin:35px auto;
+    width: 350px;
+    /* height: 800px; */
+    background-color: white;
+    position: static;
+    transform: translate(0%,0%);
+    z-index: 5;
+    box-shadow: 3px 5px 10px rgba(0,0,0,0.30);
+
+}
+
+@media only screen and (max-height:800px)
+{
+    .form-wrap
+    {
+        /* position: static; */
+        padding: 25px;
+        width: 350px;
+        background-color: white;
+        position: static;
+        margin: 20px auto;
+        transform: translate(0%,0%);
+    }
+  
+}
+

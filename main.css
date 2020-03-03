@@ -7,6 +7,11 @@
     text-decoration: none;
     font-family: "IBM Plex Sans";
 }
+html
+{
+   -ms-overflow-style: -ms-autohiding-scrollbar;
+   overflow: hidden;
+}
 
 #disableDiv {
     position: fixed;
@@ -102,12 +107,13 @@
 }
 .title{
     display: inline-block;
-    /* color: rgb(127, 0, 231); */
+    color: #d76d77;
     font-size: 1.5em;
     font-weight: 900;
     font-family: sans-serif;
     margin-left: 10px;
     background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
+    /*background: -ms-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);*/
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -121,6 +127,21 @@
 .btns{
     float: right;
     display: flex;
+    padding-right: 5px;
+}
+#ham
+{
+    background: url(ham.svg);
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    outline: none;
+    border: none;
+    
+}
+#ham:focus
+{
+    outline: none;    
 }
 
 textarea{
