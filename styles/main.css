@@ -8,7 +8,7 @@
 }
 html
 {
-   -ms-overflow-style: -ms-autohiding-scrollbar;
+   -ms-overflow-style: -ms-autohiding-scrollbar; /*to hide scrollbar in IE*/
    overflow: hidden;
 }
 
@@ -106,13 +106,12 @@ html
 }
 .title{
     display: inline-block;
-    color: #d76d77;
+    color: #d76d77; /*if gradient fails*/
     font-size: 1.5em;
     font-weight: 900;
     font-family: sans-serif;
     margin-left: 10px;
-    background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
-    /*background: -ms-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);*/
+    background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b); /*this and bottom few lines are for gradient text*/
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -128,16 +127,28 @@ html
     display: flex;
     padding-right: 5px;
 }
+
 #ham
 {
-    background: url(/images/ham.svg);
+    /* background: url("../images/ham.svg"); */
+    /*to access image from sibling subfolder*/
+    background: none;
     width: 32px;
     height: 32px;
     line-height: 32px;
     outline: none;
     border: none;
+    font-size: 1.5em;
+    background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b); /*this and bottom few lines are for gradient text*/
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     
 }
+/* #ham svg
+{
+    fill: #d76d77;
+} */
 #ham:focus
 {
     outline: none;    

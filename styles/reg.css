@@ -15,8 +15,8 @@
 
 body
 {
-    background: -webkit-linear-gradient(-60deg, #3a1c71, #d76d77);
-    background: linear-gradient(-60deg, #3a1c71, #d76d77);
+    background: -webkit-linear-gradient(-90deg, #3a1c71, #d76d77);
+    background: linear-gradient(-90deg, #3a1c71, #d76d77);
     /* transform: rotate(120deg); */
     background-size: 100% 100%;
     /* background-repeat: no-repeat;
