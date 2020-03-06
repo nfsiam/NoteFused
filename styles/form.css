@@ -3,14 +3,41 @@
 *
 {
     font-family: "IBM Plex Sans";
-    word-spacing: 0.3em;
+    word-spacing: 0.15em;
+}
+.headingz
+{
+    display: flex;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    vertical-align: middle;
+    height: 50px;
+    
+}
+.headingz > div{
+    line-height: 50px;
+}
+.headingz > div:first-child
+{
+    /* width: 50%;
+    text-align: right; */
+    background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
+    /*background: -ms-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);*/
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.5em;
+    font-weight: 900;
+}
+.headingz> div:last-child
+{
+    font-size: 1.2em;
 }
 .form-heading
 {
     text-align: center;
-    margin-bottom:60px;
+    margin-bottom:45px;
     background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
-    /*background: -ms-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);*/
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -79,6 +106,7 @@
 }
 .button-holder
 {
+    margin-top: 45px;
     display: flex;
     
 }

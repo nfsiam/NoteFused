@@ -20,11 +20,12 @@
     <div class="container">
         <div class="sidebar">
             <ul class="top">
-                <li id="prof">
+                <li>
                     <button class="parentButton" onclick="showChild(this)" id="p1">Profile</button>
                     <ul class="drp" id="drp1">
-                        <li><button class="childButton" onclick="openForm(this)">Log In</button></li>
-                        <li><input type="button" value="Log out" class="childButton"></li>
+                        <li><button class="childButton" onclick="openForm()">Login</button></li>
+                        <li><button class="childButton" onclick="goToReg()">Register</button></li>
+
                     </ul>
                 </li>
                 <li>
@@ -34,11 +35,12 @@
                     </div>
                 </li>
                 <li>
-                    <button class="parentButton" onclick="showChild(this)" id="p3">Contact</button>
-                    <div class="drp" id="drp3">
+                    <a href="contact.html"><button class="last-parent" onclick="showChild(this)"
+                            id="p3">Contact</button></a>
+                    <!-- <div class="drp" id="drp3">
                         <input type="button" value="Log In" class="childButton">
 
-                    </div>
+                    </div> -->
 
                 </li>
             </ul>
@@ -46,20 +48,10 @@
         <div class="editor">
             <div class="bar">
                 <div class="title">
-                    NoteFused
+                    <a href="index.html">NoteFused</a>
                 </div>
                 <div class="btns">
-                    <!-- <a href="">
-                        <img src="ham.svg" alt="" onclick="openForm()">
-                    </a> -->
-                    <button onclick="openForm()" id="ham">&#9776
-                        <!-- <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px"
-                            height="30px">
-                            <path
-                                d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z" />
-                        </svg> -->
-                    </button>
-
+                    <button onclick="openForm()" id="ham">&#9776</button>
                 </div>
             </div>
             <div class="notepad">
@@ -69,6 +61,7 @@
         </div>
     </div>
     <div id="disableDiv">
+
 
     </div>
     <div class="loginform" id="loginForm">
@@ -110,6 +103,10 @@
             document.getElementById("disableDiv").style.display = "none";
             document.getElementById("loginForm").style.display = "none";
         }
+
+        function goToReg() {
+            window.location.href = "reg.html";
+        }
         function showChild(ele) {
             var id = ele.id;
             if (id == "p1") {
@@ -142,18 +139,7 @@
                 $(this).removeClass('focus');
             }
         });
-        /* $(".sidebar button").on("focus", function () {
-            var n = $(this).atrr('id');
-            alert(n);
 
-        }); */
-        /* $(".sidebar button").on("blur", function () {
-            //alert($(this).attr('id'));
-            /* if ($(this).attr('id') == "p1") {
-                document.getElementById("drp1").style.display = "none";
-            }
-            alert(z);
-        }); */
 
     </script>
 </body>

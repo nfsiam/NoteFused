@@ -13,9 +13,20 @@
 </head>
 
 <body>
+    <div class="blur-back">
+
+    </div>
     <div class="form-wrap">
         <form action="">
-            <h1 class="form-heading">Registration</h1>
+            <div class="headingz">
+                <div class="title">
+                    <a href="index.html">NoteFused</a>
+                </div>
+                <div><span>&nbsp>&nbsp</span></div>
+                <div>
+                    Registration
+                </div>
+            </div>
 
 
             <div class="input-sec">
@@ -39,12 +50,12 @@
                 <span data-placeholder="confirm password"></span>
             </div>
             <div class="button-holder">
-                <input type="reset" value="Clear Form" class="resBtn">
+                <input type="reset" value="Clear Form" class="resBtn" id="resetButton" onclick="resetForm()">
                 <div class="gap"></div>
                 <input type="submit" value="Register" class="subBtn">
             </div>
             <div class="bottomText">
-                Already have an account? <a href="index.html">Login Instead</a>
+                Already have an account? <a href="login.html">Login Instead</a>
             </div>
 
 
@@ -52,6 +63,9 @@
     </div>
 
     <script>
+        function resetForm() {
+            $(".input-sec input").removeClass('focus');
+        }
         $(".input-sec input").on("focus", function () {
             $(this).addClass("focus");
         });

@@ -40,23 +40,5 @@ body
     z-index: 5;
     box-shadow: 3px 5px 10px rgba(0,0,0,0.30);
     border: 1px solid rgb(218, 218, 218);
-    
-
 
 }
-
-@media only screen and (max-height:800px)
-{
-    .form-wrap
-    {
-        /* position: static; */
-        padding: 25px;
-        width: 350px;
-        background-color: white;
-        position: static;
-        margin: 20px auto;
-        transform: translate(0%,0%);
-    }
-  
-}
-

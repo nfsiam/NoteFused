@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles/form.css">
+    <link rel="stylesheet" href="styles/contact.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div class="form-wrap">
+
+        <form action="">
+            <div class="headingz">
+                <div class="title">
+                    <a href="index.html">NoteFused</a>
+                </div>
+                <div><span>&nbsp>&nbsp</span></div>
+                <div>
+                    Contact Us
+                </div>
+            </div>
+            <div class="user-info">
+                <!-- <div class="lol">sncvsmd</div> -->
+                <div class="input-sec">
+                    <input type="text" name="" id="namebox">
+                    <span data-placeholder="name"></span>
+                </div>
+                <div class="input-sec">
+                    <input type="text" name="" id="emailbox">
+                    <span data-placeholder="email"></span>
+                </div>
+            </div>
+
+            <div class="pad">
+                <textarea name="" id="" placeholder="Write here your concern.."></textarea>
+                <span></span>
+            </div>
+            <div class="button-holder">
+                <input type="reset" value="Clear Form" class="resBtn" id="resetButton" onclick="resetForm()">
+                <div class="gap"></div>
+                <input type="submit" value="Submit" class="subBtn">
+            </div>
+
+            <div class="bottomText">
+                Want to know what other people concerns Frequently?
+                <br>
+                visit <a href="#">FAQ</a> section
+            </div>
+
+            <script>
+                function resetForm() {
+                    $(".input-sec input").removeClass('focus');
+                }
+                $(".input-sec input").on("focus", function () {
+                    $(this).addClass("focus");
+                });
+                $(".pad textarea").on("focus", function () {
+                    $(this).addClass("focus");
+                    $(".pad").css({ 'border-bottom': 'none' });
+                });
+
+                $(".input-sec input").on("blur", function () {
+                    if ($(this).val() == "") {
+                        $(this).removeClass('focus');
+                    }
+                });
+                $(".pad textarea").on("blur", function () {
+                    if ($(this).val() == "") {
+                        $(this).removeClass('focus');
+                        $(".pad").css({ 'border-bottom': '2px solid #adadad' });
+                    }
+                });
+
+            </script>
+
+        </form>
+    </div>
+</body>
+
+</html>
