@@ -25,7 +25,7 @@
                     <ul class="drp" id="drp1">
                         <li><button class="childButton" onclick="openForm()">Login</button></li>
                         <li><button class="childButton" onclick="goToReg()">Register</button></li>
-
+                        <li><a href="mynotes.html"><button class="childButton">My Notes</button></a></li>
                     </ul>
                 </li>
                 <li>
@@ -35,7 +35,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="contact.html"><button class="last-parent" onclick="showChild(this)"
+                    <a href="contact.php"><button class="last-parent" onclick="showChild(this)"
                             id="p3">Contact</button></a>
                     <!-- <div class="drp" id="drp3">
                         <input type="button" value="Log In" class="childButton">
@@ -48,7 +48,7 @@
         <div class="editor">
             <div class="bar">
                 <div class="title">
-                    <a href="index.html">NoteFused</a>
+                    <a href="index.php">NoteFused</a>
                 </div>
                 <div class="btns">
                     <button onclick="openForm()" id="ham">&#9776</button>
@@ -80,7 +80,7 @@
                 <input type="submit" value="Login" class="subBtn">
             </div>
             <div class="bottomText">
-                Don't have an account? <a href="reg.html">Register Now</a>
+                Don't have an account? <a href="reg.php">Register Now</a>
             </div>
 
         </form>
@@ -105,7 +105,7 @@
         }
 
         function goToReg() {
-            window.location.href = "reg.html";
+            window.location.href = "reg.php";
         }
         function showChild(ele) {
             var id = ele.id;

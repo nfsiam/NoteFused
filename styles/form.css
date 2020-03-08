@@ -5,6 +5,12 @@
     font-family: "IBM Plex Sans";
     word-spacing: 0.15em;
 }
+.warn
+{
+    padding: 0 5px;
+    width: 100%;
+    color: #d76d77;
+}
 .headingz
 {
     display: flex;
@@ -49,7 +55,7 @@
 {
     border-bottom:  2px solid #adadad;
     position: relative;
-    margin: 30px 0;
+    margin: 30px 0 5px 0;
 }
 .input-sec input
 {
@@ -103,10 +109,20 @@
 {
     top:-15px;
 }
-
+/*this is a way to show error message in placeholder*/
+/* .redfocus + span::before
+{
+    color: #d76d77;
+    content: attr(data-placeholder) ' can not be empty';
+}
+ */
 .focus + span::after
 {
     width: 100%;
+}
+.warn + span::before
+{
+    color : #d76d77;
 }
 .button-holder
 {

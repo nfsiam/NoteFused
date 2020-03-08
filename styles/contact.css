@@ -108,15 +108,15 @@ textarea{
         width: 100%;
     }
 
-    .user-info div
+    .user-info .placediv
     {
         width: calc(50%);
     }
-    .user-info > div:first-child 
+    .user-info > .placediv:first-child 
     {
         margin-right: 10px;
     }
-    .user-info > div:last-child 
+    .user-info > .placediv:last-child 
     {
         margin-left: 10px;
     }
