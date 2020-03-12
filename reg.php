@@ -36,10 +36,10 @@
             $err_email = "Email can not be empty";
         }
         else if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
-			{			
-                
-               $err_email = "Email ID is not valid";
-            }
+        {			
+            
+            $err_email = "Email ID is not valid";
+        }
         else
         {
             $email = htmlspecialchars($_POST['email']);

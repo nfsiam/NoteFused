@@ -1,3 +1,30 @@
+<?php
+    $uname = "";
+    $err_uname = "";
+    $pass = "";
+    $err_pass = "";
+    if(isset($_POST['login']))
+    {
+        if(empty($_POST['uname']))
+        {
+            $err_uname = "Username can not be empty";
+        }
+        else
+        {
+            $uname = htmlspecialchars($_POST['uname']);
+        }
+
+        if(empty($_POST['pass']))
+        {
+            $err_pass = "Password can not be empty";
+        }
+        else
+        {
+            $pass = htmlspecialchars($_POST['pass']);
+        }
+
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,18 +93,20 @@
     </div>
     <div class="loginform" id="loginForm">
         <button id="close" onclick="closeForm()">x</button>
-        <form action="" id="">
+        <form action="" id="" method="post">
             <h1 class="form-heading">Login</h1>
             <div class="input-sec">
-                <input type="text" name="" id="unamebox">
-                <span data-placeholder="username"></span>
+                <input type="text" name="uname" id="unamebox" value="<?php echo $uname; ?>">
+                <span data-placeholder="username" ></span>
             </div>
+            <div class="warn"><?php echo $err_uname; ?></div>
             <div class="input-sec">
-                <input type="password" name="" id="passbox">
+                <input type="password" name="pass" id="passbox" value="<?php echo $pass;?>">
                 <span data-placeholder="password"></span>
             </div>
+            <div class="warn"><?php echo $err_pass; ?></div>
             <div class="button-holder">
-                <input type="submit" value="Login" class="subBtn">
+                <input type="submit" value="Login" class="subBtn" name="login" >
             </div>
             <div class="bottomText">
                 Don't have an account? <a href="reg.php">Register Now</a>
@@ -142,6 +171,25 @@
 
 
     </script>
+    <?php
+            if($uname != "")
+            {
+                echo "<script>
+                $('#unamebox').addClass('focus');
+                </script>";
+            }
+            if($pass != "")
+            {
+                echo "<script>
+                $('#passbox').addClass('focus');
+                </script>";
+            }
+            if(isset($_POST['login']))
+            {
+                echo "<script>document.getElementById('disableDiv').style.display = 'block';
+                document.getElementById('loginForm').style.display = 'block';</script>";
+            }
+        ?>
 </body>
 
 </html>
