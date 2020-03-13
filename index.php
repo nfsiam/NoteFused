@@ -1,30 +1,9 @@
 <?php
-    $uname = "";
-    $err_uname = "";
-    $pass = "";
-    $err_pass = "";
-    if(isset($_POST['login']))
-    {
-        if(empty($_POST['uname']))
-        {
-            $err_uname = "Username can not be empty";
-        }
-        else
-        {
-            $uname = htmlspecialchars($_POST['uname']);
-        }
-
-        if(empty($_POST['pass']))
-        {
-            $err_pass = "Password can not be empty";
-        }
-        else
-        {
-            $pass = htmlspecialchars($_POST['pass']);
-        }
-
-    }
+    require "includes/initiatenotepad.php";
+    require "includes/indexloginvalidation.php";
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,14 +54,14 @@
         <div class="editor">
             <div class="bar">
                 <div class="title">
-                    <a href="index.php">NoteFused</a>
+                    <a href="./">NoteFused</a>
                 </div>
                 <div class="btns">
                     <button onclick="openForm()" id="ham">&#9776</button>
                 </div>
             </div>
             <div class="notepad">
-                <textarea name="" id="pad" spellcheck="false" placeholder="Start typing notes here..."></textarea>
+                <textarea name="" id="pad" spellcheck="false" placeholder="Start typing notes here..."><?php echo $noteText; ?></textarea>
             </div>
 
         </div>
