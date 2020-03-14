@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    require "db/dbcon.php";
     $name = "";
     $err_name = "";
     $uname = "";
@@ -11,11 +13,45 @@
     $err_pass = "";
     $cpass = "";
     $err_cpass = "";
+
+    //below function ensures unique username from user
+    function isAvailable($uname)
+    {
+        $query = "SELECT * from profiles where username='$uname'";
+        $result = get($query);
+        if(mysqli_num_rows($result)>0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    //below function automatically logs in the user
+    //and redirects him to the homepage
+    function autoLogin($uname,$pass)
+    {
+        $query = "SELECT * FROM profiles WHERE username='$uname' AND pass='$pass'";
+        $result=get($query);
+        if(mysqli_num_rows($result) > 0)
+        {
+            $user=mysqli_fetch_assoc($result);
+            $_SESSION['user'] = $user;
+            unset($_POST['register']);
+            header("Location:./");
+            
+        }
+    }
+    
     if(isset($_POST['register']))
     {
+        $hasNoError = true;
         if(empty($_POST['name']))
         {
             $err_name = "Name can not be empty";
+            $hasNoError = false;
         }
         else
         {
@@ -26,19 +62,27 @@
         if(empty($_POST['uname']))
         {
             $err_uname = "Username can not be empty";
+            $hasNoError = false;
         }
         else
         {
             $uname = htmlspecialchars($_POST['uname']);
+            if(!isAvailable($uname))
+            {
+                $err_uname = "Opps! username is already taken...";
+                $hasNoError = false;
+            }
         }
         if(empty($_POST['email']))
         {
             $err_email = "Email can not be empty";
+            $hasNoError = false;
         }
         else if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
         {			
             
             $err_email = "Email ID is not valid";
+            $hasNoError = false;
         }
         else
         {
@@ -48,6 +92,7 @@
         if(empty($_POST['pass']))
         {
             $err_pass = "Password can not be empty";
+            $hasNoError = false;
         }
         else
         {
@@ -56,6 +101,7 @@
         if(empty($_POST['cpass']))
         {
             $err_cpass = "Password can not be empty";
+            $hasNoError = false;
         }
         else
         {
@@ -66,7 +112,17 @@
             if($cpass!==$pass)
             {
                 $err_cpass = "Passwords didn't match";
+                $hasNoError = false;
             }
+        }
+
+        if($hasNoError)
+        {
+            $query = "INSERT INTO profiles (username, name, email, pass, level)
+                VALUES ('$uname', '$name', '$email','$pass','0')";
+            execute($query);
+
+            autoLogin($uname,$pass);
         }
 
     }
