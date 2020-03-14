@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require "includes/initiatenotepad.php";
     require "includes/indexloginvalidation.php";
 ?>
@@ -29,9 +30,20 @@
                 <li>
                     <button class="parentButton" onclick="showChild(this)" id="p1">Profile</button>
                     <ul class="drp" id="drp1">
-                        <li><button class="childButton" onclick="openForm()">Login</button></li>
-                        <li><button class="childButton" onclick="goToReg()">Register</button></li>
-                        <li><a href="mynotes.html"><button class="childButton">My Notes</button></a></li>
+                        <?php
+                            
+                            if(isset($_SESSION['user']))
+                            {
+                                echo "<li><a href='mynotes.html'><button class='childButton'>My Notes</button></a></li>";
+                                echo "<li><a href='destroysession.php'><button class='childButton'>Logout</button></a></li>";
+                                //<a href="contact.php"><button class="last-parent" onclick="showChild(this)"id="p3">Contact</button></a>
+                            }
+                            else
+                            {
+                                echo "<li><button class='childButton' onclick='openForm()'>Login</button></li>";
+                                echo "<li><button class='childButton' onclick='goToReg()'>Register</button></li>";
+                            }
+                        ?>
                     </ul>
                 </li>
                 <li>
@@ -74,6 +86,7 @@
         <button id="close" onclick="closeForm()">x</button>
         <form action="" id="" method="post">
             <h1 class="form-heading">Login</h1>
+            <div class="warn"><?php echo $err_profile; ?></div>
             <div class="input-sec">
                 <input type="text" name="uname" id="unamebox" value="<?php echo $uname; ?>">
                 <span data-placeholder="username" ></span>

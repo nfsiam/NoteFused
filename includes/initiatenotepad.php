@@ -1,6 +1,16 @@
 <?php
     require "urlgenerator.php";
     $noteText = "";
+    $noteOwner = "guest";
+
+    if(isset($_SESSION['user'])) 
+    {
+        $user = $_SESSION['user'];
+        if(isset($user['username']))
+        {
+            $noteOwner = $user['username'];
+        }
+    }
 
     if(isset($_GET['id']))
     {
@@ -8,16 +18,14 @@
         {
             //we wll generate auto url for id
             $noteID = generateURL();
-            $noteOwner = "guest";
             //by default owner is guest but if user
             //is logged in he will be the owner.
-            if(isset($_SESSION['username'])) 
-            {
-                $noteOwner = $_SESSION['username'];
-            }
+            
 
-            //here we create an entry in the database against the new noteID
-            //before sending him towards our else block
+            //here we create an entry in the database
+            //against the new noteID before sending 
+            //him towards our else block
+
             $query = "INSERT INTO notes (noteID, notePrivacy, noteOwner, text)
             VALUES ('$noteID', '0', '$noteOwner','')";
             execute($query);
@@ -64,6 +72,9 @@
             else
             {
                 //create new note against the id
+                $query = "INSERT INTO notes (noteID, notePrivacy, noteOwner, text)
+                VALUES ('$noteID', '0', '$noteOwner','')";
+                execute($query);
             }
              
         }
