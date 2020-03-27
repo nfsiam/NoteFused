@@ -64,14 +64,52 @@
             </ul>
         </div>
         <div class="editor">
-            <div class="bar">
-                <div class="title">
-                    <a href="./">NoteFused</a>
+            <div class="bar" id="bar">
+                <div class="head-bar">
+                    <div class="title">
+                        <a href="./">NoteFused</a>
+                    </div>
+                    <div class="btns">
+                    <button onclick="" id="expand">
+                        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                            <title>background</title>
+                            <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+                            </g>
+                            <g>
+                            <title>Layer 1</title>
+                            <path id="svg_1" d="m256,298.3l0,0l0,0l174.2,-167.2c4.3,-4.2 11.4,-4.1 15.8,0.2l30.6,29.9c4.4,4.3 4.5,11.3 0.2,15.5l-212.7,204.2c-2.2,2.2 -5.2,3.2 -8.1,3c-3,0.1 -5.9,-0.9 -8.1,-3l-212.7,-204.2c-4.3,-4.2 -4.2,-11.2 0.2,-15.5l30.6,-29.9c4.4,-4.3 11.5,-4.4 15.8,-0.2l174.2,167.2z"/>
+                            </g>
+                        </svg>
+                    </button>
+                        <button onclick="openForm()" id="ham">&#9776</button>
+                    </div>
                 </div>
-                <div class="btns">
-                    <button onclick="openForm()" id="ham">&#9776</button>
+                <div class="edit-settings" id="editSettings">
+                    <div class="privacy-radio-holder sub-settings">
+                        <div class="sep-div"><input type="radio" name="privacy" id="" value="public"><span>Public Note</span></div>
+                        <div class="sep-div"><input type="radio" name="privacy" id="" value="private"><span>Private Note</span></div>
+                    </div>
+                    <div class="sub-settings">
+                        <div class="sep-div">
+                            <span>Expiration</span>
+                            <select name="" id="">
+                                <option value="">None</option>
+                                <option value="">3 days</option>
+                                <option value="">7 days</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="sub-settings">
+                        <div class="sep-div">
+                            <span>Author</span>
+                            <input type="text" name="" id="">
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
+            
             <div class="notepad">
                 <textarea name="" id="pad" spellcheck="false" placeholder="Start typing notes here..."><?php echo $noteText; ?></textarea>
             </div>
@@ -107,6 +145,18 @@
         </form>
     </div>
     <script>
+        function setupTextAreaHeight()
+        {
+            let h = $('#bar').height();
+            document.documentElement.style.setProperty('--edsetH', `${h}px`);
+        }
+        $(window).ready(function(){
+            setupTextAreaHeight();
+        });
+        $(window).resize(function(){
+            setupTextAreaHeight();
+        });
+        
 
         function hideChild() {
             document.getElementById("drp1").display = "none";
@@ -159,6 +209,31 @@
             if ($(this).val() == "") {
                 $(this).removeClass('focus');
             }
+        });
+
+        let expand = document.getElementById('expand');
+        let editSettings = document.getElementById('editSettings');
+        
+        expand.addEventListener('click',()=>{
+            /* if(editSettings.style.display == "none")
+            {
+                editSettings.style.display = "block";
+            }
+            else{
+                editSettings.style.display = "none";
+            }  */
+            if($('#editSettings').css('display') == "none")
+            {
+                editSettings.style.display = "block";
+                setupTextAreaHeight();
+            }
+            else
+            {
+                editSettings.style.display = "none";
+                setupTextAreaHeight();
+            }
+            //alert($('#editSettings').css('display'));
+            
         });
 
 

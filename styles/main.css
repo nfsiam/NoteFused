@@ -1,22 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
-*{
+:root {
+    --edsetH: 0px;
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    font-family: "IBM Plex Sans";
+    font-family: 'IBM Plex Sans';
 }
-html
-{
-   -ms-overflow-style: -ms-autohiding-scrollbar; /*to hide scrollbar in IE*/
-   /* overflow: hidden; */
+html {
+    -ms-overflow-style: -ms-autohiding-scrollbar; /*to hide scrollbar in IE*/
+    /* overflow: hidden; */
 }
 
-
-
-
-
-.container{
+.container {
     display: flex;
     position: absolute;
     width: 90%;
@@ -24,89 +23,82 @@ html
     background-color: white;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     z-index: -1;
 }
-.sidebar{
+.sidebar {
     width: 20%;
     margin-right: 20px;
     height: 80vh;
     display: inline-block;
 }
 
-
-
-.editor{
+.editor {
     display: inline-block;
     /* position: absolute; */
+    position: relative;
     width: 80%;
     height: 80vh;
     background-color: white;
     /* top: 50%;
     left: 50%; */
     /* transform: translate(-50%,-50%); */
-    box-shadow: 3px 5px 7px rgba(0,0,0,0.30);
+    box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.3);
 }
 
-.bar{
+.bar {
     width: 100%;
-    height: 48px;
+    /* height: 20vh; */
+    /* height: 48px; */
     border: 1px solid rgb(218, 218, 218);
 
     /* display: flex; */
 }
+.head-bar {
+    height: 48px;
+}
 
-.title, .btns{
+.title,
+.btns {
     position: relative;
-    top:50%;
+    top: 50%;
     transform: translateY(-50%);
     user-select: none;
-
+    /* line-height: 48px; */
 }
 
-/* .btn a{
-    text-align: center;
-    display: inline-block;
-    margin: 2px;
-    background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b);
-    height: 32px;
-    width: 32px;
-    border-radius: 50%;
-    color:white;
-} */
-.btns a{
-    margin-right:10px ;
-}
-.title{
+.title {
     display: inline-block;
     margin-left: 10px;
-    
 }
-.title a{
+.title a {
     display: inline-block;
     color: #d76d77; /*if gradient fails*/
     font-size: 1.5em;
     font-weight: 900;
     font-family: sans-serif;
-    background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b); /*this and bottom few lines are for gradient text*/
+    background: -webkit-linear-gradient(
+        120deg,
+        #3a1c71,
+        #d76d77,
+        #ffaf7b
+    ); /*this and bottom few lines are for gradient text*/
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     background-position: center;
     background-size: 200%;
-    
 }
-.title:hover{
+.title:hover {
     background-position: right;
 }
-.btns{
+.btns {
     float: right;
     display: flex;
     padding-right: 5px;
 }
 
-#ham
-{
+#ham {
     /* background: url("../images/ham.svg"); */
     /*to access image from sibling subfolder*/
     background: none;
@@ -116,54 +108,108 @@ html
     outline: none;
     border: none;
     font-size: 1.5em;
-    background: -webkit-linear-gradient(120deg,#3a1c71 , #d76d77 , #ffaf7b); /*this and bottom few lines are for gradient text*/
+    background: -webkit-linear-gradient(
+        120deg,
+        #3a1c71,
+        #d76d77,
+        #ffaf7b
+    ); /*this and bottom few lines are for gradient text*/
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    
 }
 /* #ham svg
 {
     fill: #d76d77;
 } */
-#ham:focus
-{
-    outline: none;    
+#ham:focus {
+    outline: none;
+}
+#expand {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    outline: none;
+    border: none;
+    background-color: white;
 }
 
-textarea{
+#expand svg {
+    fill: #d76d77;
+    transition: 0.2s;
+    cursor: pointer;
+    transform: scale(0.8);
+}
+
+#expand:hover svg {
+    fill: #3a1c71;
+}
+.edit-settings {
+    display: block;
+    margin: 0 7px 5px;
+    color: #aaa;
+}
+
+.sub-settings {
+    display: inline-block;
+    background-color: #d76d7701;
+    margin: 0 5px 5px;
+    padding: 5px;
+    border: 1px solid #ddd;
+}
+
+.sep-div {
+    display: inline-block;
+}
+.sep-div input[type='radio'] {
+    margin-right: 3px;
+}
+
+.sep-div select {
+    border: 1px solid #dedede;
+}
+
+.sep-div input[type='text'] {
+    border: 1px solid #dedede;
+    outline: none;
+    padding: 2px;
+    color: #aaa;
+}
+
+.sep-div select,
+.sep-div select option {
+    color: #aaa;
+    outline: none;
+}
+
+textarea {
     width: 100%;
-    height: calc(80vh - 48px);
+    height: calc(80vh - var(--edsetH));
     outline: none;
     resize: none;
     border: none;
     background-color: rgb(255, 255, 255);
     padding: 10px;
-    border: 1px solid  rgb(218, 218, 218);
+    border: 1px solid rgb(218, 218, 218);
     border-top: none;
     font-size: 1em;
-/*     font-weight: 300;
- */    font-family: "IBM Plex Sans";
+    /*     font-weight: 300;
+ */
+    font-family: 'IBM Plex Sans';
     word-spacing: 0.3em;
-    
 }
 
-@media only screen and (max-width:800px)
-{
-    .sidebar{
+@media only screen and (max-width: 800px) {
+    .sidebar {
         display: none;
     }
-    .editor{
+    .editor {
         width: 100%;
     }
 }
 
-@media only screen and (min-width:800px)
-{
-    .btns{
+@media only screen and (min-width: 800px) {
+    .btns #ham {
         display: none;
     }
 }
-
-
-
