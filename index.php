@@ -87,23 +87,24 @@
                 </div>
                 <div class="edit-settings" id="editSettings">
                     <div class="privacy-radio-holder sub-settings">
-                        <div class="sep-div"><input type="radio" name="privacy" id="" value="public"><span>Public Note</span></div>
-                        <div class="sep-div"><input type="radio" name="privacy" id="" value="private"><span>Private Note</span></div>
+                        <div class="sep-div"><input type="radio" name="privacy" id="" value="public" <?php echo $privacypub; ?> ><span>Public Note</span></div>
+                        <div class="sep-div"><input type="radio" name="privacy" id="" value="private" <?php echo $privacypriv; ?> ><span>Private Note</span></div>
                     </div>
                     <div class="sub-settings">
                         <div class="sep-div">
                             <span>Expiration</span>
                             <select name="" id="">
-                                <option value="">None</option>
-                                <option value="">3 days</option>
-                                <option value="">7 days</option>
+                                <option value="None" <?php echo $exp[0] ;?> >None</option>
+                                <option value="3" <?php echo $exp[1] ;?> >3 days</option>
+                                <option value="7" <?php echo $exp[2] ;?> >7 days</option>
+                                <option value="30" <?php echo $exp[3] ;?> >30 days</option>
                             </select>
                         </div>
                     </div>
                     <div class="sub-settings">
                         <div class="sep-div">
                             <span>Author</span>
-                            <input type="text" name="" id="">
+                            <input type="text" name="" id="" value="<?php echo $noteOwner; ?>">
                         </div>
                     </div>
                     

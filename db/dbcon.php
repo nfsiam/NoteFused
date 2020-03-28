@@ -9,8 +9,18 @@
 		global $userName;
 		global $password;
 		global $dbName;
+		//echo $query;
 		$conn = mysqli_connect($serverName, $userName,  $password, $dbName);
-		mysqli_query($conn,$query);
+		// (mysqli_query($conn,$query);
+		// mysqli_close($conn);
+		if(mysqli_query($conn,$query))
+		{
+			//echo "succ";
+		}
+		else
+		{
+			//echo "no succ";
+		}
 		mysqli_close($conn);
 	}
 	
