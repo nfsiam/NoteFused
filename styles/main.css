@@ -139,6 +139,7 @@ html {
     transition: 0.2s;
     cursor: pointer;
     transform: scale(0.8);
+    -webkit-tap-highlight-color: transparent;
 }
 
 #expand:hover svg {
@@ -152,10 +153,10 @@ html {
 
 .sub-settings {
     display: inline-block;
-    background-color: #d76d7701;
     margin: 0 5px 5px;
     padding: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #eee;
+    border-radius: 5px;
 }
 
 .sep-div {
@@ -170,7 +171,7 @@ html {
 }
 
 .sep-div input[type='text'] {
-    border: 1px solid #dedede;
+    border: 1px solid #eee;
     outline: none;
     padding: 2px;
     color: #aaa;

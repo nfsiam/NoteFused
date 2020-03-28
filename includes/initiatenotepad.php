@@ -1,7 +1,7 @@
 <?php
     require "urlgenerator.php";
     $loggedUser = "";
-
+    $noteID = "";
     $noteText = "";
     $noteOwner = "guest";
     $notePrivacy = 0;
@@ -14,7 +14,6 @@
     $exp = array("","","","");
     $xpire = 3;
     //date_default_timezone_set('UTC');
-    
     if(isset($_SESSION['user'])) 
     {
         $user = $_SESSION['user'];
@@ -23,6 +22,7 @@
             $loggedUser = $user['username'];
         }
     }
+    
     function prepareNote($note,$noteID,$owner)
     {
         global $noteText, $noteOwner, $notePrivacy, $expiration, $lastVisited, $lastVisited, $privacypub, $privacypriv, $exp, $xpire;
@@ -46,18 +46,6 @@
         }
         
         $noteOwner = $owner;
-        // $lastEdited = $note['lastEdited'];
-        // $lastVisited = $note['lastVisited'];
-        
-        // $date1 = strtotime($lastVisited."");  
-        // $date2 = strtotime($expiration.""); 
-        
-        // $diff = abs($date2 - $date1);
-        // $years = floor($diff / (365*60*60*24));
-        // $months = floor(($diff - $years * 365*60*60*24) 
-        //                             / (30*60*60*24));  
-        // $days = ceil(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-
 
         $noteText = $note['text'];
         if($xpire == 3)
@@ -144,8 +132,8 @@
                 else
                 {
                     //users preferred template
-                    $xpire = 365;
-                    $expiration = Date('Y-m-d H:i:s', strtotime("+365 days"));
+                    $xpire = 3650;
+                    $expiration = Date('Y-m-d H:i:s', strtotime("+$xpire days"));
                     $noteOwner = $loggedUser;
 
                 }
@@ -164,4 +152,6 @@
              
         }
     }
+
+
 ?>

@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteFused</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/side2.css">
     <link rel="stylesheet" href="styles/login.css">
@@ -70,31 +70,33 @@
                         <a href="./">NoteFused</a>
                     </div>
                     <div class="btns">
-                    <button onclick="" id="expand">
-                        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <button id="expand">
+                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                             <g>
-                            <title>background</title>
-                            <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+                                <title>background</title>
+                                <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
                             </g>
                             <g>
-                            <title>Layer 1</title>
-                            <path id="svg_1" d="m256,298.3l0,0l0,0l174.2,-167.2c4.3,-4.2 11.4,-4.1 15.8,0.2l30.6,29.9c4.4,4.3 4.5,11.3 0.2,15.5l-212.7,204.2c-2.2,2.2 -5.2,3.2 -8.1,3c-3,0.1 -5.9,-0.9 -8.1,-3l-212.7,-204.2c-4.3,-4.2 -4.2,-11.2 0.2,-15.5l30.6,-29.9c4.4,-4.3 11.5,-4.4 15.8,-0.2l174.2,167.2z"/>
+                                <title>Layer 1</title>
+                                <path id="svg_1" d="m256,298.3l0,0l0,0l174.2,-167.2c4.3,-4.2 11.4,-4.1 15.8,0.2l30.6,29.9c4.4,4.3 4.5,11.3 0.2,15.5l-212.7,204.2c-2.2,2.2 -5.2,3.2 -8.1,3c-3,0.1 -5.9,-0.9 -8.1,-3l-212.7,-204.2c-4.3,-4.2 -4.2,-11.2 0.2,-15.5l30.6,-29.9c4.4,-4.3 11.5,-4.4 15.8,-0.2l174.2,167.2z"/>
                             </g>
                         </svg>
                     </button>
+                                                                                    
                         <button onclick="openForm()" id="ham">&#9776</button>
                     </div>
                 </div>
+                <form action="" id="noteForm">
                 <div class="edit-settings" id="editSettings">
                     <div class="privacy-radio-holder sub-settings">
-                        <div class="sep-div"><input type="radio" name="privacy" id="" value="public" <?php echo $privacypub; ?> ><span>Public Note</span></div>
-                        <div class="sep-div"><input type="radio" name="privacy" id="" value="private" <?php echo $privacypriv; ?> ><span>Private Note</span></div>
+                        <div class="sep-div"><input type="radio" name="privacy" id="privpub" value="public" <?php echo $privacypub; ?> ><span>Public Note</span></div>
+                        <div class="sep-div"><input type="radio" name="privacy" id="privpri" value="private" <?php echo $privacypriv; ?> ><span>Private Note</span></div>
                     </div>
                     <div class="sub-settings">
                         <div class="sep-div">
                             <span>Expiration</span>
-                            <select name="" id="">
-                                <option value="None" <?php echo $exp[0] ;?> >None</option>
+                            <select name="" id="expire">
+                                <option value="3650" <?php echo $exp[0] ;?> >None</option>
                                 <option value="3" <?php echo $exp[1] ;?> >3 days</option>
                                 <option value="7" <?php echo $exp[2] ;?> >7 days</option>
                                 <option value="30" <?php echo $exp[3] ;?> >30 days</option>
@@ -104,7 +106,7 @@
                     <div class="sub-settings">
                         <div class="sep-div">
                             <span>Author</span>
-                            <input type="text" name="" id="" value="<?php echo $noteOwner; ?>">
+                            <input type="text" name="" id="author" value="<?php echo $noteOwner; ?>" readonly>
                         </div>
                     </div>
                     
@@ -115,6 +117,7 @@
                 <textarea name="" id="pad" spellcheck="false" placeholder="Start typing notes here..."><?php echo $noteText; ?></textarea>
             </div>
 
+        </form>
         </div>
     </div>
     <div id="disableDiv">
@@ -153,6 +156,7 @@
         }
         $(window).ready(function(){
             setupTextAreaHeight();
+            
         });
         $(window).resize(function(){
             setupTextAreaHeight();
@@ -185,20 +189,20 @@
                 document.getElementById("drp1").style.display = "block";
                 document.getElementById("drp1").focus();
                 document.getElementById("drp2").style.display = "none";
-                document.getElementById("drp3").style.display = "none";
+                // document.getElementById("drp3").style.display = "none";
             }
             if (id == "p2") {
                 document.getElementById("drp2").style.display = "block";
                 document.getElementById("drp2").focus();
                 document.getElementById("drp1").style.display = "none";
-                document.getElementById("drp3").style.display = "none";
+                // document.getElementById("drp3").style.display = "none";
             }
-            if (id == "p3") {
-                document.getElementById("drp3").style.display = "block";
-                document.getElementById("drp3").focus();
-                document.getElementById("drp1").style.display = "none";
-                document.getElementById("drp2").style.display = "none";
-            }
+            // if (id == "p3") {
+            //     document.getElementById("drp3").style.display = "block";
+            //     document.getElementById("drp3").focus();
+            //     document.getElementById("drp1").style.display = "none";
+            //     document.getElementById("drp2").style.display = "none";
+            // }
 
         }
 
@@ -216,26 +220,77 @@
         let editSettings = document.getElementById('editSettings');
         
         expand.addEventListener('click',()=>{
-            /* if(editSettings.style.display == "none")
-            {
-                editSettings.style.display = "block";
-            }
-            else{
-                editSettings.style.display = "none";
-            }  */
+            //console.log('outer');
             if($('#editSettings').css('display') == "none")
             {
                 editSettings.style.display = "block";
                 setupTextAreaHeight();
+                return;
             }
-            else
+            if($('#editSettings').css('display') == "block")
             {
                 editSettings.style.display = "none";
                 setupTextAreaHeight();
-            }
-            //alert($('#editSettings').css('display'));
-            
+                return;
+            }            
         });
+
+        function onNoteChange()
+        {
+            //console.log("1");
+            let priv = $('input[name=privacy]:checked', '#noteForm').val() == "public" ? 0 : 1;
+            let author = $('#author', '#noteForm').val();
+            let expire = $('#expire', '#noteForm').val();
+            let padtext  = $('#pad').val();
+
+            let noteID = "<?php echo $noteID; ?>";
+            let expiration = "<?php echo $expiration.''; ?>";
+            let lastEdited = "<?php 
+                                $date = date("Y-m-d H:i:s");
+                                echo $date.'';
+                                ?>";
+            let lastVisited = "<?php echo $lastVisited.''; ?>";
+            //console.log(padtext);
+
+
+            $.ajax({
+
+                url:'updatenote.php',
+                method:'POST',
+                data:{
+                    submit:"submit",
+                    noteText:  padtext,
+                    noteOwner:  author,
+                    notePrivacy: priv,
+                    expiration:  expiration,
+                    lastEdited: lastEdited,
+                    lastVisited:  lastVisited,
+                    xpire:  expire,
+                    noteID: noteID
+                },
+                success:function(response){
+                    //alert(response);
+                    //console.log("3");
+
+                }
+            });
+        }
+
+
+        $('#noteForm input').on('change', function() {
+            onNoteChange();
+        //alert($('input[name=privacy]:checked', '#noteForm').val()); 
+        });
+
+        $('#expire').on('change',function(){
+            onNoteChange();
+        });
+        $('#pad').keyup(function(){
+            onNoteChange();
+        });
+        
+
+
 
 
     </script>
