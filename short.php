@@ -20,7 +20,9 @@
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
     <script src="js/jquery341.js"></script>
-
+    <script src="js/sidebarfunctionality.js" defer></script>
+    <script src="js/optiontogglerfunctionality.js" defer></script>
+    <script src="js/loginvalidationfunctionality.js" defer></script>
 
 </head>
 <body>
@@ -142,158 +144,15 @@
     <script>
         
         let loggedUser ="<?php echo empty($loggedUser)?'':$loggedUser?>";
+        let noteid = '<?php echo $noteID; ?>';
+
         // console.log("aaaa: "+loggedUser);
         
         //sidebar
-        function openForm() {
-            document.getElementById("disableDiv").style.display = "block";
-            document.getElementById("loginForm").style.display = "block";
-        }
-
-        function closeForm() {
-            document.getElementById("unamebox").value = "";
-            document.getElementById("passbox").value = "";
-            document.getElementById("errProfile").innerHTML = "";
-            document.getElementById("errUname").innerHTML = "";
-            document.getElementById("errPass").innerHTML = "";
-            $(".input-sec input").removeClass('focus');
-            document.getElementById("disableDiv").style.display = "none";
-            document.getElementById("loginForm").style.display = "none";
-        }
-
-        function showChildButtons(element){
-            if(element.id == "p1"){
-                $('#drp2').slideUp(200);  
-                $('#drp1').slideDown();
-            }
-            else if(element.id == "p2"){ 
-                $('#drp1').slideUp(200);  
-                $('#drp2').slideDown(); 
-            }
-        }
-
-        $('#p1').click(function(){
-            showChildButtons(this);
-        });
-        $('#p2').click(function(){
-            showChildButtons(this);
-        });
-
-        $('#close').click(function(){
-            closeForm();
-        });
-        $('#loginButton').click(function(){
-            openForm();
-        });
-
-
-
+        
         //option toggler
-        $('#expandOptions').on('click',function(e){
-            e.preventDefault();
-
-            if(!$('#optionToggler').is(':visible'))
-            {
-                $('#optionToggler').slideDown();
-            }
-            else{
-                $('#optionToggler').slideUp();
-            }
-            
-        });
-        $('#expandOptions').on('focusout',function(e){
-            e.preventDefault();
-
-            if($('#optionToggler').is(':visible'))
-            {
-                $('#optionToggler').slideUp();
-            }
-            
-        });
-
-
+        
         //login validation
-
-        $(".input-sec input").on("focus", function () {
-            $(this).addClass("focus");
-        });
-        $(".input-sec input").on("blur", function () {
-            if ($(this).val() == "") {
-                $(this).removeClass('focus');
-            }
-        });
-
-
-        $('#login_form').submit(function(e){
-            e.preventDefault();
-            let uname = $('#unamebox').val();
-            let pass = $('#passbox').val();
-            let everythingOk = true;
-            if(uname.trim() == ''){
-                $('#errUname').html("username can not be empty");
-                everythingOk = false;
-            }else{
-                $('#errUname').html("");
-                everythingOk = true;
-            }
-            if(pass.trim() == ''){
-                $('#errPass').html("password can not be empty");
-                everythingOk = false;
-            }else{
-                $('#errPass').html("");
-                everythingOk = true;
-            }
-            
-            if(everythingOk){
-                // $('#errProfile').load('floatingloginvalidation.php',{
-                //     login:"submit",
-                //     uname:  uname,
-                //     pass:  pass
-                // });
-
-                $.ajax({
-                    url:'floatingloginvalidation.php',
-                    method:'POST',
-                    dataType:'JSON',
-                    data:{
-                        login:"submit",
-                        uname:  uname,
-                        pass:  pass
-                    },success:function(data){
-                        //alert(response);
-                        
-                        $('#errProfile').html(data.errProfile);
-                        $('#errUname').html(data.errUname);
-                        $('#errPass').html(data.errPass);
-                        console.log(data.loggdUser);
-                        if(data.loggedUser != undefined)
-                        {
-                            loggedUser = data.loggedUser;
-                            
-                            $('#loggedDiv').css('display','block');
-                            $('#noLoggedDiv').css('display','none');
-                            closeForm();
-                        }
-                    }
-                });
-            }
-        });
-        console.log(loggedUser);
-
-        if($('#unamebox').val() != ""){
-            $(this).addClass('focus');
-        }
-        if($('#passbox').val() != ""){
-            $(this).addClass('focus');
-        }
-
-        $('#urlBox,#resultUrlBox','.mini-container').focus(function(){
-            $('.alter-options').fadeOut();
-        });
-        $('#urlBox,#resultUrlBox','.mini-container').focusout(function(){
-            $('.alter-options').fadeIn();
-        });
-
 
     </script>
 </body>
