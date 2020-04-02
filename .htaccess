@@ -1,2 +1,14 @@
+
 RewriteEngine on
+#ErrorDocument 404 /webtech/notefused/
+#ErrorDocument 403 /webtech/notefused/
+
+
+#Redirect 301 /webtech/notefused/mynotes.html  /webtech/notefused/mynotes
+Redirect 301 /webtech/notefused/index.php  /webtech/notefused/
+#why this only works with full directory??why not regex??
+
+
+RewriteRule ^mynotes.html$ mnotes.php [L]
 RewriteRule ^([a-z0-9]*)$   index.php?id=$1 [L]
+

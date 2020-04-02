@@ -12,17 +12,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteFused</title>
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/side2.css">
     <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/form.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <script src="js/jquery341.js"></script>
 
 
 </head>
-
 <body>
     <div class="container">
         <div class="sidebar">
@@ -34,9 +34,8 @@
                             
                             if(isset($_SESSION['user']))
                             {
-                                echo "<li><a href='mynotes.html'><button class='childButton'>My Notes</button></a></li>";
+                                echo "<li><a href='mnotes.php'><button class='childButton'>My Notes</button></a></li>";
                                 echo "<li><a href='destroysession.php'><button class='childButton'>Logout</button></a></li>";
-                                //<a href="contact.php"><button class="last-parent" onclick="showChild(this)"id="p3">Contact</button></a>
                             }
                             else
                             {
@@ -55,14 +54,10 @@
                 <li>
                     <a href="contact.php"><button class="last-parent" onclick="showChild(this)"
                             id="p3">Contact</button></a>
-                    <!-- <div class="drp" id="drp3">
-                        <input type="button" value="Log In" class="childButton">
-
-                    </div> -->
-
                 </li>
             </ul>
         </div>
+        
         <div class="editor">
             <div class="bar" id="bar">
                 <div class="head-bar">
@@ -116,9 +111,29 @@
             <div class="notepad">
                 <textarea name="" id="pad" spellcheck="false" placeholder="Start typing notes here..."><?php echo $noteText; ?></textarea>
             </div>
-
-        </form>
         </div>
+        <div class="alter-options">
+            <div class="option-toggler" id="optionToggler">
+                <div class="create-link">
+                    <button id="createNewLink" title="Shorten a URL"><i class="fas fa-link"></i></button>
+                </div>
+                <div class="create-file">
+                    <button id="createNewFile" title="Upload a File"><i class="fas fa-file-archive"></i></button>
+                </div>
+                <div class="create-note">
+                    <button id="createNewNote" title="Create another Note"><i class="fas fa-file-alt"></i></button>
+                </div>
+            </div>
+            <div class="expand-option">
+                <button id="expandOptions"><i class="fas fa-plus"></i></button>
+            </div>
+
+        </div>
+    </div>
+
+    </form>
+        
+        
     </div>
     <div id="disableDiv">
 
@@ -152,15 +167,29 @@
         function setupTextAreaHeight()
         {
             let h = $('#bar').height();
+            console.log(h);
             document.documentElement.style.setProperty('--edsetH', `${h}px`);
         }
         $(window).ready(function(){
             setupTextAreaHeight();
+            $('#editSettings').slideDown(700,function(){
+                setupTextAreaHeight();
+            });
+            $('#editSettings').slideUp(700,function(){
+                setupTextAreaHeight();
+            });
+            $('#optionToggler').slideDown(700,function(){
+                setupTextAreaHeight();
+            });
+            $('#optionToggler').slideUp(700,function(){
+                setupTextAreaHeight();
+            });
             
         });
         $(window).resize(function(){
             setupTextAreaHeight();
         });
+
         
 
         function hideChild() {
@@ -219,21 +248,64 @@
         let expand = document.getElementById('expand');
         let editSettings = document.getElementById('editSettings');
         
-        expand.addEventListener('click',()=>{
-            //console.log('outer');
-            if($('#editSettings').css('display') == "none")
+        // expand.addEventListener('click',()=>{
+        //     //console.log('outer');
+        //     if($('#editSettings').css('display') == "none")
+        //     {
+        //         editSettings.style.display = "block";
+        //         setupTextAreaHeight();
+        //         return;
+        //     }
+        //     if($('#editSettings').css('display') == "block")
+        //     {
+        //         editSettings.style.display = "none";
+        //         setupTextAreaHeight();
+        //         return;
+        //     }            
+        // });
+
+
+
+        $('#expandOptions').on('click',function(e){
+            e.preventDefault();
+
+            if(!$('#optionToggler').is(':visible'))
             {
-                editSettings.style.display = "block";
-                setupTextAreaHeight();
-                return;
+                $('#optionToggler').slideDown();
             }
-            if($('#editSettings').css('display') == "block")
-            {
-                editSettings.style.display = "none";
-                setupTextAreaHeight();
-                return;
-            }            
+            else{
+                $('#optionToggler').slideUp();
+            }
+            
         });
+        $('#expandOptions').on('focusout',function(e){
+            e.preventDefault();
+
+            if($('#optionToggler').is(':visible'))
+            {
+                $('#optionToggler').slideUp();
+            }
+            
+        });
+        $('#expand').on('click',function(){
+            if($('#editSettings').is(':visible'))
+            {
+                $('#editSettings').slideUp(function(){
+                    setupTextAreaHeight();
+                });
+            }
+            // if(!$('#editSettings').is(':visible'))
+            else{
+                $('#editSettings').slideDown(function(){
+                    setupTextAreaHeight();
+                });
+
+            }
+            
+        });
+        // $('#createNewLink').hover(function(){
+        //     $(this).attr('title','Shorten your URL');
+        // });
 
         function onNoteChange()
         {
@@ -285,12 +357,18 @@
         $('#expire').on('change',function(){
             onNoteChange();
         });
-        $('#pad').keyup(function(){
+        // $('#pad').keyup(function(){
+        //     onNoteChange();
+        // });
+        $('#pad').bind("change keyup input",function() { 
+            // handle events here
+            $('#author', '#noteForm').val("<?php echo empty($loggedUser)?'guest':$loggedUser;?>");
             onNoteChange();
+
         });
+                
+
         
-
-
 
 
     </script>

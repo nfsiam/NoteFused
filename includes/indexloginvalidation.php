@@ -34,6 +34,7 @@
 			{
                 $user=mysqli_fetch_assoc($result);
                 $_SESSION['user'] = $user;
+                $loggedUser = $user['username'];
                 unset($_POST['login']);
                 
 			}
