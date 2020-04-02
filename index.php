@@ -1,7 +1,7 @@
 <?php
     session_start();
     require "includes/initiatenotepad.php";
-    require "includes/indexloginvalidation.php";
+    //require "includes/indexloginvalidation.php";
 ?>
 
 
@@ -28,25 +28,31 @@
         <div class="sidebar">
             <ul class="top">
                 <li>
-                    <button class="parentButton" onclick="showChild(this)" id="p1">Profile</button>
+                    <button class="parentButton" id="p1">Profile</button>
                     <ul class="drp" id="drp1">
                         <?php
                             
+                            $loggedDiv = "none";
+                            $noLoggedDiv = "block";
                             if(isset($_SESSION['user']))
                             {
-                                echo "<li><a href='mnotes.php'><button class='childButton'>My Notes</button></a></li>";
-                                echo "<li><a href='destroysession.php'><button class='childButton'>Logout</button></a></li>";
-                            }
-                            else
-                            {
-                                echo "<li><button class='childButton' onclick='openForm()'>Login</button></li>";
-                                echo "<li><button class='childButton' onclick='goToReg()'>Register</button></li>";
+                                $loggedDiv = "block";
+                                $noLoggedDiv = "none";
                             }
                         ?>
+                        <div id="loggedDiv" style = "display:<?php echo $loggedDiv;?>">                                    
+                            <li><a href='mnotes.php'><button class='childButton'>My Notes</button></a></li>
+                            <li><a href='destroysession.php'><button class='childButton'>Logout</button></a></li>
+                        </div>
+    
+                        <div id="noLoggedDiv" style = "display:<?php echo $noLoggedDiv;?>">
+                            <li><button class='childButton' id="loginButton">Login</button></li>
+                            <li><a href='reg.php'><button class='childButton'>Register</button></a></li>
+                        </div>
                     </ul>
                 </li>
                 <li>
-                    <button class="parentButton" onclick="showChild(this)" id="p2">Settings</button>
+                    <button class="parentButton" id="p2">Settings</button>
                     <div class="drp" id="drp2">
                         <input type="button" value="Log In" class="childButton">
                     </div>
@@ -111,23 +117,23 @@
             <div class="notepad">
                 <textarea name="" id="pad" spellcheck="false" placeholder="Start typing notes here..."><?php echo $noteText; ?></textarea>
             </div>
-        </div>
-        <div class="alter-options">
-            <div class="option-toggler" id="optionToggler">
-                <div class="create-link">
-                    <button id="createNewLink" title="Shorten a URL"><i class="fas fa-link"></i></button>
+            <div class="alter-options">
+                <div class="option-toggler" id="optionToggler">
+                    <div class="create-link">
+                        <button id="createNewLink" title="Shorten a URL"><i class="fas fa-link"></i></button>
+                    </div>
+                    <div class="create-file">
+                        <button id="createNewFile" title="Upload a File"><i class="fas fa-file-archive"></i></button>
+                    </div>
+                    <div class="create-note">
+                        <button id="createNewNote" title="Create another Note"><i class="fas fa-file-alt"></i></button>
+                    </div>
                 </div>
-                <div class="create-file">
-                    <button id="createNewFile" title="Upload a File"><i class="fas fa-file-archive"></i></button>
+                <div class="expand-option">
+                    <button id="expandOptions"><i class="fas fa-plus"></i></button>
                 </div>
-                <div class="create-note">
-                    <button id="createNewNote" title="Create another Note"><i class="fas fa-file-alt"></i></button>
-                </div>
+    
             </div>
-            <div class="expand-option">
-                <button id="expandOptions"><i class="fas fa-plus"></i></button>
-            </div>
-
         </div>
     </div>
 
@@ -135,25 +141,23 @@
         
         
     </div>
-    <div id="disableDiv">
+    <div id="disableDiv"></div>
 
-
-    </div>
     <div class="loginform" id="loginForm">
         <button id="close" onclick="closeForm()">x</button>
-        <form action="" id="" method="post">
+        <form action="" id="login_form" method="post">
             <h1 class="form-heading">Login</h1>
-            <div class="warn"><?php echo $err_profile; ?></div>
+            <div class="warn" id="errProfile"><?php //echo $err_profile; ?></div>
             <div class="input-sec">
-                <input type="text" name="uname" id="unamebox" value="<?php echo $uname; ?>">
+                <input type="text" name="uname" id="unamebox" value="<?php //echo $uname; ?>">
                 <span data-placeholder="username" ></span>
             </div>
-            <div class="warn"><?php echo $err_uname; ?></div>
+            <div class="warn" id="errUname"><?php //echo $err_uname; ?></div>
             <div class="input-sec">
-                <input type="password" name="pass" id="passbox" value="<?php echo $pass;?>">
+                <input type="password" name="pass" id="passbox" value="<?php //echo $pass;?>">
                 <span data-placeholder="password"></span>
             </div>
-            <div class="warn"><?php echo $err_pass; ?></div>
+            <div class="warn" id="errPass"><?php //echo $err_pass; ?></div>
             <div class="button-holder">
                 <input type="submit" value="Login" class="subBtn" name="login" >
             </div>
@@ -164,6 +168,53 @@
         </form>
     </div>
     <script>
+        
+        let loggedUser ="<?php echo empty($loggedUser)?'':$loggedUser?>";
+        // console.log("aaaa: "+loggedUser);
+        
+        //sidebar
+        function openForm() {
+            document.getElementById("disableDiv").style.display = "block";
+            document.getElementById("loginForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("unamebox").value = "";
+            document.getElementById("passbox").value = "";
+            document.getElementById("errProfile").innerHTML = "";
+            document.getElementById("errUname").innerHTML = "";
+            document.getElementById("errPass").innerHTML = "";
+            $(".input-sec input").removeClass('focus');
+            document.getElementById("disableDiv").style.display = "none";
+            document.getElementById("loginForm").style.display = "none";
+        }
+
+        function showChildButtons(element){
+            if(element.id == "p1"){
+                $('#drp2').slideUp(200);  
+                $('#drp1').slideDown();
+            }
+            else if(element.id == "p2"){ 
+                $('#drp1').slideUp(200);  
+                $('#drp2').slideDown(); 
+            }
+        }
+
+        $('#p1').click(function(){
+            showChildButtons(this);
+        });
+        $('#p2').click(function(){
+            showChildButtons(this);
+        });
+
+        $('#close').click(function(){
+            closeForm();
+        });
+        $('#loginButton').click(function(){
+            openForm();
+        });
+
+        //editor
         function setupTextAreaHeight()
         {
             let h = $('#bar').height();
@@ -190,82 +241,10 @@
             setupTextAreaHeight();
         });
 
+
+        // let expand = document.getElementById('expand');
+        // let editSettings = document.getElementById('editSettings');
         
-
-        function hideChild() {
-            document.getElementById("drp1").display = "none";
-
-        }
-        function openForm() {
-            document.getElementById("disableDiv").style.display = "block";
-            document.getElementById("loginForm").style.display = "block";
-        }
-
-        function closeForm() {
-            document.getElementById("unamebox").value = "";
-            document.getElementById("passbox").value = "";
-            $(".input-sec input").removeClass('focus');
-            document.getElementById("disableDiv").style.display = "none";
-            document.getElementById("loginForm").style.display = "none";
-        }
-
-        function goToReg() {
-            window.location.href = "reg.php";
-        }
-        function showChild(ele) {
-            var id = ele.id;
-            if (id == "p1") {
-                document.getElementById("drp1").style.display = "block";
-                document.getElementById("drp1").focus();
-                document.getElementById("drp2").style.display = "none";
-                // document.getElementById("drp3").style.display = "none";
-            }
-            if (id == "p2") {
-                document.getElementById("drp2").style.display = "block";
-                document.getElementById("drp2").focus();
-                document.getElementById("drp1").style.display = "none";
-                // document.getElementById("drp3").style.display = "none";
-            }
-            // if (id == "p3") {
-            //     document.getElementById("drp3").style.display = "block";
-            //     document.getElementById("drp3").focus();
-            //     document.getElementById("drp1").style.display = "none";
-            //     document.getElementById("drp2").style.display = "none";
-            // }
-
-        }
-
-
-        $(".input-sec input").on("focus", function () {
-            $(this).addClass("focus");
-        });
-        $(".input-sec input").on("blur", function () {
-            if ($(this).val() == "") {
-                $(this).removeClass('focus');
-            }
-        });
-
-        let expand = document.getElementById('expand');
-        let editSettings = document.getElementById('editSettings');
-        
-        // expand.addEventListener('click',()=>{
-        //     //console.log('outer');
-        //     if($('#editSettings').css('display') == "none")
-        //     {
-        //         editSettings.style.display = "block";
-        //         setupTextAreaHeight();
-        //         return;
-        //     }
-        //     if($('#editSettings').css('display') == "block")
-        //     {
-        //         editSettings.style.display = "none";
-        //         setupTextAreaHeight();
-        //         return;
-        //     }            
-        // });
-
-
-
         $('#expandOptions').on('click',function(e){
             e.preventDefault();
 
@@ -294,7 +273,6 @@
                     setupTextAreaHeight();
                 });
             }
-            // if(!$('#editSettings').is(':visible'))
             else{
                 $('#editSettings').slideDown(function(){
                     setupTextAreaHeight();
@@ -303,25 +281,16 @@
             }
             
         });
-        // $('#createNewLink').hover(function(){
-        //     $(this).attr('title','Shorten your URL');
-        // });
 
         function onNoteChange()
         {
-            //console.log("1");
             let priv = $('input[name=privacy]:checked', '#noteForm').val() == "public" ? 0 : 1;
             let author = $('#author', '#noteForm').val();
             let expire = $('#expire', '#noteForm').val();
             let padtext  = $('#pad').val();
 
             let noteID = "<?php echo $noteID; ?>";
-            let expiration = "<?php echo $expiration.''; ?>";
-            let lastEdited = "<?php 
-                                $date = date("Y-m-d H:i:s");
-                                echo $date.'';
-                                ?>";
-            let lastVisited = "<?php echo $lastVisited.''; ?>";
+            
             //console.log(padtext);
 
 
@@ -334,63 +303,112 @@
                     noteText:  padtext,
                     noteOwner:  author,
                     notePrivacy: priv,
-                    expiration:  expiration,
-                    lastEdited: lastEdited,
-                    lastVisited:  lastVisited,
                     xpire:  expire,
                     noteID: noteID
                 },
                 success:function(response){
-                    //alert(response);
                     //console.log("3");
-
                 }
             });
         }
 
 
         $('#noteForm input').on('change', function() {
+            $('#author', '#noteForm').val(loggedUser==''?'guest':`${loggedUser}`);
             onNoteChange();
-        //alert($('input[name=privacy]:checked', '#noteForm').val()); 
         });
 
         $('#expire').on('change',function(){
+            $('#author', '#noteForm').val(loggedUser==''?'guest':`${loggedUser}`);
             onNoteChange();
         });
-        // $('#pad').keyup(function(){
-        //     onNoteChange();
-        // });
+
         $('#pad').bind("change keyup input",function() { 
-            // handle events here
-            $('#author', '#noteForm').val("<?php echo empty($loggedUser)?'guest':$loggedUser;?>");
+            console.log(loggedUser);
+
+            $('#author', '#noteForm').val(loggedUser==''?'guest':`${loggedUser}`);
             onNoteChange();
 
         });
-                
 
-        
+
+        //login validation
+
+        $(".input-sec input").on("focus", function () {
+            $(this).addClass("focus");
+        });
+        $(".input-sec input").on("blur", function () {
+            if ($(this).val() == "") {
+                $(this).removeClass('focus');
+            }
+        });
+
+
+        $('#login_form').submit(function(e){
+            e.preventDefault();
+            let uname = $('#unamebox').val();
+            let pass = $('#passbox').val();
+            let everythingOk = true;
+            if(uname.trim() == ''){
+                $('#errUname').html("username can not be empty");
+                everythingOk = false;
+            }else{
+                $('#errUname').html("");
+                everythingOk = true;
+            }
+            if(pass.trim() == ''){
+                $('#errPass').html("password can not be empty");
+                everythingOk = false;
+            }else{
+                $('#errPass').html("");
+                everythingOk = true;
+            }
+            
+            if(everythingOk){
+                // $('#errProfile').load('floatingloginvalidation.php',{
+                //     login:"submit",
+                //     uname:  uname,
+                //     pass:  pass
+                // });
+
+                $.ajax({
+                    url:'floatingloginvalidation.php',
+                    method:'POST',
+                    dataType:'JSON',
+                    data:{
+                        login:"submit",
+                        uname:  uname,
+                        pass:  pass
+                    },success:function(data){
+                        //alert(response);
+                        
+                        $('#errProfile').html(data.errProfile);
+                        $('#errUname').html(data.errUname);
+                        $('#errPass').html(data.errPass);
+                        console.log(data.loggdUser);
+                        if(data.loggedUser != undefined)
+                        {
+                            loggedUser = data.loggedUser;
+                            
+                            $('#loggedDiv').css('display','block');
+                            $('#noLoggedDiv').css('display','none');
+                            closeForm();
+                        }
+                    }
+                });
+            }
+        });
+        console.log(loggedUser);
+
+        if($('#unamebox').val() != ""){
+            $(this).addClass('focus');
+        }
+        if($('#passbox').val() != ""){
+            $(this).addClass('focus');
+        }
 
 
     </script>
-    <?php
-            if($uname != "")
-            {
-                echo "<script>
-                $('#unamebox').addClass('focus');
-                </script>";
-            }
-            if($pass != "")
-            {
-                echo "<script>
-                $('#passbox').addClass('focus');
-                </script>";
-            }
-            if(isset($_POST['login']))
-            {
-                echo "<script>document.getElementById('disableDiv').style.display = 'block';
-                document.getElementById('loginForm').style.display = 'block';</script>";
-            }
-        ?>
 </body>
 
 </html>

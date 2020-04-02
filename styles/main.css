@@ -32,6 +32,10 @@ html {
     height: 80vh;
     display: inline-block;
 }
+#drp1,
+#drp2 {
+    display: none;
+}
 
 .editor {
     display: inline-block;
@@ -197,15 +201,10 @@ textarea {
     border-top: none;
     border-bottom: none;
     font-size: 1em;
-    /*     font-weight: 300;
- */
     font-family: 'IBM Plex Sans';
     word-spacing: 0.3em;
 }
-/* .bap {
-    display: relative;
-    width: 76%;
-} */
+
 .alter-options {
     position: absolute;
     bottom: 15px;
