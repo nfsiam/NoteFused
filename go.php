@@ -115,7 +115,30 @@
             </div>
             
             <div class="fuse">
-                <textarea name="" id="pad" spellcheck="false" placeholder="Start typing notes here..."><?php echo $noteText; ?></textarea>
+                <div class="mini-container">
+                    <div class="example-span">
+                        <span id="exampleSpan">Enter your URL below</span>
+                    </div>
+                    <div class="url-box">
+                        <input type="text" name="" id="urlBox" placeholder="http://www.example.com" spellcheck="false">
+                    </div>
+                    <div class="shorten-button-box">
+                        <button id="shortenButton">Shorten</button>
+                    </div>
+                    <div class="shorten-result">
+                        <div class="your-result-span">
+                            <span id="yourResultSpan">Your URL:</span>
+                        </div>
+                        <div class="result-url-box">
+                            <input type="text" name="" id="resultUrlBox" spellcheck="false">
+                        </div>
+                        <div class="result-url-share">
+                            <button id="copyToClip">Copy</button>
+                            <button id="copyToClip">Copy</button>
+                            <button id="copyToClip">Copy</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="alter-options">
                 <div class="option-toggler" id="optionToggler">

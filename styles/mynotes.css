@@ -81,32 +81,6 @@ progress::-webkit-progress-value {
     /* overflow-x: scroll; */
     width: 80%;
 }
-/* .note-lists ul {
-    list-style: none;
-    list-style-type: none;
-    padding: 20px;
-    padding-top: 0;
-
-} */
-
-/* .note-lists ul li {
-    background-color: yellow;
-    height: 80px;
-}
-
-.unit {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.unit div {
-    margin: 10px;
-    background-color: wheat;
-    height: 75px;
-} */
 
 table {
     /* table-layout: fixed; */
@@ -117,10 +91,6 @@ table {
 }
 
 tr {
-    /* background-color: wheat; */
-    /* margin: 20px 0; */
-    /* display: block;
-    width: 100%; */
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2), 0px 0px 1px rgba(0, 0, 0, 0.1);
     transition: 0.2s linear;
 }

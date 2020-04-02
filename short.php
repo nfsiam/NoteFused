@@ -4,7 +4,6 @@
     //require "includes/indexloginvalidation.php";
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,8 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteFused</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
-    <link rel="stylesheet" href="styles/main.css">
+    <!-- <link rel="stylesheet" href="styles/short.css"> -->
     <link rel="stylesheet" href="styles/side2.css">
+    <link rel="stylesheet" href="styles/topbar.css">
     <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/form.css">
 
@@ -24,7 +24,9 @@
 
 </head>
 <body>
+    
     <div class="container">
+        
         <div class="sidebar">
             <ul class="top">
                 <li>
@@ -63,81 +65,51 @@
                 </li>
             </ul>
         </div>
-        
-        <div class="editor">
-            <div class="bar" id="bar">
-                <div class="head-bar">
-                    <div class="title">
-                        <a href="./">NoteFused</a>
-                    </div>
-                    <div class="btns">
-                        <button id="expand">
-                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                            <g>
-                                <title>background</title>
-                                <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
-                            </g>
-                            <g>
-                                <title>Layer 1</title>
-                                <path id="svg_1" d="m256,298.3l0,0l0,0l174.2,-167.2c4.3,-4.2 11.4,-4.1 15.8,0.2l30.6,29.9c4.4,4.3 4.5,11.3 0.2,15.5l-212.7,204.2c-2.2,2.2 -5.2,3.2 -8.1,3c-3,0.1 -5.9,-0.9 -8.1,-3l-212.7,-204.2c-4.3,-4.2 -4.2,-11.2 0.2,-15.5l30.6,-29.9c4.4,-4.3 11.5,-4.4 15.8,-0.2l174.2,167.2z"/>
-                            </g>
-                        </svg>
-                    </button>
-                                                                                    
-                        <button onclick="openForm()" id="ham">&#9776</button>
-                    </div>
+        <div class="fuse">
+            <div class="mini-container">
+                <div class="example-span">
+                    <span id="exampleSpan">Enter your URL below</span>
                 </div>
-                <form action="" id="noteForm">
-                <div class="edit-settings" id="editSettings">
-                    <div class="privacy-radio-holder sub-settings">
-                        <div class="sep-div"><input type="radio" name="privacy" id="privpub" value="public" <?php echo $privacypub; ?> ><span>Public Note</span></div>
-                        <div class="sep-div"><input type="radio" name="privacy" id="privpri" value="private" <?php echo $privacypriv; ?> ><span>Private Note</span></div>
+                <div class="url-box">
+                    <input type="text" name="" id="urlBox" placeholder="http://www.example.com" spellcheck="false">
+                </div>
+                <div class="shorten-button-box">
+                    <button id="shortenButton">Shorten</button>
+                </div>
+                <div class="shorten-result">
+                    <div class="your-result-span">
+                        <span id="yourResultSpan">Your URL:</span>
                     </div>
-                    <div class="sub-settings">
-                        <div class="sep-div">
-                            <span>Expiration</span>
-                            <select name="" id="expire">
-                                <option value="3650" <?php echo $exp[0] ;?> >None</option>
-                                <option value="3" <?php echo $exp[1] ;?> >3 days</option>
-                                <option value="7" <?php echo $exp[2] ;?> >7 days</option>
-                                <option value="30" <?php echo $exp[3] ;?> >30 days</option>
-                            </select>
-                        </div>
+                    <div class="result-url-box">
+                        <input type="text" name="" id="resultUrlBox" spellcheck="false">
                     </div>
-                    <div class="sub-settings">
-                        <div class="sep-div">
-                            <span>Author</span>
-                            <input type="text" name="" id="author" value="<?php echo $noteOwner; ?>" readonly>
-                        </div>
+                    <div class="result-url-share">
+                        <button id="copyToClip">Copy</button>
+                        <button id="copyToClip">Copy</button>
+                        <button id="copyToClip">Copy</button>
                     </div>
-                    
                 </div>
             </div>
             
-            <div class="fuse">
-                <textarea name="" id="pad" spellcheck="false" placeholder="Start typing notes here..."><?php echo $noteText; ?></textarea>
-            </div>
-            <div class="alter-options">
-                <div class="option-toggler" id="optionToggler">
-                    <div class="create-link">
-                        <button id="createNewLink" title="Shorten a URL"><i class="fas fa-link"></i></button>
-                    </div>
-                    <div class="create-file">
-                        <button id="createNewFile" title="Upload a File"><i class="fas fa-file-archive"></i></button>
-                    </div>
-                    <div class="create-note">
-                        <button id="createNewNote" title="Create another Note"><i class="fas fa-file-alt"></i></button>
-                    </div>
+        </div>
+        <div class="alter-options">
+            <div class="option-toggler" id="optionToggler">
+                <div class="create-link">
+                    <button id="createNewLink" title="Shorten a URL"><i class="fas fa-link"></i></button>
                 </div>
-                <div class="expand-option">
-                    <button id="expandOptions"><i class="fas fa-plus"></i></button>
+                <div class="create-file">
+                    <button id="createNewFile" title="Upload a File"><i class="fas fa-file-archive"></i></button>
                 </div>
-    
+                <div class="create-note">
+                    <button id="createNewNote" title="Create another Note"><i class="fas fa-file-alt"></i></button>
+                </div>
             </div>
+            <div class="expand-option">
+                <button id="expandOptions"><i class="fas fa-plus"></i></button>
+            </div>
+
         </div>
     </div>
-
-    </form>
         
         
     </div>
@@ -214,34 +186,9 @@
             openForm();
         });
 
-        //editor
-        function setupFuseHeight()
-        {
-            let h = $('#bar').height();
-            console.log(h);
-            document.documentElement.style.setProperty('--edsetH', `${h}px`);
-        }
-        $(window).ready(function(){
-            setupFuseHeight();
-            $('#editSettings').slideDown(700,function(){
-                setupFuseHeight();
-            });
-            $('#editSettings').slideUp(700,function(){
-                setupFuseHeight();
-            });
-            $('#optionToggler').slideDown(700,function(){
-                setupFuseHeight();
-            });
-            $('#optionToggler').slideUp(700,function(){
-                setupFuseHeight();
-            });
-            
-        });
-        $(window).resize(function(){
-            setupFuseHeight();
-        });
 
-        
+
+        //option toggler
         $('#expandOptions').on('click',function(e){
             e.preventDefault();
 
@@ -262,70 +209,6 @@
                 $('#optionToggler').slideUp();
             }
             
-        });
-        $('#expand').on('click',function(){
-            if($('#editSettings').is(':visible'))
-            {
-                $('#editSettings').slideUp(function(){
-                    setupFuseHeight();
-                });
-            }
-            else{
-                $('#editSettings').slideDown(function(){
-                    setupFuseHeight();
-                });
-
-            }
-            
-        });
-
-        function onNoteChange()
-        {
-            let priv = $('input[name=privacy]:checked', '#noteForm').val() == "public" ? 0 : 1;
-            let author = $('#author', '#noteForm').val();
-            let expire = $('#expire', '#noteForm').val();
-            let padtext  = $('#pad').val();
-
-            let noteID = "<?php echo $noteID; ?>";
-            
-            //console.log(padtext);
-
-
-            $.ajax({
-
-                url:'updatenote.php',
-                method:'POST',
-                data:{
-                    submit:"submit",
-                    noteText:  padtext,
-                    noteOwner:  author,
-                    notePrivacy: priv,
-                    xpire:  expire,
-                    noteID: noteID
-                },
-                success:function(response){
-                    //console.log("3");
-                }
-            });
-        }
-
-
-        $('#noteForm input').on('change', function() {
-            $('#author', '#noteForm').val(loggedUser==''?'guest':`${loggedUser}`);
-            onNoteChange();
-        });
-
-        $('#expire').on('change',function(){
-            $('#author', '#noteForm').val(loggedUser==''?'guest':`${loggedUser}`);
-            onNoteChange();
-        });
-
-        $('#pad').bind("change keyup input",function() { 
-            console.log(loggedUser);
-
-            $('#author', '#noteForm').val(loggedUser==''?'guest':`${loggedUser}`);
-            onNoteChange();
-
         });
 
 
@@ -403,6 +286,13 @@
         if($('#passbox').val() != ""){
             $(this).addClass('focus');
         }
+
+        $('#urlBox,#resultUrlBox','.mini-container').focus(function(){
+            $('.alter-options').fadeOut();
+        });
+        $('#urlBox,#resultUrlBox','.mini-container').focusout(function(){
+            $('.alter-options').fadeIn();
+        });
 
 
     </script>
