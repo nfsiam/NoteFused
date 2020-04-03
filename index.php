@@ -121,6 +121,7 @@
             <div class="fuse">
                 <textarea name="" id="pad" spellcheck="false" placeholder="Start typing notes here..."><?php echo $noteText; ?></textarea>
             </div>
+            </form>
             <div class="alter-options">
                 <div class="option-toggler" id="optionToggler">
                     <div class="create-link">
@@ -141,7 +142,7 @@
         </div>
     </div>
 
-    </form>
+    
         
         
     </div>

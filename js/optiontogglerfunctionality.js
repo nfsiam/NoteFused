@@ -21,3 +21,10 @@ $('#urlBox,#resultUrlBox', '.mini-container').focus(function() {
 $('#urlBox,#resultUrlBox', '.mini-container').focusout(function() {
     $('.alter-options').fadeIn();
 });
+
+$('#createNewLink').click(function() {
+    window.location.href = 'go';
+});
+$('#createNewNote').click(function() {
+    window.location.href = './';
+});

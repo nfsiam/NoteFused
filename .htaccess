@@ -9,6 +9,9 @@ Redirect 301 /webtech/notefused/index.php  /webtech/notefused/
 #why this only works with full directory??why not regex??
 
 
+RewriteRule ^go$  short.php [L]
+RewriteRule ^go.html$  short.php [L]
 RewriteRule ^mynotes.html$ mnotes.php [L]
 RewriteRule ^([a-z0-9]*)$   index.php?id=$1 [L]
+RewriteRule ^go/([a-z0-9]+)$  shorturl.php?id=$1 [L]
 

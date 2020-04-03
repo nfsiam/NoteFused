@@ -1,0 +1,56 @@
+.navbar {
+    /* width: 100%; */
+    height: 56px;
+    margin: 35px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid #ffaf7b;
+    background-color: white;
+    z-index: 1;
+}
+.headings {
+    width: fit-content;
+    height: 100%;
+}
+.headings a,
+.headings span {
+    line-height: 56px;
+    display: inline-block;
+    height: 56px;
+    margin: 0 10px;
+}
+.headings a {
+    /* border-bottom: 4px solid #ffaf7b; */
+    font-size: 24px;
+    color: #d76d77; /*if gradient fails*/
+    font-size: 1.5em;
+    font-weight: 900;
+    font-family: sans-serif;
+    background: -webkit-linear-gradient(
+        120deg,
+        #3a1c71,
+        #d76d77,
+        #ffaf7b
+    ); /*this and bottom few lines are for gradient text*/
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-position: center;
+    background-size: 200%;
+}
+.headings a,
+.headings span {
+}
+@media only screen and (max-width: 800px) {
+    .navbar {
+        margin: 0 0 10px 0;
+        position: sticky;
+        top: 0;
+    }
+}
+@media only screen and (max-height: 400px) {
+}
+
+@media only screen and (min-width: 800px) {
+}
