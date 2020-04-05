@@ -1,18 +1,10 @@
 <?php
-    function fileNameExtender($oldName,$extension)
-    {
-        $pos = strrpos($oldName,'.');
-        if($pos===false)
-        {
-            $newName = $filename.'_'.$fileID;
-            return $newName;
-        }
-        else
-        {
-            $newName = substr_replace($oldName, '_'.$extension, $pos, 0);
-            return $newName;
-        }
-    }
+    $hash = sha1_file('upload/ajax_1301.zip');
 
-    echo fileNameExtender('abcdef.txt.txt.',5);
+    echo $hash;
+    echo '<br>';
+    
+    $hash = sha1_file('upload/ajax_130.zip');
+
+    echo $hash;
 ?>

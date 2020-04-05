@@ -5,11 +5,11 @@ let formData,
 let fileInfo = [];
 let info = [];
 let fileInfoAsElem = '';
-$('#choose').click(function() {
+$('#choose').click(function () {
     $(this)[0].value = null;
 });
 
-$('#choose').change(function() {
+$('#choose').change(function () {
     fileInfoAsElem = '';
     $('.row4').html(fileInfoAsElem);
     formData = new FormData();
@@ -40,7 +40,7 @@ $('#choose').change(function() {
     console.log(formData);
 });
 
-$('#uploadButton').click(function() {
+$('#uploadButton').click(function () {
     if (formData == null || formData == undefined) {
         alert('Choose Files First');
         return;
@@ -49,7 +49,7 @@ $('#uploadButton').click(function() {
         if (totalFiles > 0 && totalSize <= 1024) {
             $.ajax({
                 // Your server script to process the upload
-                url: 'upload.php',
+                url: 'uploader.php',
                 type: 'POST',
 
                 // Form data
@@ -63,17 +63,17 @@ $('#uploadButton').click(function() {
                 /* dataType: 'JSON', */
 
                 // Custom XMLHttpRequest
-                xhr: function() {
+                xhr: function () {
                     var myXhr = $.ajaxSettings.xhr();
                     if (myXhr.upload) {
                         // For handling the progress of the upload
                         myXhr.upload.addEventListener(
                             'progress',
-                            function(e) {
+                            function (e) {
                                 if (e.lengthComputable) {
                                     $('progress').attr({
                                         value: e.loaded,
-                                        max: e.total
+                                        max: e.total,
                                     });
                                 }
                             },
@@ -82,7 +82,7 @@ $('#uploadButton').click(function() {
                     }
                     return myXhr;
                 },
-                success: function(data) {
+                success: function (data) {
                     $('.res').html(data);
                     $('#prog').fadeOut();
 
@@ -90,7 +90,7 @@ $('#uploadButton').click(function() {
                     fileInfo = [];
                     fileInfoAsElem = '';
                     $('.row4').html(fileInfoAsElem);
-                }
+                },
             });
         } else {
             alert('You can not upload file more than 1MB');
