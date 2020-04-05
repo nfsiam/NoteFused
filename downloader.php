@@ -1,15 +1,15 @@
 <?php
     require "db/dbcon.php";
-    $txt = "";
+    $filename = "";
     $noteID = "";
     if(isset($_GET['id']))
     {
         if(!empty($_GET['id']))
         {
             
-            $noteID = $_GET['id'];
+            $id = $_GET['id'];
 
-            $query = "SELECT * FROM files WHERE fileID='$noteID'";
+            $query = "SELECT * FROM files WHERE fileID='$id'";
             
             $result=get($query);
             //print_r($result);
@@ -17,19 +17,23 @@
 
             if(mysqli_num_rows($result) > 0)
             {
-                $note=mysqli_fetch_assoc($result);
-                $noteOwner = $note['noteOwner'];
-                $noteText = $note['text'];
-                $txt = $noteText."\n\n"."#notefused";
+                $file=mysqli_fetch_assoc($result);
+                $filename = $file['fName'];
+
+            }
+            $file = 'upload/'.$id;
+
+            if (file_exists($file)) {
+                header('Content-Description: File Transfer');
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment; filename="'.$filename.'"');
+                header('Expires: 0');
+                header('Cache-Control: must-revalidate');
+                header('Pragma: public');
+                header('Content-Length: ' . filesize($file));
+                readfile($file);
+                exit;
             }
         }
     }
-
-    
-    header('Content-type: text/plain');
-    //header('Content-Disposition: attachment; filename="default-filename.txt"');
-    //header("Content-Disposition: attachment; filename='default-filename.txt'");
-    header("Content-Disposition: attachment; filename=$noteID.txt");
-
-    echo $txt;
 ?>

@@ -1,5 +1,5 @@
 <?php
-    require "db/dbcon.php";
+    require_once "db/dbcon.php";
     function generate()
     {
         $str = substr(md5(microtime()), 0, 14);
@@ -9,19 +9,9 @@
     {
         //here we will check if a record
         //already exists in database or not
-
-        $query = "SELECT '$idToCheck' FROM '$table' WHERE '$idToCheck'='$shortString'";
+        $query = "SELECT * FROM $table WHERE $idToCheck = '$shortString'";
         $result=get($query);
         return mysqli_num_rows($result) > 0 ? false: true;
-
-        // if(mysqli_num_rows($result) > 0)
-        // {
-        //     return false;
-        // }
-        // else
-        // {
-        //     return true;
-        // }
         
     }
     function generateUniq($table,$idToCheck)

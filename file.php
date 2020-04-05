@@ -88,7 +88,7 @@
                         </div>
                         <div class="row2">
                             <label for="choose" class="choose-label">Select Files</label>
-                            <input type="file" name="file[]" id="choose" accept=".zip,.rar,.7zip, .7z" multiple>
+                            <input type="file" name="file[]" id="choose"  multiple>
                         </div>
                         <div class="row3">
                             or Drag and Drop yout files here
