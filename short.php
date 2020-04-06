@@ -15,6 +15,8 @@
     <!-- <link rel="stylesheet" href="styles/short.css"> -->
     <link rel="stylesheet" href="styles/side2.css">
     <link rel="stylesheet" href="styles/short.css">
+    <link rel="stylesheet" href="styles/optiontoggler.css">
+    <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/form.css">
     <link rel="stylesheet" href="styles/navbar.css">

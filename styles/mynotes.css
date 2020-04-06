@@ -302,7 +302,7 @@ tr:hover {
     #share,
     #download,
     #delete {
-        display: inline-block;
+        /* display: inline-block; */
         width: calc(100% / 3);
         height: 60px;
         float: left;
@@ -314,20 +314,4 @@ tr:hover {
         position: relative;
         line-height: 20px;
     }
-
-    /* thead,
-    th,
-    table,
-    tr,
-    td,
-    tbody,
-    td p table div,
-    table table {
-        width: 100% !important;
-        float: left;
-        clear: both;
-        display: block;
-
-        text-align: center;
-    } */
 }

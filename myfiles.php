@@ -15,9 +15,9 @@
     <!-- <link rel="stylesheet" href="styles/short.css"> -->
     <link rel="stylesheet" href="styles/side2.css">
     <!-- <link rel="stylesheet" href="styles/short.css"> -->
-    <link rel="stylesheet" href="styles/file.css">
-    <link rel="stylesheet" href="styles/optiontoggler.css">
     <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/myfiles.css">
+    <link rel="stylesheet" href="styles/optiontoggler.css">
     <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/form.css">
     <link rel="stylesheet" href="styles/navbar.css">
@@ -84,41 +84,79 @@
             </div>
             <div class="fuse">
                 <div class="mini-container">
-                    <div>
-                        <div class="row1">
-                            Upload files
+                    <div class="row-head">
+                        <div class="row-plate">
+                            <div class="row1">
+                                <div class="col1">
+                                    File Name
+                                </div>
+                            </div>
+                            <div class="row2">
+                                <div class="col2">
+                                    Upload Date
+                                </div>
+                                <div class="col3">
+                                    Privacy
+                                </div>
+                            </div>
+                            <div class="row3">
+                                <div class="col4">
+                                    Download Link
+                                </div>
+                            </div>
+                            <div class="row4">
+                                <div class="col5">
+                                    Copy
+                                </div>
+                                <div class="col6">
+                                    Download
+                                </div>
+                                <div class="col7">
+                                    Delete
+                                </div>
+                            </div>
                         </div>
-                        <div class="row2">
-                            <label for="choose" class="choose-label">Select Files</label>
-                            <input type="file" name="file[]" id="choose"  multiple>
-                        </div>
-                        <div class="row3">
-                            or Drag and Drop yout files here
-                        </div>
-                        <div class="row4">
-                        </div>
-                        <div class="row5">
-                            <button id="uploadButton">Upload</button>
-                        </div>
-                    </div>
-                    <div class="row6">
-                        <progress id='prog'></progress>
                     </div>
                     
-                    <div class="res">
-                        <!-- <div class="res-child">
-                            <div class="res-child-name">some</div>
-                            <div class="res-child-link"><a href="">some</a></div>
+<?php
+    for($i=0; $i<20;$i++)
+    {
+        ?>
+                    
+                    <div class="row-plate">
+                        <div class="row1">
+                            <div class="col1">
+                                filename
+                            </div>
                         </div>
-                        <div class="res-child">
-                            <div class="res-child-name">some</div>
-                            <div class="res-child-link"><a href="">some</a></div>
+                        <div class="row2">
+                            <div class="col2">
+                                upload date
+                            </div>
+                            <div class="col3">
+                                expire date
+                            </div>
                         </div>
-                        <div class="res-child">
-                            <div class="res-child-name">some</div>
-                            <div class="res-child-link"><a href="">some</a></div>
-                        </div> -->
+                        <div class="row3">
+                            <div class="col4">
+                                http://wwww.facebook.com/phpypdckhbaschbasc
+                            </div>
+                        </div>
+                        <div class="row4">
+                            <div class="col5">
+                                <a href=""><i class="fas fa-share-square"></i></a>
+                            </div>
+                            <div class="col6">
+                                <a href=''><i class="fas fa-download"></i></a>
+                            </div>
+                            <div class="col7">
+                                <a href='' id='$noteid'><i class='fa fa-trash' aria-hidden='true'></i></a>
+                            </div>
+                        </div>
                     </div>
+<?php
+}
+?>                    
                 </div>
             </div>
             <div class="alter-options">

@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'IBM Plex Sans';
+}
+html {
+    -ms-overflow-style: -ms-autohiding-scrollbar; /*to hide scrollbar in IE*/
+}
+
+.container {
+    display: flex;
+    /* position: absolute; */
+    width: 100%;
+    background-color: white;
+    z-index: -1;
+    padding: 35px;
+}
+.sidebar {
+    width: 20%;
+    margin-right: 20px;
+    /* display: inline-block; */
+    float: left;
+}
+.sidemenu {
+    position: sticky;
+    top: 0;
+}
+
+.fuse {
+    background-color: rgb(255, 255, 255);
+    /* overflow-x: scroll; */
+    width: 80%;
+}
+.mini-container {
+    /* position: absolute; */
+    width: 100%;
+    height: fit-content;
+    /* top: 40%;
+    transform: translateY(-60%); */
+    /* padding: 40px; */
+    padding-top: 0;
+    /* background-color: #ffaf7b; */
+}
+
+@media only screen and (min-width: 1200px) {
+    .holder {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .sidebar {
+        display: none;
+    }
+    .editor {
+        width: 100%;
+        height: fit-content;
+        overflow-y: visible;
+    }
+    .fuse {
+        width: 100%;
+    }
+    .mini-container {
+        padding: 5px;
+        margin-top: 0px;
+    }
+
+    #exampleSpan {
+        display: block;
+        width: 100%;
+        font-size: 1.1em;
+        text-align: center;
+    }
+    .url-box {
+        width: calc(100% - 150px);
+    }
+    .button-box {
+        width: 150px;
+        /* display: flex; */
+        /* justify-content: center; */
+    }
+    .button-box button {
+        display: inline-block;
+        font-size: 1em;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .container {
+        padding: 5px;
+    }
+    .fuse {
+        width: 100%;
+    }
+    .mini-container {
+        padding: 5px;
+        padding-top: 20px;
+        margin-top: 0px;
+        /* background-color: #ffaf7b; */
+    }
+
+    #exampleSpan {
+        display: block;
+        width: 100%;
+        font-size: 1.1em;
+        text-align: center;
+    }
+    .url-box {
+        width: calc(100% - 80px);
+    }
+    .button-box {
+        width: 80px;
+    }
+    .button-box button {
+        font-size: 0.8em;
+        padding: 5px;
+    }
+}
