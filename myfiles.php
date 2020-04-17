@@ -1,7 +1,47 @@
 <?php
     session_start();
-    require "includes/initiatenotepad.php";
+    //require "includes/initiatenotepad.php";
     //require "includes/indexloginvalidation.php";
+    require_once "db/dbcon.php";
+
+    $resarr = array();
+
+    function shortDate($longDate)
+    {
+        $date=date_create("$longDate");
+
+        
+        return date_format($date,"d/M/y");
+    }
+
+    if(isset($_SESSION['user'])) 
+    {
+        $user = $_SESSION['user'];
+        if(isset($user['username']))
+        {
+            $loggedUser = $user['username'];
+        }
+
+        $query = "SELECT * FROM files WHERE fileOwner='$loggedUser'";
+        $result=get($query);
+        //print_r($result);
+        
+        
+
+		while($row = mysqli_fetch_assoc($result))
+		{
+            $resarr[] = $row;
+            //$notecounts++;
+        }
+
+        // foreach($resarr as $res)
+        // {
+        //     echo $res['text'];
+        //     echo "<br>";
+        // }
+        //print_r($resarr);
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +65,7 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
     <script src="js/jquery341.js"></script>
     <script src="js/sidebarfunctionality.js" defer></script>
-    <script src="js/fileuploadfunctionality.js" defer></script>
+    <script src="js/myfilesfunctionality.js" defer></script>
     <script src="js/optiontogglerfunctionality.js" defer></script>
     <script src="js/loginvalidationfunctionality.js" defer></script>
     <style>
@@ -106,7 +146,7 @@
                             </div>
                             <div class="row4">
                                 <div class="col5">
-                                    Copy
+                                    Copy Link
                                 </div>
                                 <div class="col6">
                                     Download
@@ -119,43 +159,52 @@
                     </div>
                     
 <?php
-    for($i=0; $i<20;$i++)
+    foreach($resarr as $res)
     {
-        ?>
-                    
-                    <div class="row-plate">
-                        <div class="row1">
-                            <div class="col1">
-                                filename
+        $fileName = $res['fName'];
+        $uploadDate = shortDate($res['uploadDate']);
+        $expiration = shortDate($res['expiration']);
+        $privacy = $res['filePrivacy']==0? 'public':'private';
+        $privTitle = $privacy=="public"?'Anybody with the link can download the file'
+                                        :'Only you can download the file while logged in';
+        $fileID = $res['fileID'];
+        $dlink = 'http://192.168.137.1/webtech/notefused/file/'.$res['fileID'];
+
+    
+            
+            echo    "<div class='row-plate'>
+                        <div class='row1'>
+                            <div class='col1'>
+                                $fileName
                             </div>
                         </div>
-                        <div class="row2">
-                            <div class="col2">
-                                upload date
+                        <div class='row2'>
+                            <div class='col2'>
+                                $uploadDate
                             </div>
-                            <div class="col3">
-                                expire date
-                            </div>
-                        </div>
-                        <div class="row3">
-                            <div class="col4">
-                                http://wwww.facebook.com/phpypdckhbaschbasc
+                            <div class='col3' title='$privTitle'>
+                                $privacy
                             </div>
                         </div>
-                        <div class="row4">
-                            <div class="col5">
-                                <a href=""><i class="fas fa-share-square"></i></a>
-                            </div>
-                            <div class="col6">
-                                <a href=''><i class="fas fa-download"></i></a>
-                            </div>
-                            <div class="col7">
-                                <a href='' id='$noteid'><i class='fa fa-trash' aria-hidden='true'></i></a>
+                        <div class='row3'>
+                            <div class='col4'>
+                                <a class='abc' href='$dlink'>$dlink</a>
                             </div>
                         </div>
-                    </div>
-<?php
-}
+                        <div class='row4'>
+                            <div class='col5'>
+                                <a href=''><i class='fas fa-copy'></i></a>
+                            </div>
+                            <div class='col6'>
+                                <a href='$dlink'><i class='fas fa-download'></i></a>
+                            </div>
+                            <div class='col7'>
+                                <a href='' id='$fileID'><i class='fa fa-trash' aria-hidden='true'></i></a>
+                            </div>
+                        </div>
+                    </div>";
+    }
+
 ?>                    
                 </div>
             </div>

@@ -1,4 +1,4 @@
-$('#expandOptions').on('click', function(e) {
+$('#expandOptions').on('click', function (e) {
     e.preventDefault();
 
     if (!$('#optionToggler').is(':visible')) {
@@ -7,7 +7,7 @@ $('#expandOptions').on('click', function(e) {
         $('#optionToggler').slideUp();
     }
 });
-$('#expandOptions').on('focusout', function(e) {
+$('#expandOptions').on('focusout', function (e) {
     e.preventDefault();
 
     if ($('#optionToggler').is(':visible')) {
@@ -15,16 +15,16 @@ $('#expandOptions').on('focusout', function(e) {
     }
 });
 
-$('#urlBox,#resultUrlBox', '.mini-container').focus(function() {
+$('#urlBox,#resultUrlBox', '.mini-container').focus(function () {
     $('.alter-options').fadeOut();
 });
-$('#urlBox,#resultUrlBox', '.mini-container').focusout(function() {
+$('#urlBox,#resultUrlBox', '.mini-container').focusout(function () {
     $('.alter-options').fadeIn();
 });
 
-$('#createNewLink').click(function() {
+$('#createNewLink').click(function () {
     window.location.href = 'go';
 });
-$('#createNewNote').click(function() {
+$('#createNewNote').click(function () {
     window.location.href = './';
 });
