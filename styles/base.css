@@ -101,21 +101,4 @@ html {
         margin-top: 0px;
         /* background-color: #ffaf7b; */
     }
-
-    #exampleSpan {
-        display: block;
-        width: 100%;
-        font-size: 1.1em;
-        text-align: center;
-    }
-    .url-box {
-        width: calc(100% - 80px);
-    }
-    .button-box {
-        width: 80px;
-    }
-    .button-box button {
-        font-size: 0.8em;
-        padding: 5px;
-    }
 }

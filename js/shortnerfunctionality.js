@@ -29,7 +29,7 @@ function errorStyle(msg) {
     console.log(urlBox.hasClass('error-class'));
 }
 
-urlBox.bind('change keyup input', function() {
+urlBox.bind('change keyup input', function () {
     if (urlBox.hasClass('error-class')) {
         urlBox.removeClass('error-class');
         urlBox.attr('placeholder', 'http://www.example.com');
@@ -37,7 +37,7 @@ urlBox.bind('change keyup input', function() {
     $('.result-row').fadeOut();
 });
 
-$('#shortenButton').click(function() {
+$('#shortenButton').click(function () {
     let longUrl = urlBox.val().trim();
     if (longUrl == '') {
         errorStyle('Enter your URL here first');
@@ -46,18 +46,19 @@ $('#shortenButton').click(function() {
     } else {
         console.log('in');
         $.ajax({
-            url: 'shorturl.php',
+            url: 'shortner.php',
             method: 'POST',
             dataType: 'JSON',
             data: {
-                submit: 'submit',
-                longUrl: longUrl
+                longUrl: longUrl,
             },
-            success: function(data) {
+            success: function (data) {
                 // $('.result-row').css('display', 'block');
-                $('.result-row').fadeIn();
-                $('#resultUrlBox').val(data.surl);
-            }
+                if (data.surl != '') {
+                    $('.result-row').fadeIn();
+                    $('#resultUrlBox').val(data.surl);
+                }
+            },
         });
     }
 });
@@ -68,7 +69,7 @@ let copyText = () => {
     console.log(z);
 };
 
-$('#copyButton').click(function() {
+$('#copyButton').click(function () {
     let resUrl = $('#resultUrlBox').get(0);
     resUrl.select();
     resUrl.setSelectionRange(0, 99999);

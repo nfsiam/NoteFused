@@ -11,8 +11,9 @@ Redirect 301 /webtech/notefused/index.php  /webtech/notefused/
 
 RewriteRule ^go$  short.php [L]
 RewriteRule ^go.html$  short.php [L]
+RewriteRule ^go.php$  short.php [L]
 RewriteRule ^mynotes.html$ mnotes.php [L]
 RewriteRule ^([a-z0-9]*)$   index.php?id=$1 [L]
-RewriteRule ^go/([a-z0-9]+)$  shorturl.php?id=$1 [L]
+RewriteRule ^go/([a-z0-9]+)$  urlredirector.php?id=$1 [L]
 RewriteRule ^file/([a-z0-9]+)$  downloader.php?id=$1 [L]
 

@@ -12,16 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteFused</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
-    <!-- <link rel="stylesheet" href="styles/short.css"> -->
     <link rel="stylesheet" href="styles/side2.css">
+    <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/short.css">
     <link rel="stylesheet" href="styles/optiontoggler.css">
-    <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/form.css">
     <link rel="stylesheet" href="styles/navbar.css">
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
     <script src="js/jquery341.js"></script>
     <script src="js/sidebarfunctionality.js" defer></script>
     <script src="js/shortnerfunctionality.js" defer></script>

@@ -1,10 +1,6 @@
 <?php
-    $hash = sha1_file('upload/ajax_1301.zip');
-
-    echo $hash;
-    echo '<br>';
-    
-    $hash = sha1_file('upload/ajax_130.zip');
-
-    echo $hash;
+    if(filter_var('http://www.siam.com', FILTER_VALIDATE_URL))
+    {
+        echo "in";
+    }
 ?>
