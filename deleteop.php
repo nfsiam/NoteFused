@@ -40,7 +40,10 @@
                 {
                     $fileID = htmlspecialchars($_POST['fileID']);
                     $query = "DELETE from files where fileID='$fileID'";
-                    unlink("upload/$fileID"); //deleting file from server
+                    if(file_exists("upload/$fileID"))
+                    {
+                        unlink("upload/$fileID"); //deleting file from server
+                    }
                     execute($query); //removing record from database
                     $jsn['success'] = 'true';
                 }

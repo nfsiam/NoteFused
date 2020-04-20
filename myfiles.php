@@ -3,6 +3,7 @@
     //require "includes/initiatenotepad.php";
     //require "includes/indexloginvalidation.php";
     require_once "db/dbcon.php";
+    $loggedUser = "";
 
     $resarr = array();
 
@@ -51,7 +52,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteFused</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
     <!-- <link rel="stylesheet" href="styles/short.css"> -->
     <link rel="stylesheet" href="styles/side2.css">
     <!-- <link rel="stylesheet" href="styles/short.css"> -->
@@ -68,6 +69,7 @@
     <script src="js/myfilesfunctionality.js" defer></script>
     <script src="js/optiontogglerfunctionality.js" defer></script>
     <script src="js/loginvalidationfunctionality.js" defer></script>
+    <script src="js/navbarfunctionality.js" defer></script>
     <style>
         .inp-but{
             display:none;
@@ -77,11 +79,12 @@
 </head>
 <body>
     <div class="holder">
-        <div class="navbar">
+        <!-- <div class="navbar">
             <div class="headings">
                 <a href="./">NoteFused</a>
             </div>
-        </div>
+        </div> -->
+        <?php require "navbar.php"; ?>
         <div class="container">
             
             <div class="sidebar">
@@ -121,11 +124,19 @@
                                 id="p3">Contact</button></a>
                     </li>
                 </ul>
+                
             </div>
             <div class="fuse">
+                <!-- <div class="actions">
+                    <input type="text" name="" id="" placeholder="search">
+                    <select id='sortSel'>
+                        <option value="bydate">sort by date</option>
+                        <option value="byname">sort by name</option>
+                    </select>
+                </div> -->
                 <div class="mini-container">
                     <div class="row-head">
-                        <div class="row-plate">
+                        <!-- <div class="row-plate"> -->
                             <div class="row1">
                                 <div class="col1">
                                     File Name
@@ -155,16 +166,19 @@
                                     Delete
                                 </div>
                             </div>
-                        </div>
+                        <!-- </div> -->
                     </div>
                     
 <?php
-    foreach($resarr as $res)
+    foreach($resarr as $key=>$res)
     {
         $fileName = $res['fName'];
         $uploadDate = shortDate($res['uploadDate']);
         $expiration = shortDate($res['expiration']);
         $privacy = $res['filePrivacy']==0? 'public':'private';
+        $checkstate1 = $checkstate2 = "";
+        if($privacy=='public') $checkstate1 = 'checked';
+        if($privacy=='private') $checkstate2 = 'checked';
         $privTitle = $privacy=="public"?'Anybody with the link can download the file'
                                         :'Only you can download the file while logged in';
         $fileID = $res['fileID'];
@@ -172,7 +186,7 @@
 
     
             
-            echo    "<div class='row-plate'>
+            echo    "<div class='row-plate' id='$fileID'>
                         <div class='row1'>
                             <div class='col1'>
                                 $fileName
@@ -183,7 +197,11 @@
                                 $uploadDate
                             </div>
                             <div class='col3' title='$privTitle'>
-                                $privacy
+                                <div class='col3-inner'>
+                                    <input type='radio' name='privacy$key' id='' value='0' $checkstate1> Public
+                                    <br>
+                                    <input type='radio' name='privacy$key' id='' value='1' $checkstate2> Private
+                                </div>
                             </div>
                         </div>
                         <div class='row3'>
@@ -223,7 +241,7 @@
                 <div class="expand-option">
                     <button id="expandOptions"><i class="fas fa-plus"></i></button>
                 </div>
-    
+                
             </div>
         </div>
             
@@ -257,9 +275,10 @@
         </div>
     </div>
     <script>
-        
+        // $('select').on('change', function() {
+        //     alert( this.value );
+        // });
         let loggedUser ="<?php echo empty($loggedUser)?'':$loggedUser?>";
-        let noteid = '<?php echo $noteID; ?>';
 
         // console.log("aaaa: "+loggedUser);
         
@@ -268,6 +287,9 @@
         //option toggler
         
         //login validation
+        
+
+        
         
 
     </script>

@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .navbar {
     /* width: 100%; */
     height: 56px;
@@ -5,20 +10,18 @@
     margin-top: 0px;
     margin-bottom: 20px;
     box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid #ffaf7b;
+    border-bottom: 1px solid #d76d77;
     background-color: white;
-    z-index: 1;
+    /* z-index: 1; */
 }
 .headings {
     width: fit-content;
     height: 100%;
+    display: inline-block;
 }
 .headings a,
 .headings span {
-    line-height: 56px;
     display: inline-block;
-    height: 56px;
-    margin: 0 10px;
 }
 .headings a {
     /* border-bottom: 4px solid #ffaf7b; */
@@ -38,15 +41,99 @@
     -webkit-text-fill-color: transparent;
     background-position: center;
     background-size: 200%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 10px;
 }
-.headings a,
-.headings span {
+.nav-holder {
+    display: block;
+    float: right;
+    height: 100%;
 }
+.nav {
+    height: 100%;
+    font-weight: 600;
+}
+.nav ul {
+    list-style: none;
+    height: 100%;
+    display: inline-flex;
+}
+.nav ul li {
+    list-style: none;
+    display: block;
+}
+.nav ul li a {
+    display: flex;
+    background-color: white;
+    height: 100%;
+    align-items: center;
+    padding: 0px 20px;
+    color: #555;
+    /* transition: 0.1s ease;
+    background: -webkit-linear-gradient(
+        120deg,
+        #3a1c71,
+        #d76d77,
+        #ffaf7b,
+        #fff,
+         #fff
+    ); 
+    background-size: 700%;
+    background-position: left; */
+}
+.nav ul li a:hover {
+    color: #d76d77;
+    /* background-position: right; */
+    /* background-color: #99939446; */
+    font-weight: 900;
+}
+
+/* .nav ul li:hover > ul {
+    display: block;
+} */
+.nav ul ul {
+    display: none;
+    position: absolute;
+    height: unset;
+    /* box-shadow: 0px 8px 5px 2px rgba(0, 0, 0, 0.2); */
+    box-shadow: 0px 8px 10px -2px rgba(0, 0, 0, 0.3);
+
+    z-index: 2;
+    border: 1px solid #d76d77;
+    border-top: none;
+    background-color: white;
+}
+.nav ul li {
+    position: relative;
+}
+.top-li::after {
+    position: absolute;
+    content: '';
+    top: 20px;
+    right: 0;
+    padding: 8px 0px;
+    border-right: 1px solid rgb(207, 207, 207);
+}
+.top-li:last-child::after {
+    border-right: none;
+}
+.nav ul ul li a {
+    padding: 10px 20px 20px;
+    min-width: 135.53px;
+    max-width: 135.53px;
+    font-weight: 400;
+}
+
 @media only screen and (max-width: 800px) {
     .navbar {
         margin: 0 0 10px 0;
         position: sticky;
         top: 0;
+    }
+    .nav-holder {
+        display: none;
     }
 }
 @media only screen and (max-height: 400px) {
