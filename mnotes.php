@@ -109,6 +109,8 @@
         <link rel="stylesheet" href="styles/form.css" />
         <link rel="stylesheet" href="styles/mynotes.css" />
         <link rel="stylesheet" href="styles/navbar.css">
+        <link rel="stylesheet" href="styles/userdashcard.css">
+
 
 
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
@@ -128,61 +130,9 @@
             <?php require "navbar.php"; ?>
 
             <div class="container">
-                <div class="sidebar">
-                    <div class="sidemenu">
-                        <ul class="top">
-                            <li>
-                                <button class="parentButton" onclick="showChild(this)" id="p1">Profile</button>
-                                <ul class="drp" id="drp1">
-                                    <?php
-                                        
-                                        if(isset($_SESSION['user']))
-                                        {
-                                            echo "<li><a href='./'><button class='childButton'>Home</button></a></li>";
-                                            echo "<li><a href='destroysession.php'><button class='childButton'>Logout</button></a></li>";
-                                            //<a href="contact.php"><button class="last-parent" onclick="showChild(this)"id="p3">Contact</button></a>
-                                        }
-                                        else
-                                        {
-                                            echo "<li><button class='childButton' onclick='openForm()'>Login</button></li>";
-                                            echo "<li><button class='childButton' onclick='goToReg()'>Register</button></li>";
-                                        }
-                                    ?>
-                                </ul>
-                            </li>
-                            <li>
-                                <button class="parentButton" onclick="showChild(this)" id="p2">Settings</button>
-                                <div class="drp" id="drp2">
-                                    <input type="button" value="Log In" class="childButton">
-                                </div>
-                            </li>
-                            <li>
-                                <a href="contact.php"><button class="last-parent" onclick="showChild(this)"
-                                        id="p3">Contact</button></a>
-                                <!-- <div class="drp" id="drp3">
-                                    <input type="button" value="Log In" class="childButton">
-    
-                                </div> -->
-    
-                            </li>
-                        </ul>
-    
-                        <div class="dashboard">
-                            <div class="dash-head">
-                                <?php
-                                    echo empty($loggedUser)? "guest" : "$loggedUser";
-                                ?>
-                            </div>
-                            <div>
-                                Space Consumption:
-                                <progress max="100" value="40">40%</progress>
-                            </div>
-                            <div>Word Count:<span>489756</span></div>
-                            <div>Total Files:<span><?php echo 0; ?></span></div>
-                            <div>Total Notes:<span id='totalNotes'><?php echo $notecounts; ?></span></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="sidebar">
+                <?php require "userdashcard.php"; ?>
+            </div>
                 <div class="note-lists">
                     
                     <table>

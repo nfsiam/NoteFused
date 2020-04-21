@@ -61,6 +61,8 @@
     <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/form.css">
     <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/userdashcard.css">
+
 
     <script src="js/jquery341.js"></script>
     <script src="js/sidebarfunctionality.js" defer></script>
@@ -87,42 +89,7 @@
         <div class="container">
             
             <div class="sidebar">
-                <ul class="top">
-                    <li>
-                        <button class="parentButton" id="p1">Profile</button>
-                        <ul class="drp" id="drp1">
-                            <?php
-                                
-                                $loggedDiv = "none";
-                                $noLoggedDiv = "block";
-                                if(isset($_SESSION['user']))
-                                {
-                                    $loggedDiv = "block";
-                                    $noLoggedDiv = "none";
-                                }
-                            ?>
-                            <div id="loggedDiv" style = "display:<?php echo $loggedDiv;?>">                                    
-                                <li><a href='mnotes.php'><button class='childButton'>My Notes</button></a></li>
-                                <li><a href='destroysession.php'><button class='childButton'>Logout</button></a></li>
-                            </div>
-        
-                            <div id="noLoggedDiv" style = "display:<?php echo $noLoggedDiv;?>">
-                                <li><button class='childButton' id="loginButton">Login</button></li>
-                                <li><a href='reg.php'><button class='childButton'>Register</button></a></li>
-                            </div>
-                        </ul>
-                    </li>
-                    <li>
-                        <button class="parentButton" id="p2">Settings</button>
-                        <div class="drp" id="drp2">
-                            <input type="button" value="Log In" class="childButton">
-                        </div>
-                    </li>
-                    <li>
-                        <a href="contact.php"><button class="last-parent" onclick="showChild(this)"
-                                id="p3">Contact</button></a>
-                    </li>
-                </ul>
+                <?php require "userdashcard.php"; ?>
             </div>
             <div class="fuse">
                 <div class="mini-container">
