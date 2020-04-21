@@ -8,9 +8,11 @@
                 <li class="top-li" id="prof-li">
                     <a href="">Profile</a>
                     <ul id="u1">
-                        <li><a href="">Login</a></li>
+                        <!-- <li><a href="">Login</a></li> -->
+                        <li><a href="destroysession.php">Settings</a></li>
+                        <li><a href="destroysession.php">Pofile Settings</a></li>
                         <li><a href="destroysession.php">Logout</a></li>
-                        <li><a href="">Register</a></li>
+                        <!-- <li><a href="">Register</a></li> -->
                     </ul>
                 </li>
                 <li class="top-li" id="note-li">
@@ -28,11 +30,14 @@
                     </ul>
                 </li>
                 <li class="top-li" id="short-li">
-                    <a href="">URL Shortner</a>
+                    <a href="">URL</a>
                     <ul id="u4">
                         <li><a href="go">Shorten URL</a></li>
                         <li><a href="myurls.php">My Short URLs</a></li>
                     </ul>
+                </li>
+                <li class="top-li">
+                    <a href="contact.php">Contact</a>
                 </li>
             </ul>
         </div>

@@ -25,6 +25,7 @@
     <script src="js/fileuploadfunctionality.js" defer></script>
     <script src="js/optiontogglerfunctionality.js" defer></script>
     <script src="js/loginvalidationfunctionality.js" defer></script>
+    <script src="js/navbarfunctionality.js" defer></script>
     <style>
         .inp-but{
             display:none;
@@ -34,11 +35,13 @@
 </head>
 <body>
     <div class="holder">
-        <div class="navbar">
+        <!-- <div class="navbar">
             <div class="headings">
                 <a href="./">NoteFused</a>
             </div>
-        </div>
+        </div> -->
+        <?php require "navbar.php"; ?>
+
         <div class="container">
             
             <div class="sidebar">
