@@ -28,6 +28,8 @@
     <script src="js/optiontogglerfunctionality.js" defer></script>
     <script src="js/loginvalidationfunctionality.js" defer></script>
     <script src="js/navbarfunctionality.js" defer></script>
+    <script src="js/userdashcardfunctionality.js" defer></script>
+
 
 </head>
 <body>

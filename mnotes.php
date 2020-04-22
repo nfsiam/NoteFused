@@ -116,6 +116,8 @@
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
         <script src="js/jquery341.js"></script>
         <script src="js/navbarfunctionality.js" defer></script>
+        <script src="js/userdashcardfunctionality.js" defer></script>
+
 
 
     </head>
