@@ -118,7 +118,7 @@
 
         if($hasNoError)
         {
-            $query = "INSERT INTO profiles (username, name, email, pass, level)
+            $query = "INSERT INTO profiles (username, name, email, pass, plan)
                 VALUES ('$uname', '$name', '$email','$pass','0')";
             execute($query);
 

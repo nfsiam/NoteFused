@@ -12,7 +12,7 @@ function updateStats() {
             // if (data.success == 'true') {
             //     $(that).parents('.row-plate').fadeOut(500);
             // }
-            //console.log(data);
+            console.log(data);
             let w;
 
             if (notecount != data.notecount) {
@@ -63,5 +63,5 @@ function updateStats() {
 updateStats();
 
 setInterval(function () {
-    updateStats();
+    //updateStats();
 }, 2000);

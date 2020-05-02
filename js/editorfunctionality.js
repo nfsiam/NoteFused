@@ -3,32 +3,33 @@ function setupFuseHeight() {
     console.log(h);
     document.documentElement.style.setProperty('--edsetH', `${h}px`);
 }
-$(window).ready(function() {
+$(window).ready(function () {
     setupFuseHeight();
-    $('#editSettings').slideDown(700, function() {
+    $('#editSettings').slideDown(700, function () {
         setupFuseHeight();
     });
-    $('#editSettings').slideUp(700, function() {
+    $('#editSettings').slideUp(700, function () {
         setupFuseHeight();
     });
-    $('#optionToggler').slideDown(700, function() {
+    $('#optionToggler').slideDown(700, function () {
         setupFuseHeight();
     });
-    $('#optionToggler').slideUp(700, function() {
+    $('#optionToggler').slideUp(700, function () {
         setupFuseHeight();
     });
 });
-$(window).resize(function() {
+$(window).resize(function () {
     setupFuseHeight();
 });
 
-$('#expand').on('click', function() {
+$('#expand').on('click', function () {
+    // window.location.href = 'http://192.168.137.1/webtech/notefused/myfiles.php';
     if ($('#editSettings').is(':visible')) {
-        $('#editSettings').slideUp(function() {
+        $('#editSettings').slideUp(function () {
             setupFuseHeight();
         });
     } else {
-        $('#editSettings').slideDown(function() {
+        $('#editSettings').slideDown(function () {
             setupFuseHeight();
         });
     }
@@ -54,25 +55,25 @@ function onNoteChange() {
             noteOwner: author,
             notePrivacy: priv,
             xpire: expire,
-            noteID: noteID
+            noteID: noteID,
         },
-        success: function(response) {
+        success: function (response) {
             console.log('3');
-        }
+        },
     });
 }
 
-$('#noteForm input').on('change', function() {
+$('#noteForm input').on('change', function () {
     $('#author', '#noteForm').val(loggedUser == '' ? 'guest' : `${loggedUser}`);
     onNoteChange();
 });
 
-$('#expire').on('change', function() {
+$('#expire').on('change', function () {
     $('#author', '#noteForm').val(loggedUser == '' ? 'guest' : `${loggedUser}`);
     onNoteChange();
 });
 
-$('#pad').bind('change keyup input', function() {
+$('#pad').bind('change keyup input', function () {
     console.log(loggedUser);
 
     $('#author', '#noteForm').val(loggedUser == '' ? 'guest' : `${loggedUser}`);

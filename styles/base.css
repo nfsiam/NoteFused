@@ -45,9 +45,9 @@ html {
     /* background-color: #ffaf7b; */
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (max-width: 1599px) {
     .holder {
-        max-width: 1200px;
+        min-width: 100%;
         margin: 0 auto;
     }
 }
@@ -100,5 +100,11 @@ html {
         padding-top: 20px;
         margin-top: 0px;
         /* background-color: #ffaf7b; */
+    }
+}
+@media only screen and (min-width: 1600px) {
+    .holder {
+        max-width: 1600px;
+        margin: 0 auto;
     }
 }

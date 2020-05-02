@@ -1,0 +1,164 @@
+$('.input-sec input').on('focus', function () {
+    $(this).addClass('focus');
+});
+
+$('.input-sec input').on('blur', function () {
+    if ($(this).val() == '') {
+        $(this).removeClass('focus');
+    }
+});
+$('.input-sec input').each(function () {
+    console.log('a');
+
+    if ($(this).val() != '') {
+        $(this).addClass('focus');
+    }
+});
+
+//JS validation
+function warn(that, msg) {
+    $(`#${that}`).parent().next('.warn').text(msg);
+}
+let pinfarr;
+let validate = () => {
+    pinfarr = [];
+    let valid = true;
+    function warn(that, msg) {
+        $(`#${that}`).parent().next('.warn').text(msg);
+    }
+
+    const letters = /^[A-Za-z ]+$/;
+    const name = $('#namebox').val();
+    if (name == '') {
+        warn('namebox', 'please enter your name above');
+        valid = false;
+    } else if (!name.match(letters)) {
+        warn('namebox', 'please enter letters and Space only (e.g. Abcd Efgh)');
+        valid = false;
+    } else {
+        warn('namebox', '');
+        valid = true;
+        pinfarr.push(name);
+    }
+    // pinfarr.push(name);
+
+    // const lettersNums = /^[A-Za-z0-9]+$/;
+    // const name = $('#namebox').val();
+    // if (name == '') {
+    //     warn('namebox', 'please enter your name above');
+    //     valid = false;
+    // } else if (!name.match(letters)) {
+    //     warn('namebox', 'please enter letters and Space only (e.g. Abcd Efgh)');
+    //     valid = false;
+    // } else {
+    //     warn('namebox', '');
+    //     valid = true;
+    //     pinfarr.push(name);
+    // }
+
+    const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const email = $('#emailbox').val();
+    if (email == '') {
+        warn('emailbox', 'please enter your email above');
+        valid = false;
+    } else if (!email.match(mailformat)) {
+        warn('emailbox', 'please enter valid email only');
+        valid = false;
+    } else {
+        warn('emailbox', '');
+        valid = true;
+        pinfarr.push(email);
+    }
+    // pinfarr.push(email);
+
+    const opass = $('#oldpassbox').val();
+    if (opass == '') {
+        warn('oldpassbox', 'please enter your password above');
+        valid = false;
+    } else {
+        warn('oldpassbox', '');
+        valid = true;
+        pinfarr.push(opass);
+    }
+    // pinfarr.push(opass);
+    if ($('#passchange').is(':checked')) {
+        pinfarr.push('passchange');
+        const npass = $('#newpassbox').val();
+        if (npass == '') {
+            warn('newpassbox', 'please enter new your password above');
+            valid = false;
+        } else {
+            warn('newpassbox', '');
+            valid = true;
+            pinfarr.push(npass);
+        }
+        // pinfarr.push(npass);
+
+        const cnpass = $('#cnewpassbox').val();
+        if (cnpass == '') {
+            warn('cnewpassbox', 'please enter your password above');
+            valid = false;
+        } else if (cnpass !== npass) {
+            warn('cnewpassbox', "pleasword didn't match");
+            valid = false;
+        } else {
+            warn('cnewpassbox', '');
+            valid = true;
+            pinfarr.push(cnpass);
+        }
+        // pinfarr.push(cnpass);
+    } else {
+        pinfarr.push('nopasschange');
+    }
+
+    return valid;
+};
+
+$('.subBtn').click(function () {
+    if (validate()) {
+        console.log(pinfarr.length);
+        $.ajax({
+            url: 'settingshandler.php',
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+                // update: 'personal',
+                infoArray: pinfarr,
+            },
+            success: function (data) {
+                // alert(data);
+                $('.warn').each(function () {
+                    $(this).text('');
+                });
+
+                if (Object.keys(data.errors).length > 0) {
+                    //if validation error response from server side
+                    if (0 in data.errors) {
+                        warn('namebox', data.errors[0]);
+                    }
+                    if (1 in data.errors) {
+                        warn('emailbox', data.errors[1]);
+                    }
+                    if (2 in data.errors) {
+                        warn('oldpassbox', data.errors[2]);
+                    }
+                    if (3 in data.errors) {
+                        warn('newpassbox', data.errors[3]);
+                    }
+                    if (4 in data.errors) {
+                        warn('cnewpassbox', data.errors[4]);
+                    }
+                }
+                if ('success' in data) {
+                    if (data.success == 'true') {
+                        alert('Information Updated Successfully');
+                    } else if (data.success == 'false') {
+                        alert('Something went wrong');
+                    }
+                }
+            },
+        });
+    }
+});
+
+$('.resBtn').click(function () {});

@@ -35,6 +35,15 @@
 		mysqli_close($conn);
 		return $result;
 	}
+	function getCon()
+	{
+		global $serverName;
+		global $userName;
+		global $password;
+		global $dbName;
+		$conn = mysqli_connect( $serverName, $userName, $password, $dbName);
+		return $conn;
+	}
 	
 	
 ?>
