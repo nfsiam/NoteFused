@@ -265,4 +265,23 @@
 
     }
 
+    if(isset($_POST['fetchPersonalInfo']))
+    {
+        $data = array();
+
+        $result = getInfo();
+
+        if($result !== false)
+        {
+            $info = array();
+            $info['name'] = $result['name'];
+            $info['uname'] = $result['username'];
+            $info['email'] = $result['email'];
+            $info['plan'] = $result['plan'];
+
+            $data['info'] = $info;
+        }
+        echo json_encode($data);
+    }
+
 ?>

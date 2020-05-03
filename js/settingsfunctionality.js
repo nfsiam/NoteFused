@@ -1,3 +1,4 @@
+let plan;
 $('.input-sec input').on('focus', function () {
     $(this).addClass('focus');
 });
@@ -7,13 +8,83 @@ $('.input-sec input').on('blur', function () {
         $(this).removeClass('focus');
     }
 });
-$('.input-sec input').each(function () {
-    console.log('a');
 
-    if ($(this).val() != '') {
-        $(this).addClass('focus');
+function addRemoveFocus() {
+    $('.input-sec input').each(function () {
+        if ($(this).val() != '') {
+            $(this).addClass('focus');
+        } else {
+            $(this).removeClass('focus');
+        }
+    });
+}
+addRemoveFocus();
+
+//to block pass change section
+function disableChangePassSec() {
+    $('.change-pass-sec :input').attr('disabled', true);
+    $('.change-pass-sec :input').val('');
+    addRemoveFocus();
+}
+disableChangePassSec();
+$('#passchange').on('change', function () {
+    if (!$('#passchange').is(':checked')) {
+        disableChangePassSec();
+    } else {
+        $('.change-pass-sec :input').removeAttr('disabled');
     }
 });
+
+function reload() {
+    $.ajax({
+        url: 'settingshandler.php',
+        method: 'POST',
+        dataType: 'JSON',
+        data: {
+            fetchPersonalInfo: 'fetchInfo',
+        },
+        success: function (data) {
+            if ('info' in data) {
+                $('#namebox').val(data.info.name);
+                $('#unamebox').val(data.info.uname);
+                $('#emailbox').val(data.info.email);
+                $('#oldpassbox').val('');
+                $('#newpassbox').val('');
+                $('#cnewpassbox').val('');
+                addRemoveFocus();
+                plan = data.info.plan;
+                reloadPlan();
+            }
+        },
+    });
+}
+
+reload();
+console.log(plan);
+
+async function reloadPlan() {
+    console.log(plan);
+    switch (plan) {
+        case '0':
+            $('.card button').eq(0).text('Selected');
+            $('.card button').eq(0).attr('disabled', true);
+            break;
+        case '1':
+            console.log('ib');
+            $('.card button').eq(1).text('Selected');
+            $('.card button').eq(1).attr('disabled', true);
+
+            break;
+        case '2':
+            $('.card button').eq(2).text('Selected');
+            $('.card button').eq(2).attr('disabled', true);
+
+            break;
+        default:
+            break;
+    }
+}
+reloadPlan();
 
 //JS validation
 function warn(that, msg) {
@@ -156,9 +227,12 @@ $('.subBtn').click(function () {
                         alert('Something went wrong');
                     }
                 }
+                reload();
             },
         });
     }
 });
 
-$('.resBtn').click(function () {});
+$('.resBtn').click(function () {
+    reload();
+});

@@ -38,6 +38,14 @@ section {
     box-shadow: none;
 }
 
+.checkbox-holder {
+    margin-top: 40px;
+    display: flex;
+    justify-content: left;
+    align-content: center;
+    align-items: center;
+}
+
 /*upgrade*/
 
 .compare-table {
@@ -104,11 +112,17 @@ section {
     font-size: 1.05rem;
     -webkit-tap-highlight-color: transparent;
 }
+
 .card div:last-child button:active {
     transform: scale(0.8);
 }
 
-.card:hover > div button {
+.card div:last-child button:disabled {
+    background: -webkit-linear-gradient(120deg, #646464, #b1b1b1, #ececec);
+    cursor: default;
+}
+
+.card div button:hover {
     background-position: right;
 }
 

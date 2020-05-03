@@ -1,24 +1,24 @@
 <?php
     session_start();
-    require "settingshandler.php";
-    $name = $uname = $email = "";
-    $btn1text = $btn2text =$btn3text = "Select";
-    function setInfo()
-    {
-        $info = getInfo();
+    // require "settingshandler.php";
+    // $name = $uname = $email = "";
+    // $btn1text = $btn2text =$btn3text = "Select";
+    // function setInfo()
+    // {
+    //     $info = getInfo();
         
-        if($info != false)
-        {
-            global $name, $uname, $email, $btn1text, $btn2text, $btn3text;
-            $name = $info['name'];
-            $uname = $info['username'];
-            $email = $info['email'];
-            if($info['plan'] == 0 ) $btn1text = 'Selected';
-            elseif($info['plan'] == 1 ) $btn1text = 'Selected';
-            elseif($info['plan'] == 2 ) $btn1text = 'Selected';
-        }
+    //     if($info != false)
+    //     {
+    //         global $name, $uname, $email, $btn1text, $btn2text, $btn3text;
+    //         $name = $info['name'];
+    //         $uname = $info['username'];
+    //         $email = $info['email'];
+    //         if($info['plan'] == 0 ) $btn1text = 'Selected';
+    //         elseif($info['plan'] == 1 ) $btn1text = 'Selected';
+    //         elseif($info['plan'] == 2 ) $btn1text = 'Selected';
+    //     }
 
-    }
+    // }
 
 ?>
 
@@ -56,9 +56,7 @@
         <div class="container">
             
             <div class="sidebar">
-                <?php require "userdashcard.php";
-                setInfo(); //to override the name of userdashcard
-                ?>
+                <?php require "userdashcard.php";?>
             </div>
             <div class="fuse">
                 <div class="mini-container">
@@ -68,38 +66,40 @@
                         </div>
                         <div class="section-content">
                             <div class="input-sec">
-                                <input type="text" name="name" id="namebox" value="<?php echo $name;?>">
+                                <input type="text" name="name" id="namebox">
                                 <span data-placeholder="name"></span>
                             </div>
-                            <div class="warn"><?php //echo $err_name; ?></div>
+                            <div class="warn"></div>
                             <div class="input-sec">
-                                <input type="text" name="uname" id="unamebox" value="<?php echo $uname ;?>">
+                                <input type="text" name="uname" id="unamebox" disabled>
                                 <span data-placeholder="username"></span>
                             </div>
-                            <div class="warn"><?php //echo $err_uname; ?></div>
+                            <div class="warn"></div>
                             <div class="input-sec">
-                                <input type="text" name="email" id="emailbox" value="<?php echo $email ;?>">
+                                <input type="text" name="email" id="emailbox">
                                 <span data-placeholder="email"></span>
                             </div>
-                            <div class="warn"><?php //echo $err_email; ?></div>
+                            <div class="warn"></div>
                             <div class="input-sec">
-                                <input type="password" name="oldpass" id="oldpassbox" value="<?php //echo $pass ;?>">
-                                <span data-placeholder="old password"></span>
+                                <input type="password" name="oldpass" id="oldpassbox">
+                                <span data-placeholder="current password"></span>
                             </div>
-                            <div class="warn"><?php //echo $err_pass; ?></div>
-                            <div><input type="checkbox" name="" id="passchange"><label for="passchange">Change Password</label></div>
-                            <div class="input-sec">
-                                <input type="password" name="pass" id="newpassbox" value="<?php //echo $pass ;?>">
-                                <span data-placeholder="new password"></span>
+                            <div class="warn"></div>
+                            <div class="checkbox-holder"><input type="checkbox" name="" id="passchange"><label for="passchange">Change Password</label></div>
+                            <div class="change-pass-sec">
+                                <div class="input-sec">
+                                    <input type="password" name="pass" id="newpassbox">
+                                    <span data-placeholder="new password"></span>
+                                </div>
+                                <div class="warn"></div>
+                                <div class="input-sec">
+                                    <input type="password" name="cpass" id="cnewpassbox">
+                                    <span data-placeholder="confirm new password"></span>
+                                </div>
+                                <div class="warn"></div>
                             </div>
-                            <div class="warn"><?php //echo $err_pass; ?></div>
-                            <div class="input-sec">
-                                <input type="password" name="cpass" id="cnewpassbox" value="<?php //echo $cpass ?>">
-                                <span data-placeholder="confirm new password"></span>
-                            </div>
-                            <div class="warn"><?php //echo $err_cpass; ?></div>
                             <div class="button-holder">
-                                <input type="reset" value="Clear Changes" class="resBtn" id="resetButton" onclick="resetForm()">
+                                <input type="reset" value="Clear Changes" class="resBtn" id="resetButton">
                                 <div class="gap"></div>
                                 <input type="submit" value="Update" class="subBtn" name="register">
                             </div>
@@ -125,7 +125,7 @@
                                     <div>50 Short URL Limit</div>
                                     <div>-</div>
                                     <div>-</div>
-                                    <div><button><?php echo $btn1text; ?></button></div>
+                                    <div><button>Select</button></div>
                                 </div>
                                 <div class="pro-plan card">
                                     <div>Pro</div>
@@ -140,7 +140,7 @@
                                     <div>200 Short URL Limit</div>
                                     <div>Pinned Profile</div>
                                     <div>-</div>
-                                    <div><button><?php echo $btn2text; ?></button></div>
+                                    <div><button>Select</button></div>
                                 </div>
                                 <div class="ultra-plan card">
                                     <div>Ultra</div>
@@ -155,7 +155,7 @@
                                     <div>Unlimited Short URL</div>
                                     <div>Pinned Profile</div>
                                     <div>Profile Verifiation</div>
-                                    <div><button><?php echo $btn3text; ?></button></div>
+                                    <div><button>Select</button></div>
                                 </div>
                             </div>
                             <div class="request-status">
