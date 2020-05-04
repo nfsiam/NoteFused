@@ -118,7 +118,6 @@
         elseif(!ctype_alpha(str_replace(' ', '', $name)))
         {
             $error[0] = "please enter letters and Space only (e.g. Abcd Efgh)";
-            // echo "in";
         }
         else
         {
@@ -203,7 +202,6 @@
         $infoArray = $_POST['infoArray'];
         if(is_array($infoArray))
         {
-            // echo count($infoArray);
             if(count($infoArray)==4)
             {
                 //sanitize, validate, update
@@ -265,6 +263,80 @@
 
     }
 
+    function hasExistingCPReq($calledfor)
+    {
+        date_default_timezone_set("Asia/Dhaka");
+        global $loggedUser;
+
+        $query = "SELECT * from cpreq where username='$loggedUser';";
+        try
+        {
+            $result = get($query);
+            if($result == false) return false;
+            if(mysqli_num_rows($result) > 0)
+            {
+                $res =  mysqli_fetch_assoc($result);
+                $unlockUnixTime = $res['reqDate'] + 604800;
+                
+                
+                if($unlockUnixTime <= time())
+                {
+                    //delete prev req
+                    try
+                    {
+                        $dquery = "DELETE from cpreq where username='$loggedUser'";
+                        execute($dquery);
+                        return 'no';
+                    }
+                    catch(Error $e)
+                    {
+                        //db error while deleting
+                        return false;
+                    }
+                }
+                else
+                {
+                    if($calledfor === 'res') return $res;
+                    elseif($calledfor === 'check') return 'yes';
+                }
+                
+            }
+            else
+            {
+                return "no";
+            }
+        }
+        catch(Error $e)
+        {
+            return false;
+        }
+    }
+
+
+    function cpReqCheck()
+    {
+        date_default_timezone_set("Asia/Dhaka");
+        global $loggedUser;
+        $cpinfo = array();
+        
+        $res = hasExistingCPReq('res');
+
+        if($res!== false && $res!== 'no' && is_array($res))
+        {
+            $cpinfo['dp'] = $res['plan'];
+            // $cpinfo['reqDate'] = $res['reqDate'];
+            $requts =  $res['reqDate'];
+            $unlockuts = $requts + 604800;
+            $cpinfo['unlockDate'] = date('d/m/Y h:i:s a',$unlockuts);
+            $cpinfo['actions'] = $res['actions'];
+            return $cpinfo;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     if(isset($_POST['fetchPersonalInfo']))
     {
         $data = array();
@@ -280,6 +352,113 @@
             $info['plan'] = $result['plan'];
 
             $data['info'] = $info;
+        }
+
+        $cpinfo = cpReqCheck();
+        if($cpinfo !== false && is_array($cpinfo))
+        {
+            $data['cpinfo'] = $cpinfo;
+        }
+        echo json_encode($data);
+    }
+
+
+
+    function matchPlan($desiredPlan)
+    {
+        global $loggedUser;
+
+        $query = "SELECT plan from profiles where username='$loggedUser';";
+        try
+        {
+            $result = get($query);
+            if($result == false) return false;
+            if(mysqli_num_rows($result) > 0)
+            {
+                $res =  mysqli_fetch_row($result);
+
+                if($desiredPlan == $res[0])
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        catch(Error $e)
+        {
+            return false;
+        }
+    }
+
+    if(isset($_POST['requestPlanChange']))
+    {
+        date_default_timezone_set("Asia/Dhaka");
+
+        global $loggedUser;
+        $reqDate = time();
+
+        if(!empty($_POST['requestPlanChange']))
+        {
+            $desiredPlan = htmlspecialchars(trim($_POST['requestPlanChange']));
+            $dp;
+            if($desiredPlan == 'basic') $dp = 0;
+            elseif($desiredPlan == 'pro') $dp = 1;
+            elseif($desiredPlan == 'ultra') $dp = 2;
+            else
+            {
+                //tried to manipulate string
+                $data['failure'] = "Something went wrong";
+                echo json_encode($data);
+                return;
+            }
+            if(matchPlan($dp))
+            {
+                
+                $hasExistingReq = hasExistingCPReq('check');
+                if($hasExistingReq === 'no')
+                {
+                    $query = "INSERT INTO cpreq (username,plan,reqDate,actions) VALUES ('$loggedUser','$dp','$reqDate',0)";
+                    try
+                    {
+                        execute($query);
+                        $data['success'] = "Your request has been Placed for Admin Aprooval";
+                    }
+                    catch(Error $e)
+                    {
+                        //db error match plan
+                        $data['failure'] = "Something went wrong";
+                    }
+                }
+                elseif($hasExistingReq === 'yes')
+                {
+                    $data['hasExistingReq'] = "You already have a request pending";
+                }
+                else
+                {
+                    //db error check existing req
+                    $data['failure'] = "Something went wrong";
+                }
+            }
+            else
+            {
+                //already in this plan
+                $data['failure'] = "Something went wrong";
+            }
+
+        }
+        else
+        {
+            //empty manipulated string
+            $data['failure'] = "Something went wrong";
+
         }
         echo json_encode($data);
     }

@@ -1,35 +1,12 @@
 <?php
-
 require "db/dbcon.php";
-function matchPass($opass)
-{
-    $query = "SELECT pass from profiles where username='siam';";
-    try
-    {
-        $result = get($query);
-        if($result == false) return false;
-        if(mysqli_num_rows($result) > 0)
-        {
-            $res =  mysqli_fetch_row($result);
-            if($opass != $res[0])
-            {
-              return false;
-            }
-            else
-            {
-              return true;
-            }
-        }
-        else
-        {
-            return false;
-        }
+$ptime = time();
+// $ptime = strtotime('+1 day');
 
-    }
-    catch(Error $e)
-    {
-        return false;
-    }
-}
+$query2 = "INSERT INTO abcd (ptime,mtime) VALUES ('$ptime',UNIX_TIMESTAMP())";
+execute($query2);
 
-echo matchPass("1234")? "milse" : "mile nai";
+// date_default_timezone_set("Asia/Dhaka");
+// date_default_timezone_set("UTC");
+// echo date_default_timezone_get();
+// echo date('d/m/Y h:i:s a',$ptime);

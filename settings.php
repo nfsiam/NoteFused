@@ -65,43 +65,51 @@
                             <span>Personal Info</span>
                         </div>
                         <div class="section-content">
-                            <div class="input-sec">
-                                <input type="text" name="name" id="namebox">
-                                <span data-placeholder="name"></span>
-                            </div>
-                            <div class="warn"></div>
-                            <div class="input-sec">
-                                <input type="text" name="uname" id="unamebox" disabled>
-                                <span data-placeholder="username"></span>
-                            </div>
-                            <div class="warn"></div>
-                            <div class="input-sec">
-                                <input type="text" name="email" id="emailbox">
-                                <span data-placeholder="email"></span>
-                            </div>
-                            <div class="warn"></div>
-                            <div class="input-sec">
-                                <input type="password" name="oldpass" id="oldpassbox">
-                                <span data-placeholder="current password"></span>
-                            </div>
-                            <div class="warn"></div>
-                            <div class="checkbox-holder"><input type="checkbox" name="" id="passchange"><label for="passchange">Change Password</label></div>
-                            <div class="change-pass-sec">
-                                <div class="input-sec">
-                                    <input type="password" name="pass" id="newpassbox">
-                                    <span data-placeholder="new password"></span>
+                            <div class="input-container-sec">
+                                <div class="primary-sec">
+                                    <div class="input-sec">
+                                        <input type="text" name="name" id="namebox">
+                                        <span data-placeholder="name"></span>
+                                    </div>
+                                    <div class="warn"></div>
+                                    <div class="input-sec">
+                                        <input type="text" name="uname" id="unamebox" disabled>
+                                        <span data-placeholder="username"></span>
+                                    </div>
+                                    <div class="warn"></div>
+                                    <div class="input-sec">
+                                        <input type="text" name="email" id="emailbox">
+                                        <span data-placeholder="email"></span>
+                                    </div>
+                                    <div class="warn"></div>
+                                    <div class="input-sec">
+                                        <input type="password" name="oldpass" id="oldpassbox">
+                                        <span data-placeholder="current password"></span>
+                                    </div>
+                                    <div class="warn"></div>
                                 </div>
-                                <div class="warn"></div>
-                                <div class="input-sec">
-                                    <input type="password" name="cpass" id="cnewpassbox">
-                                    <span data-placeholder="confirm new password"></span>
+                                <div class="secondary-sec">
+                                    <div class="checkbox-holder"><input type="checkbox" name="" id="passchange"><label for="passchange">Change Password</label></div>
+                                    <div class="change-pass-sec">
+                                        <div class="input-sec">
+                                            <input type="password" name="pass" id="newpassbox">
+                                            <span data-placeholder="new password"></span>
+                                        </div>
+                                        <div class="warn"></div>
+                                        <div class="input-sec">
+                                            <input type="password" name="cpass" id="cnewpassbox">
+                                            <span data-placeholder="confirm new password"></span>
+                                        </div>
+                                        <div class="warn"></div>
+                                    </div>
                                 </div>
-                                <div class="warn"></div>
                             </div>
-                            <div class="button-holder">
-                                <input type="reset" value="Clear Changes" class="resBtn" id="resetButton">
-                                <div class="gap"></div>
-                                <input type="submit" value="Update" class="subBtn" name="register">
+                            <div class="button-sec">
+                                <div class="button-holder">
+                                    <input type="reset" value="Clear Changes" class="resBtn" id="resetButton">
+                                    <div class="gap"></div>
+                                    <input type="submit" value="Update" class="subBtn" name="register">
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -113,8 +121,8 @@
                         <div class="section-content">
                             <div class="compare-table">
                                 <div class="basic-plan card">
-                                    <div>Basic</div>
-                                    <div>$0.00/Month</div>
+                                    <div>basic</div>
+                                    <!-- <div>$0.00/Month</div> -->
                                     <div>Unlimited Public Note</div>
                                     <div>50 Private Note Limit</div>
                                     <div>
@@ -128,8 +136,8 @@
                                     <div><button>Select</button></div>
                                 </div>
                                 <div class="pro-plan card">
-                                    <div>Pro</div>
-                                    <div>$3.00/Month</div>
+                                    <div>pro</div>
+                                    <!-- <div>$3.00/Month</div> -->
                                     <div>Unlimited Public Note</div>
                                     <div>200 Private Note Limit</div>
                                     <div>
@@ -143,8 +151,8 @@
                                     <div><button>Select</button></div>
                                 </div>
                                 <div class="ultra-plan card">
-                                    <div>Ultra</div>
-                                    <div>$40.00/Month</div>
+                                    <div>ultra</div>
+                                    <!-- <div>$40.00/Month</div> -->
                                     <div>Unlimited Public Note</div>
                                     <div>Unlimited Private Note</div>
                                     <div>

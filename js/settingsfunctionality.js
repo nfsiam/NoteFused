@@ -1,4 +1,5 @@
 let plan;
+let noPendingRequest = true;
 $('.input-sec input').on('focus', function () {
     $(this).addClass('focus');
 });
@@ -44,6 +45,7 @@ function reload() {
             fetchPersonalInfo: 'fetchInfo',
         },
         success: function (data) {
+            // alert(data);
             if ('info' in data) {
                 $('#namebox').val(data.info.name);
                 $('#unamebox').val(data.info.uname);
@@ -54,23 +56,46 @@ function reload() {
                 addRemoveFocus();
                 plan = data.info.plan;
                 reloadPlan();
+                $('.warn').each(function () {
+                    $(this).text('');
+                });
+            }
+
+            if ('cpinfo' in data) {
+                if (data.cpinfo.actions == 0) {
+                    $('.card button').attr('disabled', true);
+
+                    $('.request-status').text(
+                        'Your request has been placed for admin approval,you will be able to rquest again after ' +
+                            data.cpinfo.unlockDate
+                    );
+                    if (data.cpinfo.dp == 0) {
+                        $('.card button').eq(0).text('Requested');
+                    } else if (data.cpinfo.dp == 1) {
+                        $('.card button').eq(1).text('Requested');
+                    } else if (data.cpinfo.dp == 2) {
+                        $('.card button').eq(2).text('Requested');
+                    }
+                } else if (data.cpinfo.actions == 1) {
+                    $('.request-status').text(
+                        'Your request has been declined, you can request again when the rquest option is available'
+                    );
+                }
+            } else {
             }
         },
     });
 }
 
 reload();
-console.log(plan);
 
 async function reloadPlan() {
-    console.log(plan);
     switch (plan) {
         case '0':
             $('.card button').eq(0).text('Selected');
             $('.card button').eq(0).attr('disabled', true);
             break;
         case '1':
-            console.log('ib');
             $('.card button').eq(1).text('Selected');
             $('.card button').eq(1).attr('disabled', true);
 
@@ -187,7 +212,6 @@ let validate = () => {
 
 $('.subBtn').click(function () {
     if (validate()) {
-        console.log(pinfarr.length);
         $.ajax({
             url: 'settingshandler.php',
             method: 'POST',
@@ -235,4 +259,30 @@ $('.subBtn').click(function () {
 
 $('.resBtn').click(function () {
     reload();
+});
+
+$('.card button').click(function () {
+    const desiredPlan = $(this).parent().parent().find('div').eq(0).text();
+    let that = $(this);
+
+    if (confirm('Are you sure to file a request?')) {
+        $.ajax({
+            url: 'settingshandler.php',
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+                requestPlanChange: desiredPlan,
+            },
+            success: function (data) {
+                // alert(data);
+                if ('success' in data) {
+                    reload();
+                } else if ('hasExistingReq' in data) {
+                    alert(data.hasExistingReq);
+                } else {
+                    alert('Something went wrong');
+                }
+            },
+        });
+    }
 });

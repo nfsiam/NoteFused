@@ -1,4 +1,70 @@
+<div class="ham-side">
+        <!-- <div>
+            <ul>
+                <li><a href="">some</a></li>
+                <li><a href="">some</a></li>
+                <li><a href="">some</a></li>
+                <li><a href="">some</a></li>
+                <li>
+                        <div>
+                            <button>hhh</button>
+                        </div>                    
+                        <div>
+                            <button>hhh</button>
+                        </div>                    
+                        <div>
+                            <button>hhh</button>
+                        </div>                    
+                        <div>
+                            <button>hhh</button>
+                        </div>                    
+                </li>
+            </ul>
+            <ul>
+                <li><a href="">some</a></li>
+                <li><a href="">some</a></li>
+                <li><a href="">some</a></li>
+                <li><a href="">some</a></li>
+                <li>
+                        <div>
+                            <button>hhh</button>
+                        </div>                    
+                        <div>
+                            <button>hhh</button>
+                        </div>                    
+                        <div>
+                            <button>hhh</button>
+                        </div>                    
+                        <div>
+                            <button>hhh</button>
+                        </div>                    
+                </li>
+            </ul>
+            <ul>
+                <li><a href="">some</a></li>
+                <li><a href="">some</a></li>
+                <li><a href="">some</a></li>
+                <li><a href="">some</a></li>
+                <li>
+                        <div>
+                            <button>hhh</button>
+                        </div>                    
+                        <div>
+                            <button>hhh</button>
+                        </div>                    
+                        <div>
+                            <button>hhh</button>
+                        </div>                    
+                        <div>
+                            <button>hhh</button>
+                        </div>                    
+                </li>
+            </ul>
+
+        </div> -->
+    </div>
 <div class="navbar">
+    <div class="ham-sec">&#9776</div>
     <div class="headings">
         <a href="./">NoteFused</a>
     </div>
