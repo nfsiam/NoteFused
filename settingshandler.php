@@ -337,7 +337,7 @@
         }
     }
 
-    if(isset($_POST['fetchPersonalInfo']))
+    if(isset($_POST['fetchPersonal']))
     {
         $data = array();
 
@@ -350,10 +350,13 @@
             $info['uname'] = $result['username'];
             $info['email'] = $result['email'];
             $info['plan'] = $result['plan'];
-
             $data['info'] = $info;
         }
-
+        echo json_encode($data);
+    }
+    if(isset($_POST['fetchPlan']))
+    {
+        $data = array();
         $cpinfo = cpReqCheck();
         if($cpinfo !== false && is_array($cpinfo))
         {

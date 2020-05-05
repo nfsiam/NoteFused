@@ -36,17 +36,16 @@ $('#passchange').on('change', function () {
     }
 });
 
-function reload() {
+function reloadPersonal() {
     // $('.loader').fadeIn();
     $.ajax({
         url: 'settingshandler.php',
         method: 'POST',
         dataType: 'JSON',
         data: {
-            fetchPersonalInfo: 'fetchInfo',
+            fetchPersonal: 'fetchInfo',
         },
         success: function (data) {
-            $('.loader').fadeOut();
             // alert(data);
             if ('info' in data) {
                 $('#namebox').val(data.info.name);
@@ -57,11 +56,23 @@ function reload() {
                 $('#cnewpassbox').val('');
                 addRemoveFocus();
                 plan = data.info.plan;
-                reloadPlan();
                 $('.warn').each(function () {
                     $(this).text('');
                 });
             }
+        },
+    });
+}
+function reloadPlan() {
+    $.ajax({
+        url: 'settingshandler.php',
+        method: 'POST',
+        dataType: 'JSON',
+        data: {
+            fetchPlan: 'fetchInfo',
+        },
+        success: function (data) {
+            $('.loader').fadeOut();
 
             if ('cpinfo' in data) {
                 if (data.cpinfo.actions == 0) {
@@ -89,9 +100,10 @@ function reload() {
     });
 }
 
-reload();
+reloadPersonal();
+reloadPlan();
 
-async function reloadPlan() {
+async function selectPlan() {
     switch (plan) {
         case '0':
             $('.card button').eq(0).text('Selected');
@@ -111,7 +123,7 @@ async function reloadPlan() {
             break;
     }
 }
-reloadPlan();
+selectPlan();
 
 //JS validation
 function warn(that, msg) {
@@ -263,7 +275,7 @@ $('.subBtn').click(function () {
 });
 
 $('.resBtn').click(function () {
-    reload();
+    reloadPersonal();
 });
 
 $('.card button').click(function () {
@@ -296,13 +308,4 @@ $('.card button').click(function () {
             },
         });
     }
-});
-
-// $(document).ready(function () {
-//     //$('.loader').fadeOut();
-//     alert('some');
-// });
-$(window).on('load', function () {
-    // $('.loader').fadeOut();
-    // alert('some');
 });
