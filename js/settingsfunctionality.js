@@ -51,11 +51,10 @@ function reloadPersonal() {
                 $('#namebox').val(data.info.name);
                 $('#unamebox').val(data.info.uname);
                 $('#emailbox').val(data.info.email);
-                $('#oldpassbox').val('');
-                $('#newpassbox').val('');
-                $('#cnewpassbox').val('');
+
                 addRemoveFocus();
                 plan = data.info.plan;
+                selectPlan();
                 $('.warn').each(function () {
                     $(this).text('');
                 });
@@ -139,18 +138,18 @@ let validate = () => {
 
     const letters = /^[A-Za-z ]+$/;
     const name = $('#namebox').val();
-    if (name == '') {
-        warn('namebox', 'please enter your name above');
-        valid = false;
-    } else if (!name.match(letters)) {
-        warn('namebox', 'please enter letters and Space only (e.g. Abcd Efgh)');
-        valid = false;
-    } else {
-        warn('namebox', '');
-        valid = true;
-        pinfarr.push(name);
-    }
-    // pinfarr.push(name);
+    // if (name == '') {
+    //     warn('namebox', 'please enter your name above');
+    //     valid = false;
+    // } else if (!name.match(letters)) {
+    //     warn('namebox', 'please enter letters and Space only (e.g. Abcd Efgh)');
+    //     valid = false;
+    // } else {
+    //     warn('namebox', '');
+    //     valid = true;
+    //     pinfarr.push(name);
+    // }
+    pinfarr.push(name);
 
     // const lettersNums = /^[A-Za-z0-9]+$/;
     // const name = $('#namebox').val();
@@ -225,6 +224,9 @@ let validate = () => {
 };
 
 $('.subBtn').click(function () {
+    $('.warn').each(function () {
+        $(this).text('');
+    });
     if (validate()) {
         $('.loader').fadeIn();
         $.ajax({
@@ -238,10 +240,6 @@ $('.subBtn').click(function () {
             success: function (data) {
                 // alert(data);
                 $('.loader').fadeOut(function () {
-                    $('.warn').each(function () {
-                        $(this).text('');
-                    });
-
                     if (Object.keys(data.errors).length > 0) {
                         //if validation error response from server side
                         if (0 in data.errors) {
@@ -262,12 +260,12 @@ $('.subBtn').click(function () {
                     }
                     if ('success' in data) {
                         if (data.success == 'true') {
+                            reloadPersonal();
                             alert('Information Updated Successfully');
                         } else if (data.success == 'false') {
                             alert('Something went wrong');
                         }
                     }
-                    reload();
                 });
             },
         });
@@ -276,6 +274,9 @@ $('.subBtn').click(function () {
 
 $('.resBtn').click(function () {
     reloadPersonal();
+    $('#oldpassbox').val('');
+    $('#newpassbox').val('');
+    $('#cnewpassbox').val('');
 });
 
 $('.card button').click(function () {
@@ -293,12 +294,12 @@ $('.card button').click(function () {
                 requestPlanChange: desiredPlan,
             },
             success: function (data) {
+                that.text('Requested');
+                $('.card button').attr('disabled', true);
                 $('.loader').fadeOut(function () {
                     // alert(data);
                     if ('success' in data) {
-                        that.text('Requested');
-                        $('.card button').attr('disabled', true);
-                        reload();
+                        reloadPlan();
                     } else if ('hasExistingReq' in data) {
                         alert(data.hasExistingReq);
                     } else {
