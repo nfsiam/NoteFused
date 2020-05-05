@@ -30,6 +30,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteFused</title>
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
+    <link rel="stylesheet" href="styles/loader.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/form.css">
     <link rel="stylesheet" href="styles/profilesettings.css">
@@ -51,6 +52,12 @@
 
 </head>
 <body>
+    <div class="loader">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+        <div class="four"></div>
+    </div>
     <div class="holder">
         <?php require "navbar.php"; ?>
         <div class="container">

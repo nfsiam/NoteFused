@@ -37,6 +37,7 @@ $('#passchange').on('change', function () {
 });
 
 function reload() {
+    // $('.loader').fadeIn();
     $.ajax({
         url: 'settingshandler.php',
         method: 'POST',
@@ -45,6 +46,7 @@ function reload() {
             fetchPersonalInfo: 'fetchInfo',
         },
         success: function (data) {
+            $('.loader').fadeOut();
             // alert(data);
             if ('info' in data) {
                 $('#namebox').val(data.info.name);
@@ -212,6 +214,7 @@ let validate = () => {
 
 $('.subBtn').click(function () {
     if (validate()) {
+        $('.loader').fadeIn();
         $.ajax({
             url: 'settingshandler.php',
             method: 'POST',
@@ -222,36 +225,38 @@ $('.subBtn').click(function () {
             },
             success: function (data) {
                 // alert(data);
-                $('.warn').each(function () {
-                    $(this).text('');
-                });
+                $('.loader').fadeOut(function () {
+                    $('.warn').each(function () {
+                        $(this).text('');
+                    });
 
-                if (Object.keys(data.errors).length > 0) {
-                    //if validation error response from server side
-                    if (0 in data.errors) {
-                        warn('namebox', data.errors[0]);
+                    if (Object.keys(data.errors).length > 0) {
+                        //if validation error response from server side
+                        if (0 in data.errors) {
+                            warn('namebox', data.errors[0]);
+                        }
+                        if (1 in data.errors) {
+                            warn('emailbox', data.errors[1]);
+                        }
+                        if (2 in data.errors) {
+                            warn('oldpassbox', data.errors[2]);
+                        }
+                        if (3 in data.errors) {
+                            warn('newpassbox', data.errors[3]);
+                        }
+                        if (4 in data.errors) {
+                            warn('cnewpassbox', data.errors[4]);
+                        }
                     }
-                    if (1 in data.errors) {
-                        warn('emailbox', data.errors[1]);
+                    if ('success' in data) {
+                        if (data.success == 'true') {
+                            alert('Information Updated Successfully');
+                        } else if (data.success == 'false') {
+                            alert('Something went wrong');
+                        }
                     }
-                    if (2 in data.errors) {
-                        warn('oldpassbox', data.errors[2]);
-                    }
-                    if (3 in data.errors) {
-                        warn('newpassbox', data.errors[3]);
-                    }
-                    if (4 in data.errors) {
-                        warn('cnewpassbox', data.errors[4]);
-                    }
-                }
-                if ('success' in data) {
-                    if (data.success == 'true') {
-                        alert('Information Updated Successfully');
-                    } else if (data.success == 'false') {
-                        alert('Something went wrong');
-                    }
-                }
-                reload();
+                    reload();
+                });
             },
         });
     }
@@ -266,6 +271,8 @@ $('.card button').click(function () {
     let that = $(this);
 
     if (confirm('Are you sure to file a request?')) {
+        $('.loader').fadeIn();
+
         $.ajax({
             url: 'settingshandler.php',
             method: 'POST',
@@ -274,15 +281,28 @@ $('.card button').click(function () {
                 requestPlanChange: desiredPlan,
             },
             success: function (data) {
-                // alert(data);
-                if ('success' in data) {
-                    reload();
-                } else if ('hasExistingReq' in data) {
-                    alert(data.hasExistingReq);
-                } else {
-                    alert('Something went wrong');
-                }
+                $('.loader').fadeOut(function () {
+                    // alert(data);
+                    if ('success' in data) {
+                        that.text('Requested');
+                        $('.card button').attr('disabled', true);
+                        reload();
+                    } else if ('hasExistingReq' in data) {
+                        alert(data.hasExistingReq);
+                    } else {
+                        alert('Something went wrong');
+                    }
+                });
             },
         });
     }
+});
+
+// $(document).ready(function () {
+//     //$('.loader').fadeOut();
+//     alert('some');
+// });
+$(window).on('load', function () {
+    // $('.loader').fadeOut();
+    // alert('some');
 });
