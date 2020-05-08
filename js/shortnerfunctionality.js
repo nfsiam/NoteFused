@@ -44,9 +44,9 @@ $('#shortenButton').click(function () {
     } else if (!validURL(longUrl)) {
         errorStyle('Invalid URL found');
     } else {
-        console.log('in');
+        console.log('in ajax shorten button clicked');
         $.ajax({
-            url: 'shortner.php',
+            url: 'shorthandler.php',
             method: 'POST',
             dataType: 'JSON',
             data: {
@@ -54,9 +54,18 @@ $('#shortenButton').click(function () {
             },
             success: function (data) {
                 // $('.result-row').css('display', 'block');
-                if (data.surl != '') {
-                    $('.result-row').fadeIn();
-                    $('#resultUrlBox').val(data.surl);
+                // alert(data);
+
+                if ('surl' in data) {
+                    if (data.surl != '') {
+                        $('.result-row').fadeIn();
+                        $('#resultUrlBox').val(data.surl);
+                    }
+                } else if ('limitError' in data) {
+                    alert(
+                        'You have exceeded the limit of short urls as per your current plan. ' +
+                            'Upgrade your plan or delete 1 of your shortened urls'
+                    );
                 }
             },
         });

@@ -25,8 +25,8 @@ $('#choose').change(function () {
     totalSize = Math.ceil(totalSize / 1024);
     console.log(totalSize);
     console.log(fileInfo);
-    if (totalSize > 1024) {
-        alert('You can not upload file more than 1MB');
+    if (totalSize > 1024 * 10) {
+        alert('You can not upload file more than 10MB at a time');
         formData = null;
         fileInfo = [];
         fileInfoAsElem = '';
@@ -46,10 +46,10 @@ $('#uploadButton').click(function () {
         return;
     } else {
         $('#prog').show();
-        if (totalFiles > 0 && totalSize <= 1024) {
+        if (totalFiles > 0 && totalSize <= 1024 * 10) {
             $.ajax({
                 // Your server script to process the upload
-                url: 'uploader.php',
+                url: 'filehandler.php',
                 type: 'POST',
 
                 // Form data
@@ -93,7 +93,9 @@ $('#uploadButton').click(function () {
                 },
             });
         } else {
-            alert('You can not upload file more than 1MB');
+            $('#prog').fadeOut();
+
+            alert('You can not upload file more than 10MB at a time');
             formData = null;
             fileInfo = [];
             fileInfoAsElem = '';

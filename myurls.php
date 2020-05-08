@@ -68,7 +68,7 @@
     <script src="js/sidebarfunctionality.js" defer></script>
     <script src="js/myurlsfunctionality.js" defer></script>
     <script src="js/optiontogglerfunctionality.js" defer></script>
-    <script src="js/loginvalidationfunctionality.js" defer></script>
+    <!-- <script src="js/loginvalidationfunctionality.js" defer></script> -->
     <script src="js/navbarfunctionality.js" defer></script>
     <script src="js/userdashcardfunctionality.js" defer></script>
     <style>
@@ -262,16 +262,7 @@
     </div>
     <script>
         
-        let loggedUser ="<?php echo empty($loggedUser)?'':$loggedUser?>";
-        let noteid = '<?php echo $noteID; ?>';
-
-        // console.log("aaaa: "+loggedUser);
-        
-        //sidebar
-        
-        //option toggler
-        
-        //login validation
+        //let loggedUser ="<?php echo empty($loggedUser)?'':$loggedUser?>";
         
 
     </script>

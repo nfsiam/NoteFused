@@ -302,8 +302,14 @@ $('.card button').click(function () {
                         reloadPlan();
                     } else if ('hasExistingReq' in data) {
                         alert(data.hasExistingReq);
+                        that.text('Select');
+                        $('.card button').attr('disabled', false);
+                        selectPlan();
                     } else {
                         alert('Something went wrong');
+                        that.text('Select');
+                        $('.card button').attr('disabled', false);
+                        selectPlan();
                     }
                 });
             },

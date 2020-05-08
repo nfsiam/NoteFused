@@ -65,29 +65,31 @@
         }
         catch(Error $e)
         {
-            return -1;
+            return false;
         }
     }
 
-    if(isset($_POST['ustats']))
+    function getFileSIze()
     {
-        $data = array();
-        $pnotecount = $pfilecount = $urlcount = $notecount = $filecount = -1;
+        global $loggedUser;
 
-        $notecount = getCounts('note');
-        $pnotecount = getCounts('pnote');
-        $filecount = getCounts('file');
-        $pfilecount = getCounts('pfile');
-        $urlcount = getCounts('url');
-
-        $data['notecount'] = $notecount;
-        $data['pnotecount'] = $pnotecount;
-        $data['filecount'] = $filecount;
-        $data['pfilecount'] = $pfilecount;
-        $data['urlcount'] = $urlcount;
-
-        echo json_encode($data);
-
+        $query = "SELECT SUM(filesize) AS totalsize FROM files where fileOwner='$loggedUser';";
+        try
+        {
+            $res = get($query);
+            if($res === false )
+            {
+                return false;
+            }
+            else
+            {
+                $result = mysqli_fetch_assoc($res);
+                return (int) $result['totalsize'];
+            }
+        }
+        catch(Error $e)
+        {
+            return false;
+        }
     }
-
 ?>

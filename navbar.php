@@ -75,8 +75,8 @@
                     <a href="">Profile</a>
                     <ul id="u1">
                         <!-- <li><a href="">Login</a></li> -->
-                        <li><a href="destroysession.php">Settings</a></li>
-                        <li><a href="destroysession.php">Pofile Settings</a></li>
+                        <li><a href="settings.php#personalInfo">Profile Settings</a></li>
+                        <li><a href="settings.php#plans">Plan Settings</a></li>
                         <li><a href="destroysession.php">Logout</a></li>
                         <!-- <li><a href="">Register</a></li> -->
                     </ul>

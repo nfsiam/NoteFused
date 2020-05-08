@@ -10,6 +10,8 @@
 // // date_default_timezone_set("UTC");
 // // echo date_default_timezone_get();
 // // echo date('d/m/Y h:i:s a',$ptime);
+    require_once "userstatmodule.php";
+    var_dump(getCounts('note'));
 ?>
 <!DOCTYPE html>
 <html lang="en">
