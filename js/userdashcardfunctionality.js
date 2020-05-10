@@ -38,11 +38,13 @@ function setLimitInSpans() {
     $('.note-limit').text(notelimit);
     $('.file-limit').text(filelimit / 1024 + 'MB');
     $('.url-limit').text(urllimit);
+    console.log('pin');
 }
 
 function updateStats() {
+    console.log('ooo');
     $.ajax({
-        url: 'userdashcardhandler.php',
+        url: 'handlers/userdashcardhandler.php',
         method: 'POST',
         dataType: 'JSON',
         data: {
@@ -52,6 +54,8 @@ function updateStats() {
             // if (data.success == 'true') {
             //     $(that).parents('.row-plate').fadeOut(500);
             // }
+            // alert(data);
+            // console.log('jjjjjjjjjj');
             console.log(data);
             if (planInUDC != data.currentplan) {
                 planInUDC = data.currentplan;

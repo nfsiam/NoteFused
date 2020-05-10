@@ -1,6 +1,6 @@
 <?php
     require_once "db/dbcon.php";
-    require_once "userdashcardhandler.php";
+    require_once "handlers/userdashcardhandler.php";
 
     $pnotecount = $pfilecount = $urlcount = $notecount = $filecount = 0;
     

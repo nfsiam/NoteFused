@@ -1,5 +1,5 @@
 <?php
-    require "db/dbcon.php";
+    require_once dirname(__FILE__).'/../db/dbcon.php';
 
     //this section handles redirect to original url
     //from go/surl

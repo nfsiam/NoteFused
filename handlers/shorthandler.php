@@ -1,10 +1,11 @@
 <?php
     session_start();
-    require_once "db/dbcon.php";
-    require_once "uniqstringgeneratormodule.php";
-    // require_once "filenamesanitizermodule.php";
-    require_once "planmodule.php";
-    require_once "userstatmodule.php";
+
+    require_once dirname(__FILE__).'/../db/dbcon.php';
+    require_once dirname(__FILE__).'/../modules/uniqstringgeneratormodule.php';
+    require_once dirname(__FILE__).'/../modules/planmodule.php';
+    require_once dirname(__FILE__).'/../modules/userstatmodule.php';
+
     $loggedUser = "";
     $surl = "";
     $data = array();

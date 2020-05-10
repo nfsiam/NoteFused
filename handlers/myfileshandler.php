@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once 'db/dbcon.php';
+    require_once dirname(__FILE__).'/../db/dbcon.php';
 
     $loggedUser = "";
     $filename = "";
@@ -31,16 +31,19 @@
                 $file=mysqli_fetch_assoc($result);
                 if($file['filePrivacy']==1)
                 {
+                    // echo "yes";
+                    // echo $loggedUser;
+                    // echo $file['fileOwner'];
                     if($file['fileOwner']!=$loggedUser)
                     {
-                        header('Location:../login.php');
+                        header('Location:../modules/destroysessionmodule.php');
                         return;
                     }
                 }
                 $filename = $file['fName'];
 
             }
-            $file = 'upload/'.$id;
+            $file = '../upload/'.$id;
 
             if (file_exists($file)) {
                 header('Content-Description: File Transfer');

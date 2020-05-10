@@ -1,6 +1,7 @@
 <?php
     session_start();
-    require_once 'db/dbcon.php';
+    require_once dirname(__FILE__).'/../db/dbcon.php';
+
 
     $loggedUser = "";
     if(isset($_SESSION['user'])) 
@@ -40,9 +41,10 @@
                 {
                     $fileID = htmlspecialchars($_POST['fileID']);
                     $query = "DELETE from files where fileID='$fileID'";
-                    if(file_exists("upload/$fileID"))
+                    // if(file_exists("upload/$fileID"))
+                    if(file_exists(dirname(__FILE__).'/../upload/'.$fileID))
                     {
-                        unlink("upload/$fileID"); //deleting file from server
+                        unlink(dirname(__FILE__).'/../upload/'.$fileID); //deleting file from server
                     }
                     execute($query); //removing record from database
                     $jsn['success'] = 'true';

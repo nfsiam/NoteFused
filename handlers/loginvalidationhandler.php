@@ -1,9 +1,12 @@
 <?php
+    session_start();
+    require_once dirname(__FILE__).'/../db/dbcon.php';
     $uname = "";
     $err_uname = "";
     $pass = "";
     $err_pass = "";
     $err_profile = "";
+    $data = array();
     if(isset($_POST['login']))
     {
         $hasNoError = true;
@@ -35,16 +38,25 @@
                 $user=mysqli_fetch_assoc($result);
                 $_SESSION['user'] = $user;
                 $loggedUser = $user['username'];
+                $data['loggedUser'] = $loggedUser;
                 unset($_POST['login']);
                 
 			}
 			else
 			{
-				$err_profile = "No user found associated with the username and password";
+                $err_profile = "No user found associated with the username and password";
 			}
         }
+        $data['errUname'] = $err_uname;
+        $data['errPass'] = $err_pass;
+        $data['errProfile'] = $err_profile;
+    
+        echo json_encode($data);
 
 
     }
+
 ?>
+
+
 

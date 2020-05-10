@@ -1,18 +1,10 @@
 <?php
     session_start();
-    //require "includes/initiatenotepad.php";
-    //require "includes/indexloginvalidation.php";
+
     require_once "db/dbcon.php";
 
     $resarr = array();
 
-    function shortDate($longDate)
-    {
-        $date=date_create("$longDate");
-
-        
-        return date_format($date,"d/M/y");
-    }
 
     if(isset($_SESSION['user'])) 
     {
@@ -261,10 +253,6 @@
         </div>
     </div>
     <script>
-        
-        //let loggedUser ="<?php echo empty($loggedUser)?'':$loggedUser?>";
-        
-
     </script>
 </body>
 

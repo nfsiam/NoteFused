@@ -1,18 +1,22 @@
 <?php
     session_start();
-    //require "includes/initiatenotepad.php";
-    //require "includes/indexloginvalidation.php";
+
     require_once "db/dbcon.php";
+
+    date_default_timezone_set("Asia/Dhaka");
+
+
     $loggedUser = "";
 
     $resarr = array();
 
     function shortDate($longDate)
     {
-        $date=date_create("$longDate");
+        // $date=date_create("$longDate");
 
         
-        return date_format($date,"d/M/y");
+        // return date_format($date,"d/M/y");
+        return date('d/m/Y',$longDate);
     }
 
     if(isset($_SESSION['user'])) 
@@ -69,7 +73,7 @@
     <script src="js/sidebarfunctionality.js" defer></script>
     <script src="js/myfilesfunctionality.js" defer></script>
     <script src="js/optiontogglerfunctionality.js" defer></script>
-    <script src="js/loginvalidationfunctionality.js" defer></script>
+    <!-- <script src="js/loginvalidationfunctionality.js" defer></script> -->
     <script src="js/navbarfunctionality.js" defer></script>
     <script src="js/userdashcardfunctionality.js" defer></script>
     <style>
@@ -140,7 +144,6 @@
     {
         $fileName = $res['fName'];
         $uploadDate = shortDate($res['uploadDate']);
-        $expiration = shortDate($res['expiration']);
         $privacy = $res['filePrivacy']==0? 'public':'private';
         $checkstate1 = $checkstate2 = "";
         if($privacy=='public') $checkstate1 = 'checked';
@@ -241,23 +244,6 @@
         </div>
     </div>
     <script>
-        // $('select').on('change', function() {
-        //     alert( this.value );
-        // });
-        let loggedUser ="<?php echo empty($loggedUser)?'':$loggedUser?>";
-
-        // console.log("aaaa: "+loggedUser);
-        
-        //sidebar
-        
-        //option toggler
-        
-        //login validation
-        
-
-        
-        
-
     </script>
 </body>
 

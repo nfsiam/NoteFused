@@ -39,7 +39,7 @@ $('#passchange').on('change', function () {
 function reloadPersonal() {
     // $('.loader').fadeIn();
     $.ajax({
-        url: 'settingshandler.php',
+        url: 'handlers/settingshandler.php',
         method: 'POST',
         dataType: 'JSON',
         data: {
@@ -64,7 +64,7 @@ function reloadPersonal() {
 }
 function reloadPlan() {
     $.ajax({
-        url: 'settingshandler.php',
+        url: 'handlers/settingshandler.php',
         method: 'POST',
         dataType: 'JSON',
         data: {
@@ -230,7 +230,7 @@ $('.subBtn').click(function () {
     if (validate()) {
         $('.loader').fadeIn();
         $.ajax({
-            url: 'settingshandler.php',
+            url: 'handlers/settingshandler.php',
             method: 'POST',
             dataType: 'JSON',
             data: {
@@ -287,7 +287,7 @@ $('.card button').click(function () {
         $('.loader').fadeIn();
 
         $.ajax({
-            url: 'settingshandler.php',
+            url: 'handlers/settingshandler.php',
             method: 'POST',
             dataType: 'JSON',
             data: {

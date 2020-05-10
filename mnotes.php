@@ -1,6 +1,9 @@
 <?php
     session_start();
     require "db/dbcon.php";
+
+    date_default_timezone_set("Asia/Dhaka");
+
     $loggedUser = "";
     $resarr = array();
     $notecounts = 0;
@@ -27,10 +30,11 @@
 
     function shortDate($longDate)
     {
-        $date=date_create("$longDate");
+        // $date=date_create("$longDate");
 
         
-        return date_format($date,"d/M/y");
+        // return date_format($date,"d/M/y");
+        return date('d/m/Y',$longDate);
     }
     function sliceText($text)
     {
@@ -251,7 +255,7 @@
                             </td>
                             <td id='download'>
                                 <div class='sub-unit'>
-                                    <a href='downloadastext.php?id=$noteid'><i
+                                    <a href='handlers/mynoteshandler.php?id=$noteid'><i
                                     class='fa fa-download'
                                     style='font-size:20px'
                                 ></i></a>
@@ -310,22 +314,25 @@
                 console.log($(this).attr('id'));
                 $.ajax({
 
-                    url:'deletenote.php',
+                    url:'modules/deletemodule.php',
                     method:'POST',
+                    dataType: 'JSON',
                     data:{
-                        delete:"delete",
+                        delete:"note",
                         noteID: $(this).attr('id')
                     },
                     success:function(response){
                         //$(this).css("display", "none");
                         //$(this).remove();
                         // $(that).parents('tr').hide();
-                        $(that).parents('tr').fadeOut(500);
-                        let ttn =  $('#totalNotes').text();
-                        let tn = parseInt(ttn);
-                        tn = tn-1;
-                        $('#totalNotes').text(tn);
-                        console.log('done');
+                        if(response.success == 'true'){
+                            $(that).parents('tr').fadeOut(500);
+                            let ttn =  $('#totalNotes').text();
+                            let tn = parseInt(ttn);
+                            tn = tn-1;
+                            $('#totalNotes').text(tn);
+                            console.log('done');
+                        }
                     }
                 });
 

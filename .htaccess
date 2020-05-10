@@ -14,8 +14,11 @@ RewriteRule ^go.html$  short.php [L]
 RewriteRule ^go.php$  short.php [L]
 RewriteRule ^mynotes.html$ mnotes.php [L]
 RewriteRule ^([a-z0-9]*)$   index.php?id=$1 [L]
-RewriteRule ^go/([a-z0-9]+)$  urlredirector.php?id=$1 [L]
-RewriteRule ^file/([a-z0-9]+)$  downloader.php?id=$1 [L]
+#RewriteRule ^go/([a-z0-9]+)$  urlredirector.php?id=$1 [L] #abandoned
+
+RewriteRule ^go/([a-z0-9]+)$  modules/urlredirectormodule.php?id=$1 [L]
+#RewriteRule ^file/([a-z0-9]+)$  downloader.php?id=$1 [L] #abandoned
+RewriteRule ^file/([a-z0-9]+)$  handlers/myfileshandler.php?id=$1 [L]
 
 php_value upload_max_filesize 10M
 php_value post_max_size 11M

@@ -1,6 +1,6 @@
 <?php
-    require "urlgenerator.php";
-    $loggedUser = "";
+    require_once dirname(__FILE__).'/../db/dbcon.php';
+    require_once dirname(__FILE__).'/../modules/uniqstringgeneratormodule.php';    $loggedUser = "";
     $noteID = "";
     $noteText = "";
     $noteOwner = "guest";
@@ -25,13 +25,17 @@
     
     function prepareNote($note,$noteID,$owner)
     {
-        global $noteText, $noteOwner, $notePrivacy, $expiration, $lastVisited, $lastVisited, $privacypub, $privacypriv, $exp, $xpire;
+        global $noteText, $noteOwner, $notePrivacy, $expiration, $lastVisited, $lastVisited, $privacypub, $privacypriv, $exp;
         
         $xpire = $note['xpire'];
 
-        $lastVisited = date("Y-m-d H:i:s");
+        // $lastVisited = date("Y-m-d H:i:s");
+        $lastVisited = time();
 
-        $expiration = Date('Y-m-d H:i:s', strtotime("+$xpire days"));
+        // $expiration = Date('Y-m-d H:i:s', strtotime("+$xpire days"));
+
+        $expiration = strtotime("+$xpire days", time());
+
 
         $query2 = "UPDATE notes SET lastVisited = '$lastVisited', expiration ='$expiration' WHERE noteID='$noteID'";
         execute($query2);
@@ -73,8 +77,11 @@
         if(empty($_GET['id']))
         {
             //we wll generate auto url for id
-            $noteID = generateURL();
-            header("Location:$noteID");
+            // $noteID = generateURL();
+            $noteID = generateUniq('notes','noteID',6);
+            // $location = dirname(__FILE__)."/../$noteID";
+            // header("Location:$location");
+            header("Location:./$noteID");
         }
         else
         {
@@ -101,7 +108,9 @@
                     if(empty($loggedUser))
                     {
                         //ask to login
+                        $location = dirname(__FILE__)."/../login.php";
                         header("Location:login.php");
+                        // header("Location:$location");
                     }
                     else
                     {
@@ -112,7 +121,10 @@
                         else
                         {
                             session_destroy();
-                            header("Location:./");
+                            // header("Location:./");
+                            // $location = dirname(__FILE__)."/../login.php";
+                            header("Location:login.php");
+                            // header("Location:$location");
                         }
                     }
                 }
@@ -120,9 +132,18 @@
             else
             {
                 //create new note against the id
-                $lastEdited = date("Y-m-d H:i:s");
-                $lastVisited = date("Y-m-d H:i:s");
-                $expiration = Date('Y-m-d H:i:s', strtotime("+$xpire days"));
+                // $lastEdited = date("Y-m-d H:i:s");
+
+                $lastEdited = time();
+
+                // $lastVisited = date("Y-m-d H:i:s");
+
+                $lastVisited = time();
+
+                // $expiration = Date('Y-m-d H:i:s', strtotime("+$xpire days"));
+
+                $expiration = strtotime("+$xpire days", time());
+
                 $privacy = 0;
 
                 if(empty($loggedUser))
@@ -133,7 +154,10 @@
                 {
                     //users preferred template
                     $xpire = 3650;
-                    $expiration = Date('Y-m-d H:i:s', strtotime("+$xpire days"));
+                    // $expiration = Date('Y-m-d H:i:s', strtotime("+$xpire days"));
+
+                    $expiration = strtotime("+$xpire days", time());
+
                     $noteOwner = $loggedUser;
 
                 }

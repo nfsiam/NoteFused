@@ -49,7 +49,7 @@ $('#uploadButton').click(function () {
         if (totalFiles > 0 && totalSize <= 1024 * 10) {
             $.ajax({
                 // Your server script to process the upload
-                url: 'filehandler.php',
+                url: 'handlers/filehandler.php',
                 type: 'POST',
 
                 // Form data

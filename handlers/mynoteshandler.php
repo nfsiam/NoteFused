@@ -1,5 +1,5 @@
 <?php
-    require "db/dbcon.php";
+    require_once dirname(__FILE__).'/../db/dbcon.php';
     $txt = "";
     $noteID = "";
     if(isset($_GET['id']))
@@ -11,9 +11,7 @@
 
             $query = "SELECT * FROM notes WHERE noteID='$noteID'";
             
-            $result=get($query);
-            //print_r($result);
-            
+            $result=get($query);            
 
             if(mysqli_num_rows($result) > 0)
             {
@@ -27,8 +25,6 @@
 
     
     header('Content-type: text/plain');
-    //header('Content-Disposition: attachment; filename="default-filename.txt"');
-    //header("Content-Disposition: attachment; filename='default-filename.txt'");
     header("Content-Disposition: attachment; filename=$noteID.txt");
 
     echo $txt;

@@ -22,7 +22,7 @@ $('.col5 a').click(function (e) {
     let that = this;
     console.log($(this).attr('id'));
     $.ajax({
-        url: 'deleteop.php',
+        url: 'modules/deletemodule.php',
         method: 'POST',
         dataType: 'JSON',
         data: {

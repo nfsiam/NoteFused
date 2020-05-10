@@ -1,7 +1,7 @@
 <?php
     session_start();
-    require "includes/initiatenotepad.php";
-    //require "includes/indexloginvalidation.php";
+    require "handlers/indexhandler.php";
+    // require "includes/initiatenotepad.php";
 ?>
 
 
@@ -47,7 +47,7 @@
                         ?>
                         <div id="loggedDiv" style = "display:<?php echo $loggedDiv;?>">                                    
                             <li><a href='mnotes.php'><button class='childButton'>My Notes</button></a></li>
-                            <li><a href='destroysession.php'><button class='childButton'>Logout</button></a></li>
+                            <li><a href='modules/destroysessionmodule.php'><button class='childButton'>Logout</button></a></li>
                         </div>
     
                         <div id="noLoggedDiv" style = "display:<?php echo $noLoggedDiv;?>">

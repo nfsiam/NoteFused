@@ -46,7 +46,7 @@ $('#shortenButton').click(function () {
     } else {
         console.log('in ajax shorten button clicked');
         $.ajax({
-            url: 'shorthandler.php',
+            url: 'handlers/shorthandler.php',
             method: 'POST',
             dataType: 'JSON',
             data: {

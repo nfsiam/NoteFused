@@ -1,7 +1,8 @@
 <?php
-    require_once "userstatmodule.php";
-    require_once "planmodule.php";
-    
+    require_once dirname(__FILE__).'/../modules/userstatmodule.php';
+    require_once dirname(__FILE__).'/../modules/planmodule.php';
+
+
     if(isset($_POST['ustats']))
     {
         $data = array();

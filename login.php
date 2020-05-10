@@ -1,28 +1,8 @@
 <?php
-    $uname = "";
-    $err_uname = "";
-    $pass = "";
-    $err_pass = "";
-    if(isset($_POST['login']))
+    session_start();
+    if(isset($_SESSION['user'])) 
     {
-        if(empty($_POST['uname']))
-        {
-            $err_uname = "Username can not be empty";
-        }
-        else
-        {
-            $uname = htmlspecialchars($_POST['uname']);
-        }
-
-        if(empty($_POST['pass']))
-        {
-            $err_pass = "Password can not be empty";
-        }
-        else
-        {
-            $pass = htmlspecialchars($_POST['pass']);
-        }
-
+        header("Location:./");
     }
 ?>
 
@@ -36,14 +16,16 @@
     <title>Login | NoteFused</title>
     <link rel="stylesheet" href="styles/loginpage.css">
     <link rel="stylesheet" href="styles/form.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/jquery341.js"></script>
+    <script src="js/loginvalidation.js" defer></script>
+
 
 </head>
 
 <body>
 
     </div>
-    <div class="form-wrap" id="loginForm">
+    <div class="form-wrap" id="login_form">
         <form action="" id="" method="post">
             <div class="wrap">
                 <div class="headingz">
@@ -56,16 +38,17 @@
                     </div>
                 </div>
             </div>
+            <div class="warn" id="errProfile"><?php //echo $err_profile; ?></div>
             <div class="input-sec">
-                <input type="text" name="uname" id="unamebox" value="<?php echo $uname; ?>">
+                <input type="text" name="uname" id="unamebox" value="<?php //echo $uname; ?>">
                 <span data-placeholder="username" ></span>
             </div>
-            <div class="warn"><?php echo $err_uname; ?></div>
+            <div class="warn" id="errUname"><?php //echo $err_uname; ?></div>
             <div class="input-sec">
-                <input type="password" name="pass" id="passbox" value="<?php echo $pass;?>">
+                <input type="password" name="pass" id="passbox" value="<?php //echo $pass;?>">
                 <span data-placeholder="password"></span>
             </div>
-            <div class="warn"><?php echo $err_pass; ?></div>
+            <div class="warn" id="errPass"><?php //echo $err_pass; ?></div>
             <div class="button-holder">
                 <input type="submit" value="Login" class="subBtn" name="login" >
             </div>
@@ -92,20 +75,6 @@
         /* $("#passbox").addClass('focus'); */
         
     </script>
-    <?php
-            if($uname != "")
-            {
-                echo "<script>
-                $('#unamebox').addClass('focus');
-                </script>";
-            }
-            if($pass != "")
-            {
-                echo "<script>
-                $('#passbox').addClass('focus');
-                </script>";
-            }
-        ?>
 </body>
 
 </html>

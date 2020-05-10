@@ -28,12 +28,6 @@ $('#login_form').submit(function (e) {
     }
 
     if (everythingOk) {
-        // $('#errProfile').load('floatingloginvalidation.php',{
-        //     login:"submit",
-        //     uname:  uname,
-        //     pass:  pass
-        // });
-
         $.ajax({
             url: 'handlers/loginvalidationhandler.php',
             method: 'POST',
@@ -44,24 +38,19 @@ $('#login_form').submit(function (e) {
                 pass: pass,
             },
             success: function (data) {
-                //alert(response);
-
                 $('#errProfile').html(data.errProfile);
                 $('#errUname').html(data.errUname);
                 $('#errPass').html(data.errPass);
                 console.log(data.loggdUser);
                 if (data.loggedUser != undefined) {
                     loggedUser = data.loggedUser;
-
-                    $('#loggedDiv').css('display', 'block');
-                    $('#noLoggedDiv').css('display', 'none');
-                    closeForm();
+                    window.location.href = './';
                 }
             },
         });
     }
 });
-//console.log(loggedUser);
+// console.log(loggedUser);
 
 if ($('#unamebox').val() != '') {
     $(this).addClass('focus');

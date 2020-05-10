@@ -3,7 +3,9 @@
         session_start();
     }
 
-    require_once "db/dbcon.php";
+    require_once dirname(__FILE__).'/../db/dbcon.php';
+
+
     $loggedUser = "";
 
     if(isset($_SESSION['user'])) 

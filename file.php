@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require "includes/initiatenotepad.php";
+    // require "includes/initiatenotepad.php";
     //require "includes/indexloginvalidation.php";
 ?>
 
@@ -25,7 +25,7 @@
     <script src="js/sidebarfunctionality.js" defer></script>
     <script src="js/fileuploadfunctionality.js" defer></script>
     <script src="js/optiontogglerfunctionality.js" defer></script>
-    <script src="js/loginvalidationfunctionality.js" defer></script>
+    <!-- <script src="js/loginvalidationfunctionality.js" defer></script> -->
     <script src="js/navbarfunctionality.js" defer></script>
     <script src="js/userdashcardfunctionality.js" defer></script>
 
@@ -138,19 +138,6 @@
         </div>
     </div>
     <script>
-        
-        let loggedUser ="<?php echo empty($loggedUser)?'':$loggedUser?>";
-        let noteid = '<?php echo $noteID; ?>';
-
-        // console.log("aaaa: "+loggedUser);
-        
-        //sidebar
-        
-        //option toggler
-        
-        //login validation
-        
-
     </script>
 </body>
 

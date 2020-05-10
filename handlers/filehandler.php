@@ -1,10 +1,12 @@
 <?php
     session_start();
-    require_once "db/dbcon.php";
-    require_once "uniqstringgeneratormodule.php";
-    require_once "filenamesanitizermodule.php";
-    require_once "planmodule.php";
-    require_once "userstatmodule.php";
+    
+    require_once dirname(__FILE__).'/../db/dbcon.php';
+    require_once dirname(__FILE__).'/../modules/uniqstringgeneratormodule.php';
+    require_once dirname(__FILE__).'/../modules/filenamesanitizermodule.php';
+    require_once dirname(__FILE__).'/../modules/planmodule.php';
+    require_once dirname(__FILE__).'/../modules/userstatmodule.php';
+
     $loggedUser = "";
     $resarr = array();
 
@@ -20,9 +22,10 @@
     function dbOperation($filename,$fileID,$fileSize)
     {
         global $loggedUser;
-        $uploadDate = date("Y-m-d H:i:s");
-        $xpire = 3;
-        $expiration = Date('Y-m-d H:i:s', strtotime("+$xpire days"));
+        // $uploadDate = date("Y-m-d H:i:s");
+        $uploadDate = time();
+        // $xpire = 3;
+        // $expiration = Date('Y-m-d H:i:s', strtotime("+$xpire days"));
         $privacy = 0;
         // echo $loggedUser;
 
@@ -36,8 +39,8 @@
             //users preferred template
         }
 
-        $query = "INSERT INTO files (fileID,fileOwner, filePrivacy,fName,uploadDate,expiration,xpire,filesize)
-        VALUES ('$fileID','$loggedUser', '$privacy', '$filename','$uploadDate','$expiration','$xpire','$fileSize')";
+        $query = "INSERT INTO files (fileID,fileOwner, filePrivacy,fName,uploadDate,filesize)
+        VALUES ('$fileID','$loggedUser', '$privacy', '$filename','$uploadDate','$fileSize')";
         execute($query);
 
     }
@@ -110,7 +113,7 @@
             {
                 $uniqfilename =  generateUniq('files','fileID');
                 dbOperation($filename,$uniqfilename,$fileSize);
-                if(move_uploaded_file($_FILES['file']['tmp_name'][$i],'upload/'.$uniqfilename))
+                if(move_uploaded_file($_FILES['file']['tmp_name'][$i],dirname(__FILE__).'/../upload/'.$uniqfilename))
                 {
                     $outputurl = 'http://192.168.137.1/webtech/notefused/file/'.$uniqfilename;
                     $a = '<a href="'.$outputurl.'">'.$outputurl.'</a>';

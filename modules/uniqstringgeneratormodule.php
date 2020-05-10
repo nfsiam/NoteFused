@@ -1,8 +1,10 @@
 <?php
-    require_once "db/dbcon.php";
-    function generate()
+    require_once dirname(__FILE__).'/../db/dbcon.php';
+
+
+    function generate($length)
     {
-        $str = substr(md5(microtime()), 0, 14);
+        $str = substr(md5(microtime()), 0, $length);
         return $str;
     }
     function uniq($shortString,$table,$idToCheck)
@@ -14,12 +16,12 @@
         return mysqli_num_rows($result) > 0 ? false: true;
         
     }
-    function generateUniq($table,$idToCheck)
+    function generateUniq($table,$idToCheck, $length = 14)
     {
         $shortString ="";
         while(true)
         {
-            $shortString = generate();
+            $shortString = generate($length);
             if(uniq($shortString,$table,$idToCheck))
             {
                 break;
