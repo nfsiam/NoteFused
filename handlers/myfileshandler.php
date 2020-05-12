@@ -21,8 +21,12 @@
             $id = $_GET['id'];
 
             $query = "SELECT * FROM files WHERE fileID='$id'";
-            
             $result=get($query);
+
+            //stat update
+            $datestamp = time();
+            $query = "INSERT INTO stat (datestamp,username,filedownload) VALUES('$datestamp','$loggedUser', '1');";
+            execute($query);
             //print_r($result);
             
 

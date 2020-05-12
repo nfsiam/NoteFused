@@ -39,9 +39,24 @@
             //users preferred template
         }
 
-        $query = "INSERT INTO files (fileID,fileOwner, filePrivacy,fName,uploadDate,filesize)
-        VALUES ('$fileID','$loggedUser', '$privacy', '$filename','$uploadDate','$fileSize')";
-        execute($query);
+        // $query = "INSERT INTO files (fileID,fileOwner, filePrivacy,fName,uploadDate,filesize)
+        // VALUES ('$fileID','$loggedUser', '$privacy', '$filename','$uploadDate','$fileSize')";
+        // execute($query);
+
+        $query1 = "INSERT INTO files (fileID,fileOwner, filePrivacy,fName,uploadDate,filesize)
+          VALUES('$fileID','$loggedUser', '$privacy', '$filename','$uploadDate','$fileSize');";
+
+        $query2 = "INSERT INTO stat (datestamp,username,fileupload) 
+          VALUES('$uploadDate','$loggedUser', '1');";
+
+        if(operate($query1,$query2) === false)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
 
     }
 
@@ -112,22 +127,31 @@
             try
             {
                 $uniqfilename =  generateUniq('files','fileID');
-                dbOperation($filename,$uniqfilename,$fileSize);
-                if(move_uploaded_file($_FILES['file']['tmp_name'][$i],dirname(__FILE__).'/../upload/'.$uniqfilename))
-                {
-                    $outputurl = 'http://192.168.137.1/webtech/notefused/file/'.$uniqfilename;
-                    $a = '<a href="'.$outputurl.'">'.$outputurl.'</a>';
 
-                    $output .= '<div class="res-child">
-                                    <div class="res-child-name">'.$filename.'</div>
-                                    <div class="res-child-link">'.$a.'
-                                    </div>
-                                </div>';
+                if(dbOperation($filename,$uniqfilename,$fileSize) === true)
+                {
+                    if(move_uploaded_file($_FILES['file']['tmp_name'][$i],dirname(__FILE__).'/../upload/'.$uniqfilename))
+                    {
+                        $outputurl = 'http://192.168.137.1/webtech/notefused/file/'.$uniqfilename;
+                        $a = '<a href="'.$outputurl.'">'.$outputurl.'</a>';
+    
+                        $output .= '<div class="res-child">
+                                        <div class="res-child-name">'.$filename.'</div>
+                                        <div class="res-child-link">'.$a.'
+                                        </div>
+                                    </div>';
+                    }
+                    else
+                    {
+                        dbOperationDelete($uniqfilename);
+                    }
                 }
                 else
                 {
-                    dbOperationDelete($uniqfilename);
+                    //db operation error
+                    echo "<script>alert('Something Went wrong');</script>";
                 }
+                
             }
             catch(Exception $e)
             {

@@ -5,6 +5,7 @@
     box-sizing: border-box;
     text-decoration: none;
     font-family: 'IBM Plex Sans';
+    text-decoration: none;
 }
 html {
     -ms-overflow-style: -ms-autohiding-scrollbar; /*to hide scrollbar in IE*/

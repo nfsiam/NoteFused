@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="js/jquery341.js"></script>
+        <script
+            type="text/javascript"
+            src="https://www.gstatic.com/charts/loader.js"
+        ></script>
+        <script></script>
+    </head>
+    <body>
+        <div id="linechart_material" style="width: 900px; height: 500px;"></div>
+        <script>
+            let obj;
+            $.ajax({
+                url: 'sss.php',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    getRec: 1,
+                },
+                success: function (data) {
+                    console.log(data);
+                    obj = data;
+                    google.charts.setOnLoadCallback(drawChart);
+                },
+            });
+            google.charts.load('current', { packages: ['corechart'] });
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable(obj);
+
+                var options = {
+                    curveType: 'none',
+                    animation: {
+                        startup: 'true',
+                        duration: 1000,
+                        easing: 'in',
+                    },
+                };
+
+                var chart = new google.visualization.LineChart(
+                    document.getElementById('linechart_material')
+                );
+                chart.draw(data, options);
+            }
+        </script>
+    </body>
+</html>

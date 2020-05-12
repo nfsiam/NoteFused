@@ -11,7 +11,11 @@
 
             $query = "SELECT * FROM notes WHERE noteID='$noteID'";
             
-            $result=get($query);            
+            $result=get($query);
+            //stat update
+            $datestamp = time();
+            $query = "INSERT INTO stat (datestamp,username,notedownload) VALUES('$datestamp','$loggedUser', '1');";
+            execute($query);        
 
             if(mysqli_num_rows($result) > 0)
             {

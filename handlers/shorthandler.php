@@ -27,7 +27,9 @@
     }
     function updateOwner($loggedUser,$surl)
     {
+        $createDate = time();
         $query = "SELECT * FROM urlmap WHERE surl='$surl' and urlOwner='$loggedUser'";
+        
         $result=get($query);
         if(mysqli_num_rows($result) > 0)
         {
@@ -35,7 +37,9 @@
         }
         else
         {
-            $query = "INSERT INTO urlmap (urlOwner,surl) VALUES ('$loggedUser', '$surl')";
+            $query = "INSERT INTO urlmap (urlOwner,surl,createDate) VALUES ('$loggedUser', '$surl','$createDate')";
+            execute($query);
+            $query = "INSERT INTO stat (datestamp,username,urlshort) VALUES('$createDate','$loggedUser', '1');";
             execute($query);
         }
     }

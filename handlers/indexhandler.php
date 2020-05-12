@@ -165,6 +165,11 @@
                 VALUES ('$noteID', '$privacy', '$noteOwner','$lastEdited','$lastVisited','$xpire','$expiration','$noteText')";
                 execute($query);
 
+                //stat update
+                $datestamp = time();
+                $query = "INSERT INTO stat (datestamp,username,notecreate) VALUES('$datestamp','$loggedUser', '1');";
+                execute($query);
+
                 $query = "SELECT * FROM notes WHERE noteID='$noteID'";
                 $result=get($query);
                 if(mysqli_num_rows($result) > 0)

@@ -28,6 +28,11 @@
                     $noteID = htmlspecialchars($_POST['noteID']);
                     $query = "DELETE from notes where noteID='$noteID'";
                     execute($query);
+                    //stat update
+                    $datestamp = time();
+                    $query = "INSERT INTO stat (datestamp,username,notedelete) VALUES('$datestamp','$loggedUser', '1');";
+                    execute($query);
+
                     $jsn['success'] = 'true';
                 }
                 catch(Exception $e)
@@ -47,6 +52,10 @@
                         unlink(dirname(__FILE__).'/../upload/'.$fileID); //deleting file from server
                     }
                     execute($query); //removing record from database
+                    //stat update
+                    $datestamp = time();
+                    $query = "INSERT INTO stat (datestamp,username,filedelete) VALUES('$datestamp','$loggedUser', '1');";
+                    execute($query);
                     $jsn['success'] = 'true';
                 }
                 catch(Exception $e)
@@ -62,6 +71,10 @@
                     //it will delete record for logged user
                     $query = "DELETE from urlmap where surl='$surl' and urlOwner='$loggedUser'";
                     execute($query); //removing record from urlmap
+                    //stat update
+                    $datestamp = time();
+                    $query = "INSERT INTO stat (datestamp,username,urldelete) VALUES('$datestamp','$loggedUser', '1');";
+                    execute($query);
 
                     //check if any other record exists for another owner
                     $query = "SELECT * FROM urlmap WHERE surl='$surl'";
