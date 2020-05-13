@@ -11,10 +11,10 @@
     //     echo json_encode($data);
     // }
 
-    $day = strtotime('-6 days',time());
+    $day = strtotime('-5 days',time());
 
     require_once "db/dbcon.php";
-    $query = "INSERT INTO `stat`(`datestamp`,filedelete,username) VALUES ('$day','1','guest');";
+    $query = "INSERT INTO `stat`(`datestamp`,urlshort,username) VALUES ('$day','1','guest');";
     execute($query);
 
     echo date('d/M/Y',$day);

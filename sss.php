@@ -1,6 +1,43 @@
 <?php
     require_once "db/dbcon.php";
 
+    if(isset($_POST['getStat']))
+    {
+
+        $data = array();
+        $data[] = array('Date', 'Note Activity','File Activity','URL Activity');
+
+        $query = "SELECT DISTINCT FROM_UNIXTIME(datestamp,'%d/%M/%Y') AS day, 
+        SUM(notecreate)+SUM(notedelete)+SUM(notedownload) as note,
+        SUM(fileupload)+SUM(filedelete)+SUM(filedownload) as file,
+        SUM(urlshort)+SUM(urldelete) as url
+        FROM stat WHERE FROM_UNIXTIME(datestamp) >= CURDATE() - INTERVAL 30 Day  GROUP by day order by day;";
+        $result = get($query);
+
+        if($result === false)
+        {
+            $data[] = array("",0,0,1);
+            echo json_encode($data);
+            exit();
+        }
+        elseif(mysqli_num_rows($result)<1)
+        {
+            $data[] = array("",0,0,0);
+            echo json_encode($data);
+            exit();
+        }
+        while($res = mysqli_fetch_assoc($result))
+        {
+            $day = $res['day'];
+            $note = (int)$res['note'];
+            $file = (int)$res['file'];
+            $url = (int)$res['url'];
+            $data[] = array($day,$note,$file,$url);
+        }
+
+        echo json_encode($data);
+    }
+    
     if(isset($_POST['getRec']))
     {
 

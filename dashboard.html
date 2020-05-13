@@ -126,6 +126,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="overall-graph-holder">
+                    <div class="overall-graph-card">
+                        <div class="overall-graph-title">
+                            Activity For last 30 Days
+                        </div>
+                        <div id="areachart" class="areachart"></div>
+                    </div>
+                </div>
                 <div class="graphs">
                     <div class="graph-card-wrapper">
                         <div class="note-graph graph-card">
@@ -189,6 +197,20 @@
             $('.thumb a').click(function (e) {
                 e.preventDefault();
             });
+            let obj0;
+            $.ajax({
+                url: 'sss.php',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    getStat: 1,
+                },
+                success: function (data) {
+                    console.log(data);
+                    obj0 = data;
+                    google.charts.setOnLoadCallback(drawChart0);
+                },
+            });
             let obj;
             $.ajax({
                 url: 'sss.php',
@@ -235,6 +257,43 @@
             });
             google.charts.load('current', { packages: ['corechart'] });
 
+            function drawChart0() {
+                var data = google.visualization.arrayToDataTable(obj0);
+
+                var options = {
+                    // curveType: 'none',
+                    animation: {
+                        startup: 'true',
+                        duration: 1000,
+                        // easing: 'in',
+                    },
+                    legend: { position: 'bottom', alignment: 'center' },
+
+                    is3D: true,
+                    vAxis: {
+                        gridlines: { color: 'transparent' },
+                        format: '0',
+                    },
+                    chartArea: {
+                        left: '7%',
+                        top: '12%',
+                        width: '90%',
+                        height: '70%',
+                    },
+                    colors: ['#F5A067', '#3CAFA4', '#914DF3'],
+                    lineWidth: 1,
+                    curveType: 'function',
+                    pointSize: 7,
+                    crosshair: { trigger: 'both' },
+                    focusTarget: 'category',
+                };
+
+                var chart = new google.visualization.AreaChart(
+                    document.getElementById('areachart')
+                );
+
+                chart.draw(data, options);
+            }
             function drawChart1() {
                 var data = google.visualization.arrayToDataTable(obj);
 
@@ -368,6 +427,7 @@
 
             //redraw graph when window resize is completed
             $(window).on('resizeEnd', function () {
+                drawChart0();
                 drawChart1();
                 drawChart2();
                 drawChart3();

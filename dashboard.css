@@ -66,23 +66,20 @@ body {
     display: inline-flex;
     width: 100%;
     height: 50px;
-    /* border-bottom: 1px solid #eee; */
     justify-content: center;
     align-items: center;
-    /* border-bottom: 2px solid #eee; */
     color: #333;
     color: #fff;
-    /* border-left: 5px solid white; */
     transition: 0.3s linear;
     background-color: white;
-    background-color: #777;
+    background-color: #999;
     border-radius: 3px;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
 }
+
 .ad-side ul li a:hover {
-    background-color: #fff;
-    color: #555;
-    /* border-left: 5px solid #666; */
+    background-color: #555;
+    color: #fff;
 }
 
 .ad-container {
@@ -91,7 +88,7 @@ body {
 }
 .counts {
     width: 90%;
-    margin: 50px auto;
+    margin: 35px auto 10px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -231,6 +228,25 @@ body {
     justify-content: center;
     align-items: center;
 }
+.overall-graph-holder {
+    width: 90%;
+    margin: 0 auto 50px;
+}
+.overall-graph-title {
+    /* background-color: #66bb6a; */
+    padding: 20px;
+    padding-left: 30px;
+    font-size: 1.2rem;
+}
+.overall-graph-card {
+    margin: 40px 20px;
+    box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2);
+}
+.areachart {
+    width: 100%;
+    height: 500px;
+}
+
 .graphs {
     display: flex;
     flex-wrap: wrap;
