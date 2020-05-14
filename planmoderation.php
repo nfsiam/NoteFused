@@ -55,7 +55,9 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="approve.css" />
+        <link rel="stylesheet" href="styles/adbase.css" />
+        <link rel="stylesheet" href="styles/planmoderation.css" />
+        <!-- <link rel="stylesheet" href="approve.css" /> -->
         <link
             rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"
@@ -71,12 +73,19 @@
     <body>
         <section class="ad-holder">
             <section class="ad-sidebar">
+                <div class="sidebar-toggler">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
                 <div class="ad-side">
                     <ul>
                         <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="aprroval.html">Approval</a></li>
+                        <li><a href="planmoderation.php">Plan Moderation</a></li>
                         <li><a href="clientquery.html">Client Query</a></li>
                     </ul>
+                    <!-- <div class="side-contents">
+                    </div> -->
                 </div>
             </section>
             <section class="ad-container">
@@ -144,6 +153,11 @@
             </section>
         </section>
         <script>
+            $('.sidebar-toggler').click(function () {
+                // alert('lol');
+                $('.ad-sidebar').toggleClass('ad-sidebar-active');
+            });
+            $('.ad-side a').eq(1).css('background-color', '#555');
             $('.search-row input').keyup(function(){
                 $.ajax({
                     url:'handlers/planmoderationhandler.php',

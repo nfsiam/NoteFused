@@ -4,7 +4,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="dashboard.css" />
+        <link rel="stylesheet" href="styles/adbase.css" />
+        <link rel="stylesheet" href="styles/dashboard.css" />
         <link
             rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"
@@ -20,10 +21,17 @@
     <body>
         <section class="ad-holder">
             <section class="ad-sidebar">
+                <div class="sidebar-toggler">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
                 <div class="ad-side">
                     <ul>
                         <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="aprroval.html">Approval</a></li>
+                        <li>
+                            <a href="planmoderation.php">Plan Moderation</a>
+                        </li>
                         <li><a href="clientquery.html">Client Query</a></li>
                     </ul>
                 </div>
@@ -194,12 +202,17 @@
             </section>
         </section>
         <script>
+            $('.ad-side a').eq(0).css('background-color', '#555');
+            $('.sidebar-toggler').click(function () {
+                // alert('lol');
+                $('.ad-sidebar').toggleClass('ad-sidebar-active');
+            });
             $('.thumb a').click(function (e) {
                 e.preventDefault();
             });
             let obj0;
             $.ajax({
-                url: 'sss.php',
+                url: 'handlers/dashboardhandler.php',
                 method: 'POST',
                 dataType: 'JSON',
                 data: {
@@ -213,7 +226,7 @@
             });
             let obj;
             $.ajax({
-                url: 'sss.php',
+                url: 'handlers/dashboardhandler.php',
                 method: 'POST',
                 dataType: 'JSON',
                 data: {
@@ -227,7 +240,7 @@
             });
             let obj2;
             $.ajax({
-                url: 'sss.php',
+                url: 'handlers/dashboardhandler.php',
                 method: 'POST',
                 dataType: 'JSON',
                 data: {
@@ -242,7 +255,7 @@
             });
             let obj3;
             $.ajax({
-                url: 'sss.php',
+                url: 'handlers/dashboardhandler.php',
                 method: 'POST',
                 dataType: 'JSON',
                 data: {
