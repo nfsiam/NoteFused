@@ -89,11 +89,21 @@ function reloadPlan() {
                         $('.card button').eq(2).text('Requested');
                     }
                 } else if (data.cpinfo.actions == 1) {
+                    $('.card button').attr('disabled', true);
                     $('.request-status').text(
-                        'Your request has been declined, you can request again when the rquest option is available'
+                        'Your request has been Accepted, you can request again when the rquest option is available'
                     );
+                } else if (data.cpinfo.actions == 2) {
+                    $('.card button').attr('disabled', true);
+                    $('.request-status').text(
+                        'Your request has been Declined, you can request again when the rquest option is available'
+                    );
+                } else {
                 }
             } else {
+                $('.request-status').text(
+                    'You have bot requested for any plan change'
+                );
             }
         },
     });

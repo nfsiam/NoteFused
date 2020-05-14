@@ -15,9 +15,35 @@
         }
     }
 
-    function getCounts($thing)
+    // function getCurrentPlan($username)
+    // {
+    //     $query = "SELECT plan FROM profiles where username='$username';";
+    //     try
+    //     {
+    //         $res = get($query);
+    //         if($res === false )
+    //         {
+    //             return false;
+    //         }
+    //         else
+    //         {
+    //             $result = mysqli_fetch_assoc($res);
+    //             return (int) $result['plan'];
+    //         }
+    //     }
+    //     catch(Error $e)
+    //     {
+    //         return false;
+    //     }
+    // }
+
+    function getCounts($thing, $username="")
     {
         global $loggedUser;
+        if($username!="")
+        {
+            $loggedUser = $username;
+        }
         // echo $loggedUser;
         $extended = "";
         switch ($thing) {
@@ -69,9 +95,13 @@
         }
     }
 
-    function getFileSIze()
+    function getFileSIze($username = "")
     {
         global $loggedUser;
+        if($username!="")
+        {
+            $loggedUser = $username;
+        }
 
         $query = "SELECT SUM(filesize) AS totalsize FROM files where fileOwner='$loggedUser';";
         try

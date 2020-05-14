@@ -16,9 +16,13 @@
         }
     }
 
-    function getCurrentPlanDB()
+    function getCurrentPlanDB($username = "")
     {
         global $loggedUser;
+        if($username!= "")
+        {
+            $loggedUser = $username;
+        }
         $query = "SELECT plan from profiles where username='$loggedUser';";
         try
         {

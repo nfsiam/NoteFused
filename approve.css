@@ -190,11 +190,25 @@ body {
     right: 0;
     height: 32px;
     width: 32px;
-    background-color: #ffcc00;
 }
 .star-holder button {
     width: 100%;
     height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 1.1rem;
+    transition: 0.2s;
+}
+
+.star-holder button:active {
+    transform: scale(0.8);
+}
+
+.star-holder button[data-val='1'] {
+    color: #26c6da !important;
 }
 .row2 {
     margin: 20px 0px;
