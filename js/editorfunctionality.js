@@ -117,12 +117,18 @@ $('#expire')
                         'selected',
                         'selected'
                     );
-                    alert('Login or create an account for advanced features');
+                    // alert('Login or create an account for advanced features');
+                    throwlert(
+                        0,
+                        'Login or create an account for advanced features'
+                    );
                 } else if ('success' in data) {
                     console.log('Expire dtae updated');
                 } else {
                     console.log('ddd ' + previousXpire);
-                    alert('Something went wrong');
+                    // alert('Something went wrong');
+                    throwlert(0, 'Something went wrong!');
+
                     $(`#expire option[value='${previousXpire}']`).prop(
                         'selected',
                         'selected'
@@ -203,13 +209,22 @@ $('.privacy-radio-holder input').change(function () {
                 $(
                     `.privacy-radio-holder input:radio[value='${oldprivacy}']`
                 ).prop('checked', true);
-                alert('Login or create an account for advanced features');
+                // alert('Login or create an account for advanced features');
+                throwlert(
+                    0,
+                    'Login or create an account for advanced features'
+                );
             } else if ('success' in data) {
                 console.log('privacy updated');
             } else if ('limitError' in data) {
-                alert(
+                // alert(
+                //     'You have exceeded maximum limit of private notes. Upgrade your plan or delete some old notes'
+                // );
+                throwlert(
+                    0,
                     'You have exceeded maximum limit of private notes. Upgrade your plan or delete some old notes'
                 );
+
                 $(
                     `.privacy-radio-holder input:radio[value='${oldprivacy}']`
                 ).prop('checked', true);

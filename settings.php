@@ -29,7 +29,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteFused</title>
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="styles/throwlert.css">
     <link rel="stylesheet" href="styles/loader.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/form.css">
@@ -41,6 +42,7 @@
 
 
     <script src="js/jquery341.js"></script>
+    <script src="js/throwlert.js" defer></script>
     <script src="js/sidebarfunctionality.js" defer></script>
     <script src="js/shortnerfunctionality.js" defer></script>
     <script src="js/optiontogglerfunctionality.js" defer></script>
@@ -205,6 +207,20 @@
     </div>
     <script>
     </script>
+        <div class="throwlert">
+            <div class="alert-box">
+                <div class="alert-close-button">
+                    <button><i class="fas fa-times"></i></button>
+                </div>
+                <div class="alert-type type-success">
+                    <i class="far fa-check-circle"></i>
+                </div>
+                <div class="alert-type type-error">
+                    <i class="far fa-times-circle"></i>
+                </div>
+                <div class="alert-dialog"></div>
+            </div>
+        </div>
 </body>
 
 </html>

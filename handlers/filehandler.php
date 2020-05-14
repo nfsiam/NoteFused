@@ -134,7 +134,7 @@
                     {
                         $outputurl = 'http://192.168.137.1/webtech/notefused/file/'.$uniqfilename;
                         $a = '<a href="'.$outputurl.'">'.$outputurl.'</a>';
-    
+
                         $output .= '<div class="res-child">
                                         <div class="res-child-name">'.$filename.'</div>
                                         <div class="res-child-link">'.$a.'
@@ -149,13 +149,16 @@
                 else
                 {
                     //db operation error
-                    echo "<script>alert('Something Went wrong');</script>";
+                    // echo "<script>alert('Something Went wrong');</script>";
+                    echo "<script>throwlert(0, 'Something Went wrong');</script>";
                 }
                 
             }
             catch(Exception $e)
             {
-                echo "<script>alert('Something Went wrong');</script>";
+                // echo "<script>alert('Something Went wrong');</script>";
+                echo "<script>throwlert(0, 'Something Went wrong');</script>";
+
             }
         }
         echo $output;
@@ -165,7 +168,9 @@
         // echo "<script type='application/javascript'>  alert('$errMsg'); </script>";
         ?>
         <script>
-            alert("<?php echo $errMsg; ?>");
+            // alert("<?php echo $errMsg; ?>");
+            throwlert(0, '<?php echo $errMsg; ?>');
+
         </script>
         <?php
     }

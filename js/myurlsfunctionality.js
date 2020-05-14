@@ -13,7 +13,8 @@ $('.col4 a').click(function (e) {
     temp.val(urlForClip).select();
     document.execCommand('copy');
     temp.remove();
-    alert('Url copied');
+    // alert('Url copied');
+    throwlert(1, 'URL copied');
 });
 
 //handling delete button functionlity

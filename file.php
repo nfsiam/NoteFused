@@ -20,14 +20,18 @@
     <link rel="stylesheet" href="styles/form.css">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/userdashcard.css">
+    <link rel="stylesheet" href="styles/throwlert.css" />
+
 
     <script src="js/jquery341.js"></script>
+    <script src="js/throwlert.js" defer></script>
     <script src="js/sidebarfunctionality.js" defer></script>
     <script src="js/fileuploadfunctionality.js" defer></script>
     <script src="js/optiontogglerfunctionality.js" defer></script>
     <!-- <script src="js/loginvalidationfunctionality.js" defer></script> -->
     <script src="js/navbarfunctionality.js" defer></script>
     <script src="js/userdashcardfunctionality.js" defer></script>
+
 
     <style>
         .inp-but{
@@ -137,6 +141,20 @@
             </form>
         </div>
     </div>
+    <div class="throwlert">
+            <div class="alert-box">
+                <div class="alert-close-button">
+                    <button><i class="fas fa-times"></i></button>
+                </div>
+                <div class="alert-type type-success">
+                    <i class="far fa-check-circle"></i>
+                </div>
+                <div class="alert-type type-error">
+                    <i class="far fa-times-circle"></i>
+                </div>
+                <div class="alert-dialog"></div>
+            </div>
+        </div>
     <script>
     </script>
 </body>

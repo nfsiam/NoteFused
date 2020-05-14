@@ -26,7 +26,9 @@ $('#choose').change(function () {
     console.log(totalSize);
     console.log(fileInfo);
     if (totalSize > 1024 * 10) {
-        alert('You can not upload file more than 10MB at a time');
+        // alert('You can not upload file more than 10MB at a time');
+        throwlert(0, 'You can not upload file more than 10MB at a time');
+
         formData = null;
         fileInfo = [];
         fileInfoAsElem = '';
@@ -42,7 +44,9 @@ $('#choose').change(function () {
 
 $('#uploadButton').click(function () {
     if (formData == null || formData == undefined) {
-        alert('Choose Files First');
+        // alert('Choose Files First');
+        throwlert(0, 'Choose Files First');
+
         return;
     } else {
         $('#prog').show();
@@ -95,7 +99,9 @@ $('#uploadButton').click(function () {
         } else {
             $('#prog').fadeOut();
 
-            alert('You can not upload file more than 10MB at a time');
+            // alert('You can not upload file more than 10MB at a time');
+            throwlert(0, 'You can not upload file more than 10MB at a time');
+
             formData = null;
             fileInfo = [];
             fileInfoAsElem = '';

@@ -271,9 +271,11 @@ $('.subBtn').click(function () {
                     if ('success' in data) {
                         if (data.success == 'true') {
                             reloadPersonal();
-                            alert('Information Updated Successfully');
+                            // alert('Information Updated Successfully');
+                            throwlert(1, 'Information Updated Successfully');
                         } else if (data.success == 'false') {
-                            alert('Something went wrong');
+                            // alert('Something went wrong');
+                            throwlert(1, 'Something went wrong');
                         }
                     }
                 });
@@ -311,12 +313,16 @@ $('.card button').click(function () {
                     if ('success' in data) {
                         reloadPlan();
                     } else if ('hasExistingReq' in data) {
-                        alert(data.hasExistingReq);
+                        // alert(data.hasExistingReq);
+                        throwlert(0, data.hasExistingReq);
+
                         that.text('Select');
                         $('.card button').attr('disabled', false);
                         selectPlan();
                     } else {
-                        alert('Something went wrong');
+                        // alert('Something went wrong');
+                        throwlert(0, 'Something went wrong');
+
                         that.text('Select');
                         $('.card button').attr('disabled', false);
                         selectPlan();

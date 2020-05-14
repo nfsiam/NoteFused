@@ -62,9 +62,13 @@ $('#shortenButton').click(function () {
                         $('#resultUrlBox').val(data.surl);
                     }
                 } else if ('limitError' in data) {
-                    alert(
-                        'You have exceeded the limit of short urls as per your current plan. ' +
-                            'Upgrade your plan or delete 1 of your shortened urls'
+                    // alert(
+                    //     'You have exceeded the limit of short urls as per your current plan. ' +
+                    //         'Upgrade your plan or delete 1 of your shortened urls'
+                    // );
+                    throwlert(
+                        0,
+                        'You have exceeded the limit of short urls as per your current plan. Upgrade your plan or delete 1 of your shortened urls'
                     );
                 }
             },

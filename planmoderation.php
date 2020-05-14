@@ -57,6 +57,7 @@
         <title>Document</title>
         <link rel="stylesheet" href="styles/adbase.css" />
         <link rel="stylesheet" href="styles/planmoderation.css" />
+        <link rel="stylesheet" href="styles/throwlert.css" />
         <!-- <link rel="stylesheet" href="approve.css" /> -->
         <link
             rel="stylesheet"
@@ -64,6 +65,7 @@
         />
 
         <script src="js/jquery341.js"></script>
+        <script src="js/throwlert.js" defer></script>
         <script
             type="text/javascript"
             src="https://www.gstatic.com/charts/loader.js"
@@ -152,6 +154,20 @@
                 </div>
             </section>
         </section>
+        <div class="throwlert">
+            <div class="alert-box">
+                <div class="alert-close-button">
+                    <button><i class="fas fa-times"></i></button>
+                </div>
+                <div class="alert-type type-success">
+                    <i class="far fa-check-circle"></i>
+                </div>
+                <div class="alert-type type-error">
+                    <i class="far fa-times-circle"></i>
+                </div>
+                <div class="alert-dialog"></div>
+            </div>
+        </div>
         <script>
             $('.sidebar-toggler').click(function () {
                 // alert('lol');
@@ -228,11 +244,14 @@
                     },
                     success:function(data){
                         if('success' in data){
-                            alert(data.success);
+                            // alert(data.success);
+                            throwlert(1,data.success);
                             that.closest('.user-plate').fadeOut();
                         }
                         else{
-                            alert('Something went wrong!');
+                            // alert('Something went wrong!');
+                            throwlert(0,'Something went wrong!');
+
                         }
                     },
                 });
@@ -250,11 +269,13 @@
                     },
                     success:function(data){
                         if('success' in data){
-                            alert(data.success);
+                            // alert(data.success);
+                            throwlert(1,data.success);
                             that.closest('.user-plate').fadeOut();
                         }
                         else{
-                            alert('Something went wrong!');
+                            // alert('Something went wrong!');
+                            throwlert(0,'Something went wrong!');
                         }
                     },
                 });
