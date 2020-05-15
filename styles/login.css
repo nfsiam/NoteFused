@@ -1,6 +1,5 @@
-html
-{
-   -ms-overflow-style: -ms-autohiding-scrollbar
+html {
+    -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 #disableDiv {
     position: fixed;
@@ -12,17 +11,15 @@ html
     height: 100%;
     opacity: 0.7;
     background-color: black;
-    z-index: 1;
+    z-index: 40;
     display: none;
-    
-  }
+}
 
-.loginform
-{
+.loginform {
     padding: 25px;
     padding-top: 5px;
     position: absolute;
-    display: none ;
+    display: none;
     /* max-height: 400px; */
     max-width: 350px;
     min-width: 350px;
@@ -30,17 +27,15 @@ html
     background-color: white;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
-    z-index: 3;
-    box-shadow: 0px 0px 5px rgba(0,0,0,0.20);
+    transform: translate(-50%, -50%);
+    z-index: 45;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     border-radius: 0px;
-
 }
-#close
-{
+#close {
     position: relative;
     top: -5px;
-    left:306px;
+    left: 306px;
     background: none;
     border: none;
     outline: none;

@@ -14,26 +14,76 @@ function closeForm() {
     document.getElementById('loginForm').style.display = 'none';
 }
 
-function showChildButtons(element) {
-    if (element.id == 'p1') {
-        $('#drp2').slideUp(200);
-        $('#drp1').slideDown();
-    } else if (element.id == 'p2') {
-        $('#drp1').slideUp(200);
-        $('#drp2').slideDown();
+$('#ham').click(function () {
+    $('.sidebar-holder').addClass('sidebar-holder-active');
+});
+
+$(document).bind('click mouseup wheel', function (e) {
+    var container = $('.sidebar-holder');
+    var ham = $('#ham');
+
+    if (
+        !container.is(e.target) &&
+        !ham.is(e.target) &&
+        container.has(e.target).length === 0
+    ) {
+        container.removeClass('sidebar-holder-active');
     }
-}
-
-$('#p1').click(function() {
-    showChildButtons(this);
-});
-$('#p2').click(function() {
-    showChildButtons(this);
 });
 
-$('#close').click(function() {
-    closeForm();
+$('.primary-sidebar-a').click(function (e) {
+    e.preventDefault();
+    let that = $(this).next('.secondary-sidebar-content');
+    if ($(this).next('.secondary-sidebar-content').is(':visible')) {
+        $(this).next('.secondary-sidebar-content').slideToggle();
+    } else {
+        $('.primary-sidebar-a')
+            .not(this)
+            .each(function () {
+                if ($(this).next('.secondary-sidebar-content').is(':visible')) {
+                    $(this)
+                        .next('.secondary-sidebar-content')
+                        .slideUp(function () {
+                            that.slideDown();
+                        });
+                } else {
+                    that.slideDown();
+                }
+            });
+    }
 });
-$('#loginButton').click(function() {
+
+$('.primary-index-sidebar-a').click(function (e) {
+    e.preventDefault();
+    let that = $(this).next('.secondary-index-sidebar-content');
+    if ($(this).next('.secondary-index-sidebar-content').is(':visible')) {
+        $(this).next('.secondary-index-sidebar-content').slideToggle();
+    } else {
+        $('.primary-index-sidebar-a')
+            .not(this)
+            .each(function () {
+                if (
+                    $(this)
+                        .next('.secondary-index-sidebar-content')
+                        .is(':visible')
+                ) {
+                    $(this)
+                        .next('.secondary-index-sidebar-content')
+                        .slideUp(function () {
+                            that.slideDown();
+                        });
+                } else {
+                    that.slideDown();
+                }
+            });
+    }
+});
+
+$('.secondary-index-sidebar-content #sideLoginBtn').click(function (e) {
+    e.preventDefault();
+    openForm();
+});
+$('.secondary-sidebar-content #sideLoginBtn').click(function (e) {
+    e.preventDefault();
     openForm();
 });

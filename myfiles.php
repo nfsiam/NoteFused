@@ -68,16 +68,15 @@
     <link rel="stylesheet" href="styles/form.css">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/userdashcard.css">
+    <link rel="stylesheet" href="styles/sidebar.css">
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
     <script src="js/jquery341.js"></script>
     <script src="js/throwlert.js" defer></script>
-    <script src="js/sidebarfunctionality.js" defer></script>
     <script src="js/myfilesfunctionality.js" defer></script>
     <script src="js/optiontogglerfunctionality.js" defer></script>
-    <!-- <script src="js/loginvalidationfunctionality.js" defer></script> -->
     <script src="js/navbarfunctionality.js" defer></script>
     <script src="js/userdashcardfunctionality.js" defer></script>
+    <script src="js/sidebar.js" defer></script>
     <style>
         .inp-but{
             display:none;
@@ -86,6 +85,7 @@
 
 </head>
 <body>
+    <?php require "sidebar.php"; ?>
     <div class="holder">
         <!-- <div class="navbar">
             <div class="headings">

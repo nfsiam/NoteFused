@@ -19,80 +19,49 @@
     <link rel="stylesheet" href="styles/side2.css">
     <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/form.css">
+    <link rel="stylesheet" href="styles/userdashcard.css">
+    <!-- <link rel="stylesheet" href="styles/sidebar.css"> -->
+    <link rel="stylesheet" href="styles/indexsidebar.css">
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
     <script src="js/jquery341.js"></script>
     <script src="js/throwlert.js" defer></script>
-    <script src="js/sidebarfunctionality.js" defer></script>
     <script src="js/editorfunctionality.js" defer></script>
     <script src="js/optiontogglerfunctionality.js" defer></script>
     <script src="js/loginvalidationfunctionality.js" defer></script>
+    <script src="js/userdashcardfunctionality.js" defer></script>
+    <script src="js/sidebarfunctionality.js" defer></script>
+    <!-- <script src="js/sidebar.js" defer></script> -->
 
 
 </head>
 <body>
+    <?php require "sidebar.php"; ?>
     <div class="container">
         <div class="sidebar">
-            <ul class="top">
-                <li>
-                    <button class="parentButton" id="p1">Profile</button>
-                    <ul class="drp" id="drp1">
-                        <?php
-                            
-                            $loggedDiv = "none";
-                            $noLoggedDiv = "block";
-                            if(isset($_SESSION['user']))
-                            {
-                                $loggedDiv = "block";
-                                $noLoggedDiv = "none";
-                            }
-                        ?>
-                        <div id="loggedDiv" style = "display:<?php echo $loggedDiv;?>">                                    
-                            <li><a href='mnotes.php'><button class='childButton'>My Notes</button></a></li>
-                            <li><a href='modules/destroysessionmodule.php'><button class='childButton'>Logout</button></a></li>
-                        </div>
-    
-                        <div id="noLoggedDiv" style = "display:<?php echo $noLoggedDiv;?>">
-                            <li><button class='childButton' id="loginButton">Login</button></li>
-                            <li><a href='reg.php'><button class='childButton'>Register</button></a></li>
-                        </div>
-                    </ul>
-                </li>
-                <li>
-                    <button class="parentButton" id="p2">Settings</button>
-                    <div class="drp" id="drp2">
-                        <input type="button" value="Log In" class="childButton">
-                    </div>
-                </li>
-                <li>
-                    <a href="contact.php"><button class="last-parent" onclick="showChild(this)"
-                            id="p3">Contact</button></a>
-                </li>
-            </ul>
+            <?php require "indexsidebar.php"; ?>
         </div>
         
         <div class="editor">
             <div class="bar" id="bar">
                 <div class="head-bar">
+                    <button id="ham">&#9776</button>
                     <div class="title">
                         <a href="./">NoteFused</a>
                     </div>
-                    <div class="btns">
-                        <button id="expand">
-                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                            <g>
-                                <title>background</title>
-                                <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
-                            </g>
-                            <g>
-                                <title>Layer 1</title>
-                                <path id="svg_1" d="m256,298.3l0,0l0,0l174.2,-167.2c4.3,-4.2 11.4,-4.1 15.8,0.2l30.6,29.9c4.4,4.3 4.5,11.3 0.2,15.5l-212.7,204.2c-2.2,2.2 -5.2,3.2 -8.1,3c-3,0.1 -5.9,-0.9 -8.1,-3l-212.7,-204.2c-4.3,-4.2 -4.2,-11.2 0.2,-15.5l30.6,-29.9c4.4,-4.3 11.5,-4.4 15.8,-0.2l174.2,167.2z"/>
-                            </g>
+                    <button id="expand">
+                        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <title>background</title>
+                            <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+                        </g>
+                        <g>
+                            <title>Layer 1</title>
+                            <path id="svg_1" d="m256,298.3l0,0l0,0l174.2,-167.2c4.3,-4.2 11.4,-4.1 15.8,0.2l30.6,29.9c4.4,4.3 4.5,11.3 0.2,15.5l-212.7,204.2c-2.2,2.2 -5.2,3.2 -8.1,3c-3,0.1 -5.9,-0.9 -8.1,-3l-212.7,-204.2c-4.3,-4.2 -4.2,-11.2 0.2,-15.5l30.6,-29.9c4.4,-4.3 11.5,-4.4 15.8,-0.2l174.2,167.2z"/>
+                        </g>
                         </svg>
                     </button>
-                                                                                    
-                        <button onclick="openForm()" id="ham">&#9776</button>
-                    </div>
+                                                                                
                 </div>
                 <form action="" id="noteForm">
                 <div class="edit-settings" id="editSettings">

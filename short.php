@@ -1,7 +1,59 @@
 <?php
     session_start();
+    $logged = "";
+    $notlogged = "";
+    if(isset($_SESSION['user'])) 
+    {
+        $notlogged = "style='display:none'";
+        // $user = $_SESSION['user'];
+        // if(isset($user['username']))
+        // {
+        //     $loggedUser = $user['username'];
+        // }
+    }
+    else
+    {
+        $logged = "style='display:none'";
+    }
+    // $userrrr = "";
+    // $guestttt = "";
+    // if(isset($_SESSION['user']))
+    // {
+    //     if(!empty($_SESSION['user']))
+    //     {
+    //         $guest = "style='display:none'";
+    //     }
+    //     else
+    //     {
+    //         $user = "style='display:none'";
+    //     }
+    // }
+    // else
+    // {
+    //     $user = "style='display:none'";
+    // }
+    // <?php
+    // session_start();
     // require "includes/initiatenotepad.php";
     //require "includes/indexloginvalidation.php";
+    //$guest = $user = "";
+    // if(isset($_SESSION['user']))
+    // {
+    //     if(!empty($_SESSION['user']))
+    //     {
+    //         $guest = "style='display:none'";
+    //     }
+    //     else
+    //     {
+    //         $user = "style='display:none'";
+    //     }
+    // }
+    // else
+    // {
+    //     $user = "style='display:none'";
+    // }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -21,26 +73,22 @@
     <link rel="stylesheet" href="styles/form.css">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/userdashcard.css">
+    <link rel="stylesheet" href="styles/sidebar.css">
 
 
     <script src="js/jquery341.js"></script>
     <script src="js/throwlert.js" defer></script>
-    <script src="js/sidebarfunctionality.js" defer></script>
     <script src="js/shortnerfunctionality.js" defer></script>
     <script src="js/optiontogglerfunctionality.js" defer></script>
-    <!-- <script src="js/loginvalidationfunctionality.js" defer></script> -->
     <script src="js/navbarfunctionality.js" defer></script>
     <script src="js/userdashcardfunctionality.js" defer></script>
+    <script src="js/sidebar.js" defer></script>
 
 
 </head>
 <body>
+    <?php require "sidebar.php"; ?>
     <div class="holder">
-        <!-- <div class="navbar">
-            <div class="headings">
-                <a href="./">NoteFused</a>
-            </div>
-        </div> -->
         <?php require "navbar.php"; ?>
 
         <div class="container">

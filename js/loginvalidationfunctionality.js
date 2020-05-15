@@ -53,8 +53,11 @@ $('#login_form').submit(function (e) {
                 if (data.loggedUser != undefined) {
                     loggedUser = data.loggedUser;
 
-                    $('#loggedDiv').css('display', 'block');
-                    $('#noLoggedDiv').css('display', 'none');
+                    $('.guest-index-sidebar-contents').css('display', 'none');
+                    $('.user-index-sidebar-contents').css('display', 'flex');
+
+                    $('.guest-sidebar-contents').css('display', 'none');
+                    $('.user-sidebar-contents').css('display', 'flex');
                     closeForm();
                 }
             },

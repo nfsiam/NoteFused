@@ -2,6 +2,25 @@
     require_once dirname(__FILE__).'/../modules/userstatmodule.php';
     require_once dirname(__FILE__).'/../modules/planmodule.php';
 
+    function getName(){
+        if(isset($_SESSION['user'])) 
+        {
+            $user = $_SESSION['user'];
+            if(isset($user['name']))
+            {
+                return  $user['name'];
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
 
     if(isset($_POST['ustats']))
     {
@@ -15,6 +34,10 @@
         $urlcount = getCounts('url');
 
         $totalfilesize  = getFileSize();
+
+        $nameofuser = getName();
+
+        $data['nameofuser'] = is_string($nameofuser) ? $nameofuser : "";
 
         $data['currentplan'] = getCurrentPlan();
 

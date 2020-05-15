@@ -15,28 +15,6 @@
         }
     }
 
-    // function getCurrentPlan($username)
-    // {
-    //     $query = "SELECT plan FROM profiles where username='$username';";
-    //     try
-    //     {
-    //         $res = get($query);
-    //         if($res === false )
-    //         {
-    //             return false;
-    //         }
-    //         else
-    //         {
-    //             $result = mysqli_fetch_assoc($res);
-    //             return (int) $result['plan'];
-    //         }
-    //     }
-    //     catch(Error $e)
-    //     {
-    //         return false;
-    //     }
-    // }
-
     function getCounts($thing, $username="")
     {
         global $loggedUser;

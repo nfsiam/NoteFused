@@ -114,6 +114,7 @@
         <link rel="stylesheet" href="styles/mynotes.css" />
         <link rel="stylesheet" href="styles/navbar.css">
         <link rel="stylesheet" href="styles/userdashcard.css">
+        <link rel="stylesheet" href="styles/sidebar.css">
 
 
 
@@ -121,18 +122,16 @@
         <script src="js/jquery341.js"></script>
         <script src="js/navbarfunctionality.js" defer></script>
         <script src="js/userdashcardfunctionality.js" defer></script>
+        <script src="js/sidebar.js" defer></script>
 
 
 
     </head>
 
     <body>
+        <?php require "sidebar.php"; ?>
+
         <div class="holder">
-            <!-- <div class="navbar">
-                <div class="headings">
-                    <a href="./">NoteFused</a>
-                </div>
-            </div> -->
             <?php require "navbar.php"; ?>
 
             <div class="container">

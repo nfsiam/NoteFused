@@ -39,21 +39,23 @@
     <!-- <link rel="stylesheet" href="styles/login.css"> -->
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/userdashcard.css">
+    <link rel="stylesheet" href="styles/sidebar.css">
 
 
     <script src="js/jquery341.js"></script>
     <script src="js/throwlert.js" defer></script>
-    <script src="js/sidebarfunctionality.js" defer></script>
     <script src="js/shortnerfunctionality.js" defer></script>
     <script src="js/optiontogglerfunctionality.js" defer></script>
     <!-- <script src="js/loginvalidationfunctionality.js" defer></script> -->
     <script src="js/navbarfunctionality.js" defer></script>
     <script src="js/userdashcardfunctionality.js" defer></script>
     <script src="js/settingsfunctionality.js" defer></script>
+    <script src="js/sidebar.js" defer></script>
 
 
 </head>
 <body>
+    <?php require "sidebar.php"; ?>
     <div class="loader">
         <div class="one"></div>
         <div class="two"></div>
