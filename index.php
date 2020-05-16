@@ -1,7 +1,6 @@
 <?php
     session_start();
-    require "handlers/indexhandler.php";
-    // require "includes/initiatenotepad.php";
+    require "controllers/indexhandler.php";
 ?>
 
 
@@ -12,36 +11,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteFused</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
-    <link rel="stylesheet" href="styles/throwlert.css">
-    <link rel="stylesheet" href="styles/optiontoggler.css">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/side2.css">
-    <link rel="stylesheet" href="styles/login.css">
-    <link rel="stylesheet" href="styles/form.css">
-    <link rel="stylesheet" href="styles/userdashcard.css">
-    <!-- <link rel="stylesheet" href="styles/sidebar.css"> -->
-    <link rel="stylesheet" href="styles/indexsidebar.css">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
+    <link rel="stylesheet" href="views/styles/all.css">
+    <link rel="stylesheet" href="views/styles/throwlert.css">
+    <link rel="stylesheet" href="views/styles/optiontoggler.css">
+    <link rel="stylesheet" href="views/styles/main.css">
+    <link rel="stylesheet" href="views/styles/side2.css">
+    <link rel="stylesheet" href="views/styles/login.css">
+    <link rel="stylesheet" href="views/styles/form.css">
+    <link rel="stylesheet" href="views/styles/userdashcard.css">
+    <link rel="stylesheet" href="views/styles/indexsidebar.css">
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-    <script src="js/jquery341.js"></script>
-    <script src="js/throwlert.js" defer></script>
-    <script src="js/editorfunctionality.js" defer></script>
-    <script src="js/optiontogglerfunctionality.js" defer></script>
-    <script src="js/loginvalidationfunctionality.js" defer></script>
-    <script src="js/userdashcardfunctionality.js" defer></script>
-    <script src="js/sidebarfunctionality.js" defer></script>
-    <!-- <script src="js/sidebar.js" defer></script> -->
+    <script src="views/js/jquery341.js"></script>
+    <script src="views/js/throwlert.js" defer></script>
+    <script src="views/js/editorfunctionality.js" defer></script>
+    <script src="views/js/optiontogglerfunctionality.js" defer></script>
+    <script src="views/js/loginvalidationfunctionality.js" defer></script>
+    <script src="views/js/userdashcardfunctionality.js" defer></script>
+    <script src="views/js/sidebarfunctionality.js" defer></script>
 
 
 </head>
 <body>
-    <?php require "sidebar.php"; ?>
+<?php require "views/sidebar.php"; ?>
     <div class="container">
         <div class="sidebar">
-            <?php require "indexsidebar.php"; ?>
+            <?php require "views/indexsidebar.php"; ?>
         </div>
-        
         <div class="editor">
             <div class="bar" id="bar">
                 <div class="head-bar">
@@ -113,10 +109,6 @@
             </div>
         </div>
     </div>
-
-    
-        
-        
     </div>
     <div id="disableDiv"></div>
 
