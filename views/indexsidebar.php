@@ -1,4 +1,10 @@
 <?php
+
+    //preventing access from view route
+    if (strpos($_SERVER['REQUEST_URI'], '/views/') !== false) {
+        exit();
+    }
+
     $logged = "";
     $notlogged = "";
     if(isset($_SESSION['user'])) 

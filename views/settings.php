@@ -1,24 +1,9 @@
 <?php
     session_start();
-    // require "settingshandler.php";
-    // $name = $uname = $email = "";
-    // $btn1text = $btn2text =$btn3text = "Select";
-    // function setInfo()
-    // {
-    //     $info = getInfo();
-        
-    //     if($info != false)
-    //     {
-    //         global $name, $uname, $email, $btn1text, $btn2text, $btn3text;
-    //         $name = $info['name'];
-    //         $uname = $info['username'];
-    //         $email = $info['email'];
-    //         if($info['plan'] == 0 ) $btn1text = 'Selected';
-    //         elseif($info['plan'] == 1 ) $btn1text = 'Selected';
-    //         elseif($info['plan'] == 2 ) $btn1text = 'Selected';
-    //     }
-
-    // }
+    //preventing access from view route
+    if (strpos($_SERVER['REQUEST_URI'], '/views/') !== false) {
+        exit();
+    }
 
 ?>
 

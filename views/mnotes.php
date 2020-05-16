@@ -3,6 +3,12 @@
     // require "db/dbcon.php";
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
 
+    //preventing access from view route
+    if (strpos($_SERVER['REQUEST_URI'], '/views/') !== false) {
+        exit();
+    }
+    
+
 
     date_default_timezone_set("Asia/Dhaka");
 

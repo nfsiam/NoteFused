@@ -1,5 +1,11 @@
 <?php
     session_start();
+
+    //preventing access from view route
+    if (strpos($_SERVER['REQUEST_URI'], '/views/') !== false) {
+        exit();
+    }
+
     if(isset($_SESSION['user'])) 
     {
         header("Location:./");

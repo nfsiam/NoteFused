@@ -1,5 +1,9 @@
 <?php
     session_start();
+    //preventing access from view route
+    if (strpos($_SERVER['REQUEST_URI'], '/index.php') !== false) {
+        exit();
+    }
     require "controllers/indexhandler.php";
 ?>
 

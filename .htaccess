@@ -1,3 +1,5 @@
+Options -Indexes
+#to block directory access
 
 RewriteEngine on
 #ErrorDocument 404 /webtech/notefused/

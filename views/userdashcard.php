@@ -3,8 +3,11 @@
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
     require_once dirname(__FILE__).'/../controllers/userdashcardhandler.php';
 
-    // require_once "handlers/userdashcardhandler.php";
-
+    //preventing access from view route
+    if (strpos($_SERVER['REQUEST_URI'], '/views/') !== false) {
+        exit();
+    }
+    
     $pnotecount = $pfilecount = $urlcount = $notecount = $filecount = 0;
     
     try

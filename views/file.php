@@ -2,6 +2,12 @@
     session_start();
     // require "includes/initiatenotepad.php";
     //require "includes/indexloginvalidation.php";
+
+    //preventing access from view route
+    if (strpos($_SERVER['REQUEST_URI'], '/views/') !== false) {
+        exit();
+    }
+    
 ?>
 
 <!DOCTYPE html>

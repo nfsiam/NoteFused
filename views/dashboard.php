@@ -1,3 +1,9 @@
+<?php
+    //preventing access from view route
+    if (strpos($_SERVER['REQUEST_URI'], '/views/') !== false) {
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
