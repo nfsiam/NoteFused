@@ -148,32 +148,17 @@ let validate = () => {
 
     const letters = /^[A-Za-z ]+$/;
     const name = $('#namebox').val();
-    // if (name == '') {
-    //     warn('namebox', 'please enter your name above');
-    //     valid = false;
-    // } else if (!name.match(letters)) {
-    //     warn('namebox', 'please enter letters and Space only (e.g. Abcd Efgh)');
-    //     valid = false;
-    // } else {
-    //     warn('namebox', '');
-    //     valid = true;
-    //     pinfarr.push(name);
-    // }
-    pinfarr.push(name);
-
-    // const lettersNums = /^[A-Za-z0-9]+$/;
-    // const name = $('#namebox').val();
-    // if (name == '') {
-    //     warn('namebox', 'please enter your name above');
-    //     valid = false;
-    // } else if (!name.match(letters)) {
-    //     warn('namebox', 'please enter letters and Space only (e.g. Abcd Efgh)');
-    //     valid = false;
-    // } else {
-    //     warn('namebox', '');
-    //     valid = true;
-    //     pinfarr.push(name);
-    // }
+    if (name == '') {
+        warn('namebox', 'please enter your name above');
+        valid = false;
+    } else if (!name.match(letters)) {
+        warn('namebox', 'please enter letters and Space only (e.g. Abcd Efgh)');
+        valid = false;
+    } else {
+        warn('namebox', '');
+        valid = true;
+        pinfarr.push(name);
+    }
 
     const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const email = $('#emailbox').val();

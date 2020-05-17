@@ -8,6 +8,50 @@
         exit();
     }
 
+    function sanitizer($string)
+    {
+        $con = getCon();
+        if(!empty($string))
+        {
+            return  mysqli_real_escape_string($con, trim(htmlspecialchars($string)));
+        }
+        else
+        {
+            return "";
+        }
+
+    }
+
+    function validateName($n)
+    {
+        
+        $name = preg_replace('/\s\s+/', ' ', $n);
+        if(empty($name))
+        {
+            return "please enter your name above";
+        }
+        elseif(!ctype_alpha(str_replace(' ', '', $name)))
+        {
+            return  "please enter letters and Space only (e.g. Abcd Efgh)";
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    function validateUsername($un)
+    {
+        if(preg_match('/^[a-z0-9]{5,31}$/', $un))
+        {
+            return true;
+        }
+        else
+        {
+            return "Invalid username. Make sure it conatins lower case letters and number only and length between 6 to 32 characters";
+        }
+    }
+
     $name = "";
     $err_name = "";
     $uname = "";
@@ -20,7 +64,22 @@
     $err_pass = "";
     $cpass = "";
     $err_cpass = "";
+    $mpass ="";
 
+    //below function ensures unique email from user
+    function emailAvailable($email)
+    {
+        $query = "SELECT * from profiles where email='$email'";
+        $result = get($query);
+        if(mysqli_num_rows($result)>0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
     //below function ensures unique username from user
     function isAvailable($uname)
     {
@@ -40,6 +99,7 @@
     //and redirects him to the homepage
     function autoLogin($uname,$pass)
     {
+        $pass = md5($pass);
         $query = "SELECT * FROM profiles WHERE username='$uname' AND pass='$pass'";
         $result=get($query);
         if(mysqli_num_rows($result) > 0)
@@ -62,9 +122,14 @@
         }
         else
         {
-            $name = htmlspecialchars($_POST['name']);
-            //$name = $_POST['name'];
-            //echo $name;
+            //$name = htmlspecialchars($_POST['name']);
+            $name = sanitizer($_POST['name']);
+            $n = validateName($name);
+            if($n !== true)
+            {
+                $err_name = $n;
+                $hasNoError = false;
+            }
         }
         if(empty($_POST['uname']))
         {
@@ -73,11 +138,21 @@
         }
         else
         {
-            $uname = htmlspecialchars($_POST['uname']);
-            if(!isAvailable($uname))
+            $uname = sanitizer($_POST['uname']);
+
+            $un = validateUsername($uname);
+            if($un !== true)
             {
-                $err_uname = "Opps! username is already taken...";
+                $err_uname = $un;
                 $hasNoError = false;
+            }
+            else
+            {
+                if(!isAvailable($uname))
+                {
+                    $err_uname = "Opps! username is already taken...";
+                    $hasNoError = false;
+                }
             }
         }
         if(empty($_POST['email']))
@@ -93,7 +168,12 @@
         }
         else
         {
-            $email = htmlspecialchars($_POST['email']);
+            $email = sanitizer($_POST['email']);
+            if(!emailAvailable($email))
+            {
+                $err_email = "Opps! There is already an account associated with this email...";
+                $hasNoError = false;
+            }
         }
 
         if(empty($_POST['pass']))
@@ -103,7 +183,12 @@
         }
         else
         {
-            $pass = htmlspecialchars($_POST['pass']);
+            $pass = sanitizer($_POST['pass']);
+            if(strlen($pass) < 6 || strlen($pass) > 32)
+            {
+                $err_pass = "Password must be in between 6 and 32 characters long";
+                $hasNoError = false;
+            }
         }
         if(empty($_POST['cpass']))
         {
@@ -112,21 +197,25 @@
         }
         else
         {
-            $cpass = htmlspecialchars($_POST['cpass']);
+            $cpass = sanitizer($_POST['cpass']);
         }
         if(!empty($cpass) and !empty($pass))
         {
-            if($cpass!==$pass)
+            if($cpass !== $pass)
             {
                 $err_cpass = "Passwords didn't match";
                 $hasNoError = false;
+            }
+            else
+            {
+                $mpass = md5($pass);
             }
         }
 
         if($hasNoError)
         {
-            $query = "INSERT INTO profiles (username, name, email, pass, plan)
-                VALUES ('$uname', '$name', '$email','$pass','0')";
+            $query = "INSERT INTO profiles (username, name, email, pass, plan, `level`,`status`)
+                VALUES ('$uname', '$name', '$email','$mpass','0','0','0')";
             execute($query);
 
             autoLogin($uname,$pass);
