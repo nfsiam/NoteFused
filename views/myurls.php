@@ -1,11 +1,8 @@
 <?php
     session_start();
-
-    // require_once "db/dbcon.php";
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
     require_once dirname(__FILE__).'/../controllers/variables.php';
 
-    //preventing access from view route
     if (strpos($_SERVER['REQUEST_URI'], '/views/') !== false) {
         exit();
     }
@@ -25,39 +22,61 @@
         header("Location:login");
     }
 
+    $results_per_page = 10;
+
+    $query= "SELECT * from urlmap WHERE urlOwner='$loggedUser';";
+    $result = get($query);
+    $number_of_results = mysqli_num_rows($result);
+
+    $number_of_pages = ceil($number_of_results/$results_per_page);
+
+
+    if (!isset($_GET['p']))
+    {
+        $page = 1;
+    }
+    else
+    {
+        $pGet = 1;
+        try
+        {
+            $pGet = (int)$_GET['p'];
+        }
+        catch(Error $e)
+        {
+
+        }
+        if($pGet < 1)
+        {
+            $page = 1;
+        }
+        elseif($pGet > $number_of_pages)
+        {
+            $page = $number_of_pages;
+        }
+        else
+        {
+            $page = $pGet;
+        }
+    }
+
+    $this_page_first_result = ($page-1)*$results_per_page;
+
 
     $resarr = array();
 
-
-    if(isset($_SESSION['user'])) 
+    $query = "SELECT * from urlmap WHERE urlOwner='$loggedUser' order by createDate DESC LIMIT $this_page_first_result , $results_per_page";
+    $result=get($query); 
+    
+    if($result !== false)
     {
-        $user = $_SESSION['user'];
-        if(isset($user['username']))
+        while($row = mysqli_fetch_assoc($result))
         {
-            $loggedUser = $user['username'];
-        }
-
-        $query = "SELECT * from urlmap WHERE urlOwner='$loggedUser'";
-        $result=get($query);
-        //print_r($result);
-        
-        
-
-		while($row = mysqli_fetch_assoc($result))
-		{
             $resarr[] = $row;
-            //$notecounts++;
         }
-
-        
-
-        // foreach($resarr as $res)
-        // {
-        //     echo $res['text'];
-        //     echo "<br>";
-        // }
-        //print_r($resarr);
     }
+    
+
 
 ?>
 
@@ -80,6 +99,7 @@
     <link rel="stylesheet" href="views/styles/navbar.css">
     <link rel="stylesheet" href="views/styles/userdashcard.css">
     <link rel="stylesheet" href="views/styles/sidebar.css">
+    <link rel="stylesheet" href="views/styles/pagination.css">
 
 
     <script src="views/js/jquery341.js"></script>
@@ -113,35 +133,40 @@
             </div>
             <div class="fuse">
                 <div class="mini-container">
-                    <div class="row-head">
-                    <div class='row1'>
-                            <div class='col1'>
-                                SL
-                            </div>
-                        </div>
-                        <div class='row2'>
-                            <div class='col2'>
-                                Full URL
-                            </div>
-                        </div>
-                        <div class='row3'>
-                            <div class='col3'>
-                                Short URL
-                            </div>
-                        </div>
-                        <div class='row4'>
-                            <div class='col4'>
-                                Copy Link
-                            </div>
-                            <div class='col5'>
-                                Delete
-                            </div>
-                        </div>
+                    <div class="search-row">
+                        <input type="text" placeholder="search for url" value="" autocomplete="off"/>
                     </div>
+                    <div class="row-head">
+                        <div class='row1'>
+                                <div class='col1'>
+                                    SL
+                                </div>
+                            </div>
+                            <div class='row2'>
+                                <div class='col2'>
+                                    Full URL
+                                </div>
+                            </div>
+                            <div class='row3'>
+                                <div class='col3'>
+                                    Short URL
+                                </div>
+                            </div>
+                            <div class='row4'>
+                                <div class='col4'>
+                                    Copy Link
+                                </div>
+                                <div class='col5'>
+                                    Delete
+                                </div>
+                            </div>
+                        </div>
+                    <div class="result-row-plate-container">
                     
 <?php
+                    echo "<div class='row-plates'>"; //start of row-plates
     $urls = array();
-    $c = 1;
+    $c = $this_page_first_result+1;
     foreach($resarr as $res)
     {
         $surl =  $res['surl'];
@@ -182,55 +207,33 @@
         }
 
     }
-    /* foreach($resarr as $res)
-    {
-        $fileName = $res['fName'];
-        $uploadDate = shortDate($res['uploadDate']);
-        $expiration = shortDate($res['expiration']);
-        $privacy = $res['filePrivacy']==0? 'public':'private';
-        $privTitle = $privacy=="public"?'Anybody with the link can download the file'
-                                        :'Only you can download the file while logged in';
-        $fileID = $res['fileID'];
-        $dlink = 'http://192.168.137.1/webtech/notefused/file/'.$res['fileID'];
+                    echo "</div>"; //end of row-plates
+                    echo "<div class='pagination'>"; //start of pagination
+                    if($page > 1)
+                    {
+                        $prev_page = $page - 1;
 
-    
-            
-            echo    "<div class='row-plate'>
-                        <div class='row1'>
-                            <div class='col1'>
-                                $fileName
-                            </div>
-                        </div>
-                        <div class='row2'>
-                            <div class='col2'>
-                                $uploadDate
-                            </div>
-                            <div class='col3' title='$privTitle'>
-                                $privacy
-                            </div>
-                        </div>
-                        <div class='row3'>
-                            <div class='col4'>
-                                <a class='abc' href='$dlink'>$dlink</a>
-                            </div>
-                        </div>
-                        <div class='row4'>
-                            <div class='col5'>
-                                <a href=''><i class='fas fa-copy'></i></a>
-                            </div>
-                            <div class='col6'>
-                                <a href='$dlink'><i class='fas fa-download'></i></a>
-                            </div>
-                            <div class='col7'>
-                                <a href='' id='$fileID'><i class='fa fa-trash' aria-hidden='true'></i></a>
-                            </div>
-                        </div>
-                    </div>";
-    } */
+                        echo "<div class='paging-button-holder'>
+                                <a href='myurls?p=$prev_page'>Newer</a>
+                            </div>";
+                    }
+                        
+                        echo "<div class='current-button-holder'>
+                                Page $page out of $number_of_pages Pages
+                            </div>";
+                    if($page < $number_of_pages)
+                    {
+                        $next_page = $page + 1;
+                        echo "<div class='paging-button-holder'>
+                                <a href='myurls?p=$next_page'>Older</a>
+                            </div>";
+                    }
 
-?>                    
-                </div>
-            </div>
+                    echo "</div>"; //end of pagination
+?>
+                    </div> <!-- end of result-row-plate-container  -->           
+                </div> <!-- end of mini-container  -->
+            </div>  <!-- end of fuse  -->
             <div class="alter-options">
                 <div class="option-toggler" id="optionToggler">
                     <div class="create-link">

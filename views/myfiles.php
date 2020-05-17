@@ -1,7 +1,6 @@
 <?php
     session_start();
 
-    // require_once "db/dbcon.php";
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
     require_once dirname(__FILE__).'/../controllers/variables.php';
 
@@ -33,39 +32,74 @@
 
     function shortDate($longDate)
     {
-        // $date=date_create("$longDate");
-
-        
-        // return date_format($date,"d/M/y");
         return date('d/m/Y',$longDate);
     }
 
-    if(isset($_SESSION['user'])) 
+    // if(isset($_SESSION['user'])) 
+    // {
+        
+    //     $query = "SELECT * FROM files WHERE fileOwner='$loggedUser'";
+    //     $result=get($query);
+        
+        
+
+	// 	while($row = mysqli_fetch_assoc($result))
+	// 	{
+    //         $resarr[] = $row;
+    //     }
+    // }
+    $results_per_page = 10;
+
+    $query= "SELECT * FROM files WHERE fileOwner='$loggedUser';";
+    $result = get($query);
+    $number_of_results = mysqli_num_rows($result);
+
+    $number_of_pages = ceil($number_of_results/$results_per_page);
+
+
+    if (!isset($_GET['p']))
     {
-        $user = $_SESSION['user'];
-        if(isset($user['username']))
+        $page = 1;
+    }
+    else
+    {
+        $pGet = 1;
+        try
         {
-            $loggedUser = $user['username'];
+            $pGet = (int)$_GET['p'];
         }
+        catch(Error $e)
+        {
 
-        $query = "SELECT * FROM files WHERE fileOwner='$loggedUser'";
-        $result=get($query);
-        //print_r($result);
-        
-        
+        }
+        if($pGet < 1)
+        {
+            $page = 1;
+        }
+        elseif($pGet > $number_of_pages)
+        {
+            $page = $number_of_pages;
+        }
+        else
+        {
+            $page = $pGet;
+        }
+    }
 
-		while($row = mysqli_fetch_assoc($result))
-		{
+    $this_page_first_result = ($page-1)*$results_per_page;
+
+
+    $resarr = array();
+
+    $query = "SELECT * FROM files WHERE fileOwner='$loggedUser' order by uploadDate DESC LIMIT $this_page_first_result , $results_per_page";
+    $result=get($query); 
+    
+    if($result !== false)
+    {
+        while($row = mysqli_fetch_assoc($result))
+        {
             $resarr[] = $row;
-            //$notecounts++;
         }
-
-        // foreach($resarr as $res)
-        // {
-        //     echo $res['text'];
-        //     echo "<br>";
-        // }
-        //print_r($resarr);
     }
 
 ?>
@@ -89,6 +123,7 @@
     <link rel="stylesheet" href="views/styles/navbar.css">
     <link rel="stylesheet" href="views/styles/userdashcard.css">
     <link rel="stylesheet" href="views/styles/sidebar.css">
+    <link rel="stylesheet" href="views/styles/pagination.css">
 
     <script src="views/js/jquery341.js"></script>
     <script src="views/js/throwlert.js" defer></script>
@@ -107,11 +142,6 @@
 <body>
     <?php require "sidebar.php"; ?>
     <div class="holder">
-        <!-- <div class="navbar">
-            <div class="headings">
-                <a href="./">NoteFused</a>
-            </div>
-        </div> -->
         <?php require "navbar.php"; ?>
         <div class="container">
             
@@ -119,16 +149,11 @@
                 <?php require "userdashcard.php"; ?>
             </div>
             <div class="fuse">
-                <!-- <div class="actions">
-                    <input type="text" name="" id="" placeholder="search">
-                    <select id='sortSel'>
-                        <option value="bydate">sort by date</option>
-                        <option value="byname">sort by name</option>
-                    </select>
-                </div> -->
                 <div class="mini-container">
+                    <div class="search-row">
+                        <input type="text" placeholder="search by file name..." value="" autocomplete="off" />
+                    </div>
                     <div class="row-head">
-                        <!-- <div class="row-plate"> -->
                             <div class="row1">
                                 <div class="col1">
                                     File Name
@@ -158,10 +183,12 @@
                                     Delete
                                 </div>
                             </div>
-                        <!-- </div> -->
                     </div>
+                <div class="result-row-plate-container">
                     
 <?php
+    echo "<div class='row-plates'>"; //start of row-plates
+
     foreach($resarr as $key=>$res)
     {
         $fileName = $res['fName'];
@@ -213,8 +240,32 @@
                         </div>
                     </div>";
     }
+                    echo "</div>"; //end of row-plates
+                    echo "<div class='pagination'>"; //start of pagination
+                    if($page > 1)
+                    {
+                        $prev_page = $page - 1;
 
-?>                    
+                        echo "<div class='paging-button-holder'>
+                                <a href='myfiles?p=$prev_page'>Newer</a>
+                            </div>";
+                    }
+                        
+                        echo "<div class='current-button-holder'>
+                                    Page $page out of $number_of_pages Pages
+                        </div>";
+                    if($page < $number_of_pages)
+                    {
+                        $next_page = $page + 1;
+                        echo "<div class='paging-button-holder'>
+                                <a href='myfiles?p=$next_page'>Older</a>
+                            </div>";
+                    }
+
+                    echo "</div>"; //end of pagination
+
+?>  
+                    </div> <!-- end of result-row-plate-container  -->                   
                 </div>
             </div>
             <div class="alter-options">

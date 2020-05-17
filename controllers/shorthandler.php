@@ -26,7 +26,7 @@
         $query = "INSERT INTO urls (surl,longUrl) VALUES ('$url', '$longUrl')";
         execute($query);
     }
-    function updateOwner($loggedUser,$surl)
+    function updateOwner($loggedUser,$surl,$longUrl)
     {
         $createDate = time();
         $query = "SELECT * FROM urlmap WHERE surl='$surl' and urlOwner='$loggedUser'";
@@ -38,7 +38,7 @@
         }
         else
         {
-            $query = "INSERT INTO urlmap (urlOwner,surl,createDate) VALUES ('$loggedUser', '$surl','$createDate')";
+            $query = "INSERT INTO urlmap (urlOwner,surl,longUrl,createDate) VALUES ('$loggedUser', '$surl','$longUrl','$createDate')";
             execute($query);
             $query = "INSERT INTO stat (datestamp,username,urlshort) VALUES('$createDate','$loggedUser', '1');";
             execute($query);
@@ -72,7 +72,7 @@
                         $surl = $res['surl'];
     
                         //insert the new owner
-                        updateOwner($loggedUser,$surl);
+                        updateOwner($loggedUser,$surl,$longUrl);
                         /* $query = "INSERT INTO urlmap (urlOwner,surl) VALUES ('$loggedUser', '$surl')";
                         execute($query); */
                     }
@@ -80,7 +80,7 @@
                     {
                         $surl = generateUniq('urls','surl');
                         insertUrl($surl,$longUrl);
-                        updateOwner($loggedUser,$surl);
+                        updateOwner($loggedUser,$surl,$longUrl);
                         //insert the new owner
                         /* $query = "INSERT INTO urlmap (urlOwner,surl) VALUES ('$loggedUser', '$surl')";
                         execute($query); */

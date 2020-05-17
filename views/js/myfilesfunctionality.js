@@ -1,5 +1,5 @@
 //handling the copy to clipboard method on copy button click
-$('.col5 a').click(function (e) {
+$('.result-row-plate-container').on('click', '.col5 a', function (e) {
     e.preventDefault();
     let urlForClip = $(this)
         .parent()
@@ -18,7 +18,7 @@ $('.col5 a').click(function (e) {
 });
 
 //handling delete button functionlity
-$('.col7 a').click(function (e) {
+$('.result-row-plate-container').on('click', '.col7 a', function (e) {
     e.preventDefault();
     let that = this;
     console.log($(this).attr('id'));
@@ -69,7 +69,9 @@ $('#sortSel').on('change', function () {
 
 //radio
 
-$('.col3-inner input').change(function () {
+$('.result-row-plate-container').on('change', '.col3-inner input', function (
+    e
+) {
     let privacy;
     let oldprivacy = this.value == 0 ? 1 : 0;
     let that = this;
@@ -105,6 +107,52 @@ $('.col3-inner input').change(function () {
                 //         .get(0)
                 // );
             }
+        },
+    });
+});
+
+$('.search-row input').keyup(function () {
+    $.ajax({
+        url: 'controllers/myfileshandler.php',
+        method: 'POST',
+        data: {
+            searchKeyword: $('.search-row input').val(),
+        },
+        success: function (data) {
+            $('.result-row-plate-container').html(data);
+        },
+    });
+});
+
+$('.result-row-plate-container').on('click', '#newer', function (e) {
+    e.preventDefault();
+    let that = $(this);
+
+    $.ajax({
+        url: 'controllers/myfileshandler.php',
+        method: 'POST',
+        data: {
+            searchKeyword: $('.search-row input').val(),
+            p: $(this).data('p'),
+        },
+        success: function (data) {
+            $('.result-row-plate-container').html(data);
+        },
+    });
+});
+$('.result-row-plate-container').on('click', '#older', function (e) {
+    e.preventDefault();
+    let that = $(this);
+
+    $.ajax({
+        url: 'controllers/myfileshandler.php',
+        method: 'POST',
+        data: {
+            searchKeyword: $('.search-row input').val(),
+            p: $(this).data('p'),
+        },
+        success: function (data) {
+            $('.result-row-plate-container').html(data);
         },
     });
 });

@@ -76,10 +76,17 @@ progress::-webkit-progress-value {
     font-size: 1.2em;
     margin-left: 10px;
 }
+
+.fuse {
+    width: 80%;
+}
+.result-table-plates {
+    width: 100%;
+}
 .note-lists {
     background-color: rgb(255, 255, 255);
     /* overflow-x: scroll; */
-    width: 80%;
+    width: 100%;
 }
 
 table {
@@ -171,6 +178,11 @@ tr:hover {
     color: rgb(85, 197, 241);
     font-size: 1.4em;
 }
+
+.pagination {
+    margin-top: 40px;
+}
+
 @media only screen and (min-width: 1600px) {
     .holder {
         max-width: 1600px;
@@ -185,6 +197,9 @@ tr:hover {
     }
     .container {
         padding: 10px;
+    }
+    .fuse {
+        width: 100%;
     }
     .note-lists {
         width: 100% !important;
@@ -202,8 +217,9 @@ tr:hover {
         display: block;
     } */
     table {
-        display: block;
+        display: flex;
         width: 100% !important;
+        flex-direction: column;
     }
     tr {
         display: inline-block;
@@ -216,7 +232,8 @@ tr:hover {
         box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.4),
             0px 0px 1px rgba(0, 0, 0, 0.1);
 
-        width: 100% !important;
+        min-width: 100% !important;
+
         margin: 10px 0;
     }
     td {

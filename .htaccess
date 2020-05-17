@@ -33,7 +33,7 @@ RewriteRule ^myurls$  views/myurls.php [L]
 
 #admin
 
-RewriteRule ^dashboard$  views/dashboard.html [L]
+RewriteRule ^dashboard$  views/dashboard.php [L]
 RewriteRule ^planmoderation$  views/planmoderation.php [L]
 
 

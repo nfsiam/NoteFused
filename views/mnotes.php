@@ -29,21 +29,11 @@
         header("Location:login");
     }
 
-    
-
-
-    //echo mb_strlen('আচ্ছা বাংলায় কিছু লিখলাম','UTF-8');
-    //$str = 'আচ্ছা বাংলায় কিছু লিখলাম';
-    //echo mb_strlen($str, 'utf8');
-
     function shortDate($longDate)
     {
-        // $date=date_create("$longDate");
-
-        
-        // return date_format($date,"d/M/y");
         return date('d/m/Y',$longDate);
     }
+    
     function sliceText($text)
     {
         $newText = "";
@@ -103,6 +93,60 @@
     }
 
 
+    $results_per_page = 10;
+
+    $query= "SELECT * FROM notes WHERE noteOwner='$loggedUser';";
+    $result = get($query);
+    $number_of_results = mysqli_num_rows($result);
+
+    $number_of_pages = ceil($number_of_results/$results_per_page);
+
+
+    if (!isset($_GET['p']))
+    {
+        $page = 1;
+    }
+    else
+    {
+        $pGet = 1;
+        try
+        {
+            $pGet = (int)$_GET['p'];
+        }
+        catch(Error $e)
+        {
+
+        }
+        if($pGet < 1)
+        {
+            $page = 1;
+        }
+        elseif($pGet > $number_of_pages)
+        {
+            $page = $number_of_pages;
+        }
+        else
+        {
+            $page = $pGet;
+        }
+    }
+
+    $this_page_first_result = ($page-1)*$results_per_page;
+
+
+    $resarr = array();
+
+    $query = "SELECT * FROM notes WHERE noteOwner='$loggedUser' order by lastEdited DESC LIMIT $this_page_first_result , $results_per_page";
+    $result=get($query); 
+    
+    if($result !== false)
+    {
+        while($row = mysqli_fetch_assoc($result))
+        {
+            $resarr[] = $row;
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -116,6 +160,7 @@
             href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"
         />
         <!-- <link rel="stylesheet" href="styles/main.css"> -->
+        <link rel="stylesheet" href="views/styles/all.css">
         <link rel="stylesheet" href="views/styles/side2.css" />
         <link rel="stylesheet" href="views/styles/login.css" />
         <link rel="stylesheet" href="views/styles/form.css" />
@@ -123,7 +168,7 @@
         <link rel="stylesheet" href="views/styles/navbar.css">
         <link rel="stylesheet" href="views/styles/userdashcard.css">
         <link rel="stylesheet" href="views/styles/sidebar.css">
-        <link rel="stylesheet" href="views/styles/all.css">
+        <link rel="stylesheet" href="views/styles/pagination.css">
 
 
 
@@ -143,176 +188,215 @@
             <?php require "navbar.php"; ?>
 
             <div class="container">
-            <div class="sidebar">
-                <?php require "userdashcard.php"; ?>
-            </div>
-                <div class="note-lists">
-                    
-                    <table>
-                        <thead>
-                        <tr class='head'>
-                            <div class='trdiv'>
-                            <th id='noteid'>
-                                <div class='sub-unit'>
-                                    Note ID
-                                </div>
-                            </th>
-                            <th id='lastEdit'>
-                                <div class='sub-unit'>
-                                    Last Edited
-                                </div>
-                            </th>
-                            <th id='lastVisit'>
-                                <div class='sub-unit'>
-                                    Last Visited
-                                </div>
-                            </th>
-                            <th id='expire'>
-                                <div class='sub-unit'>
-                                    Expiration
-                                </div>
-                            </th>
-                            <th id='privacy'>
-                                <div class='sub-unit'>
-                                    privacy
-                                </div>
-                            </th>
-                            <th id='textcontent'>
-                                <div class='sub-unit'>
-                                    Content
-                                </div>
-                            </th>
-                            <th id='share'>
-                                <div class='sub-unit'>
-                                    Edit
-                                </div>
-                            </th>
-                            <th id='download'>
-                                <div class='sub-unit'>
-                                    Download
-                                </div>
-                            </th>
-                            <th id='delete'>
-                                <div class='sub-unit'>
-                                    Delete
-                                </div>
-                            </th>
-                            </div>
-                        </tr>
-                        </thead>
-                        <?php
-                        // for($i=0;$i<50;$i++)
-                        // {
-                        foreach($resarr as $res)
-                        {
-                            $noteid = $res['noteID'];
-                            // $slicedID = sliceID($noteid);
-                            $lastVisit = $res['lastVisited'];
-                            $lastVisit = shortDate($lastVisit);     
-                            $lastEdit = $res['lastEdited'];
-                            $lastEdit = shortDate($lastEdit);        
-                            $expiration = $res['expiration'];
-                            $expiration = shortDate($expiration); 
-                            $xpire =  $res['xpire'];
-                            if($xpire == 3650)
-                            {
-                                $expiration = "NONE";
-                            }      
-                            $text = $res['text'];
-                            $text = sliceText($text);
-                            $privacy = $res['notePrivacy'];
-                            $privacy = $privacy == 0 ? "Public" : "Private";   
-                        echo
-                        "<tr>
-                            <div class='trdiv'>
-                            <td id='noteid'>
-                                <div class='sub-unit'>
-                                     $noteid
-                                </div>
-                            </td>
-                            <td id='lastEdit'>
-                                <div class='sub-unit'>
-                                    $lastEdit
-                                </div>
-                            </td>
-                            <td id='lastVisit'>
-                                <div class='sub-unit'>
-                                    $lastVisit
-                                </div>
-                            </td>
-                            <td id='expire'>
-                                <div class='sub-unit'>
-                                    $expiration
-                                </div>
-                            </td>
-                            <td id='privacy'>
-                                <div class='sub-unit'>
-                                    $privacy
-                                </div>
-                            </td>
-                            <td id='textcontent'>
-                                <div class='sub-unit'>
-                                    $text
-                                </div>
-                            </td>
-                            <td id='share'>
-                                <div class='sub-unit'>
-                                    <a href='./$noteid'><i class='fas fa-pen-square'></i></a>
-                                </div>
-                            </td>
-                            <td id='download'>
-                                <div class='sub-unit'>
-                                    <a href='controllers/mynoteshandler.php?id=$noteid'><i
-                                    class='fa fa-download'
-                                    style='font-size:20px'
-                                ></i></a>
-                                </div>
-                            </td>
-                            <td id='delete'>
-                                <div class='sub-unit'>
-                                    <a href='zzz' id='$noteid'><i class='fa fa-trash' aria-hidden='true'></i></a>
-                                </div>
-                            </td>
-                            </div>
-                        </tr>";
-                        }
-                        ?>
-                    </table>
+                <div class="sidebar">
+                    <?php require "userdashcard.php"; ?>
                 </div>
+                <div class="fuse">
+                    <div class="search-row">
+                        <input type="text" placeholder="search by note id or text..." value="" autocomplete="off"/>
+                    </div>
+                    <div class="result-table-plates">
+
+                        <div class="note-lists">
+                            
+                            <table>
+                                <thead>
+                                <tr class='head'>
+                                    <div class='trdiv'>
+                                    <th id='noteid'>
+                                        <div class='sub-unit'>
+                                            Note ID
+                                        </div>
+                                    </th>
+                                    <th id='lastEdit'>
+                                        <div class='sub-unit'>
+                                            Last Edited
+                                        </div>
+                                    </th>
+                                    <th id='lastVisit'>
+                                        <div class='sub-unit'>
+                                            Last Visited
+                                        </div>
+                                    </th>
+                                    <th id='expire'>
+                                        <div class='sub-unit'>
+                                            Expiration
+                                        </div>
+                                    </th>
+                                    <th id='privacy'>
+                                        <div class='sub-unit'>
+                                            privacy
+                                        </div>
+                                    </th>
+                                    <th id='textcontent'>
+                                        <div class='sub-unit'>
+                                            Content
+                                        </div>
+                                    </th>
+                                    <th id='share'>
+                                        <div class='sub-unit'>
+                                            Edit
+                                        </div>
+                                    </th>
+                                    <th id='download'>
+                                        <div class='sub-unit'>
+                                            Download
+                                        </div>
+                                    </th>
+                                    <th id='delete'>
+                                        <div class='sub-unit'>
+                                            Delete
+                                        </div>
+                                    </th>
+                                    </div>
+                                </tr>
+                                </thead>
+                            </table>
+                            <div class="row-plates">
+                                <table>
+                                    <?php
+                                    // for($i=0;$i<50;$i++)
+                                    // {
+                                    foreach($resarr as $res)
+                                    {
+                                        $noteid = $res['noteID'];
+                                        // $slicedID = sliceID($noteid);
+                                        $lastVisit = $res['lastVisited'];
+                                        $lastVisit = shortDate($lastVisit);     
+                                        $lastEdit = $res['lastEdited'];
+                                        $lastEdit = shortDate($lastEdit);        
+                                        $expiration = $res['expiration'];
+                                        $expiration = shortDate($expiration); 
+                                        $xpire =  $res['xpire'];
+                                        if($xpire == 3650)
+                                        {
+                                            $expiration = "NONE";
+                                        }      
+                                        $text = $res['text'];
+                                        $text = sliceText($text);
+                                        $privacy = $res['notePrivacy'];
+                                        $privacy = $privacy == 0 ? "Public" : "Private";   
+                                    echo
+                                    "<tr>
+                                        <div class='trdiv'>
+                                        <td id='noteid'>
+                                            <div class='sub-unit'>
+                                                 $noteid
+                                            </div>
+                                        </td>
+                                        <td id='lastEdit'>
+                                            <div class='sub-unit'>
+                                                $lastEdit
+                                            </div>
+                                        </td>
+                                        <td id='lastVisit'>
+                                            <div class='sub-unit'>
+                                                $lastVisit
+                                            </div>
+                                        </td>
+                                        <td id='expire'>
+                                            <div class='sub-unit'>
+                                                $expiration
+                                            </div>
+                                        </td>
+                                        <td id='privacy'>
+                                            <div class='sub-unit'>
+                                                $privacy
+                                            </div>
+                                        </td>
+                                        <td id='textcontent'>
+                                            <div class='sub-unit'>
+                                                $text
+                                            </div>
+                                        </td>
+                                        <td id='share'>
+                                            <div class='sub-unit'>
+                                                <a href='./$noteid'><i class='fas fa-pen-square'></i></a>
+                                            </div>
+                                        </td>
+                                        <td id='download'>
+                                            <div class='sub-unit'>
+                                                <a href='controllers/mynoteshandler.php?id=$noteid'><i
+                                                class='fa fa-download'
+                                                style='font-size:20px'
+                                            ></i></a>
+                                            </div>
+                                        </td>
+                                        <td id='delete'>
+                                            <div class='sub-unit'>
+                                                <a href='zzz' id='$noteid'><i class='fa fa-trash' aria-hidden='true'></i></a>
+                                            </div>
+                                        </td>
+                                        </div>
+                                    </tr>";
+                                    }
+                                    ?>
+                                </table>
+                                <?php
+                                    echo "<div class='pagination'>"; //start of pagination
+                                    if($page > 1)
+                                    {
+                                        $prev_page = $page - 1;
+                
+                                        echo "<div class='paging-button-holder'>
+                                                <a href='mynotes?p=$prev_page'>Newer</a>
+                                            </div>";
+                                    }
+                                        
+                                        echo "<div class='current-button-holder'>
+                                                Page $page out of $number_of_pages Pages
+                                            </div>";
+                                    if($page < $number_of_pages)
+                                    {
+                                        $next_page = $page + 1;
+                                        echo "<div class='paging-button-holder'>
+                                                <a href='mynotes?p=$next_page'>Older</a>
+                                            </div>";
+                                    }
+                
+                                    echo "</div>"; //end of pagination
+                                ?>
+                            </div>  <!-- end of row-plates -->
+                            
+                        </div> <!-- end of notelist -->
+                    </div> <!-- end of result-table-plates -->
+
+                </div> <!-- end of fuse -->
+            
             </div>
         </div>
         
         <script>
-            function hideChild() {
-                document.getElementById('drp1').display = 'none';
-            }
+            // function hideChild() {
+            //     document.getElementById('drp1').display = 'none';
+            // }
 
-            function goToReg() {
-                window.location.href = 'reg.php';
-            }
-            function showChild(ele) {
-                var id = ele.id;
-                if (id == 'p1') {
-                    document.getElementById('drp1').style.display = 'block';
-                    document.getElementById('drp1').focus();
-                    document.getElementById('drp2').style.display = 'none';
-                    document.getElementById('drp3').style.display = 'none';
-                }
-                if (id == 'p2') {
-                    document.getElementById('drp2').style.display = 'block';
-                    document.getElementById('drp2').focus();
-                    document.getElementById('drp1').style.display = 'none';
-                    document.getElementById('drp3').style.display = 'none';
-                }
-                if (id == 'p3') {
-                    document.getElementById('drp3').style.display = 'block';
-                    document.getElementById('drp3').focus();
-                    document.getElementById('drp1').style.display = 'none';
-                    document.getElementById('drp2').style.display = 'none';
-                }
-            }
+            // function goToReg() {
+            //     window.location.href = 'reg.php';
+            // }
+            // function showChild(ele) {
+            //     var id = ele.id;
+            //     if (id == 'p1') {
+            //         document.getElementById('drp1').style.display = 'block';
+            //         document.getElementById('drp1').focus();
+            //         document.getElementById('drp2').style.display = 'none';
+            //         document.getElementById('drp3').style.display = 'none';
+            //     }
+            //     if (id == 'p2') {
+            //         document.getElementById('drp2').style.display = 'block';
+            //         document.getElementById('drp2').focus();
+            //         document.getElementById('drp1').style.display = 'none';
+            //         document.getElementById('drp3').style.display = 'none';
+            //     }
+            //     if (id == 'p3') {
+            //         document.getElementById('drp3').style.display = 'block';
+            //         document.getElementById('drp3').focus();
+            //         document.getElementById('drp1').style.display = 'none';
+            //         document.getElementById('drp2').style.display = 'none';
+            //     }
+            // }
 
-            $('#delete a').click(function(e) {
+            $('.row-plates').on('click', '#delete a', function (e) {
                 e.preventDefault();
                 //alert('delete');
                 let that = this;
@@ -329,9 +413,6 @@
                         noteID: $(this).attr('id')
                     },
                     success:function(response){
-                        //$(this).css("display", "none");
-                        //$(this).remove();
-                        // $(that).parents('tr').hide();
                         if(response.success == 'true'){
                             $(that).parents('tr').fadeOut(500);
                             let ttn =  $('#totalNotes').text();
@@ -343,6 +424,52 @@
                     }
                 });
 
+            });
+
+            $('.search-row input').keyup(function () {
+                $.ajax({
+                    url: 'controllers/mynoteshandler.php',
+                    method: 'POST',
+                    data: {
+                        searchKeyword: $('.search-row input').val(),
+                    },
+                    success: function (data) {
+                        $('.row-plates').html(data);
+                    },
+                });
+            });
+
+            $('.row-plates').on('click', '#newer', function (e) {
+                e.preventDefault();
+                let that = $(this);
+
+                $.ajax({
+                    url: 'controllers/mynoteshandler.php',
+                    method: 'POST',
+                    data: {
+                        searchKeyword: $('.search-row input').val(),
+                        p: $(this).data('p'),
+                    },
+                    success: function (data) {
+                        $('.row-plates').html(data);
+                    },
+                });
+            });
+            $('.row-plates').on('click', '#older', function (e) {
+                e.preventDefault();
+                let that = $(this);
+
+                $.ajax({
+                    url: 'controllers/mynoteshandler.php',
+                    method: 'POST',
+                    data: {
+                        searchKeyword: $('.search-row input').val(),
+                        p: $(this).data('p'),
+                    },
+                    success: function (data) {
+                        $('.row-plates').html(data);
+                    },
+                });
             });
         </script>
     </body>

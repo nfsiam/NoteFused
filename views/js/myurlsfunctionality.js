@@ -1,5 +1,5 @@
 //handling the copy to clipboard method on copy button click
-$('.col4 a').click(function (e) {
+$('.result-row-plate-container').on('click', '.col4 a', function (e) {
     e.preventDefault();
     let urlForClip = $(this)
         .parent()
@@ -18,7 +18,7 @@ $('.col4 a').click(function (e) {
 });
 
 //handling delete button functionlity
-$('.col5 a').click(function (e) {
+$('.result-row-plate-container').on('click', '.col5 a', function (e) {
     e.preventDefault();
     let that = this;
     console.log($(this).attr('id'));
@@ -34,6 +34,52 @@ $('.col5 a').click(function (e) {
             if (data.success == 'true') {
                 $(that).parents('.row-plate').fadeOut(500);
             }
+        },
+    });
+});
+
+$('.search-row input').keyup(function () {
+    $.ajax({
+        url: 'controllers/myurlshandler.php',
+        method: 'POST',
+        data: {
+            searchKeyword: $('.search-row input').val(),
+        },
+        success: function (data) {
+            $('.result-row-plate-container').html(data);
+        },
+    });
+});
+
+$('.result-row-plate-container').on('click', '#newer', function (e) {
+    e.preventDefault();
+    let that = $(this);
+
+    $.ajax({
+        url: 'controllers/myurlshandler.php',
+        method: 'POST',
+        data: {
+            searchKeyword: $('.search-row input').val(),
+            p: $(this).data('p'),
+        },
+        success: function (data) {
+            $('.result-row-plate-container').html(data);
+        },
+    });
+});
+$('.result-row-plate-container').on('click', '#older', function (e) {
+    e.preventDefault();
+    let that = $(this);
+
+    $.ajax({
+        url: 'controllers/myurlshandler.php',
+        method: 'POST',
+        data: {
+            searchKeyword: $('.search-row input').val(),
+            p: $(this).data('p'),
+        },
+        success: function (data) {
+            $('.result-row-plate-container').html(data);
         },
     });
 });
