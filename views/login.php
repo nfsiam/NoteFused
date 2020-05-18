@@ -10,6 +10,10 @@
     {
         header("Location:./");
     }
+    elseif(isset($_SESSION['admin']))
+    {
+        header("Location:dashboard");
+    }
 ?>
 
 
@@ -32,11 +36,11 @@
 
     </div>
     <div class="form-wrap" id="login_form">
-        <form action="" id="" method="post">
+        <form action="" id="" method="post" autocomplete="off">
             <div class="wrap">
                 <div class="headingz">
                     <div class="title">
-                        <a href="index.php">NoteFused</a>
+                        <a href="./">NoteFused</a>
                     </div>
                     <div><span>&nbsp>&nbsp</span></div>
                     <div>
@@ -60,6 +64,9 @@
             </div>
             <div class="bottomText">
                 Don't have an account? <a href="registration">Register Now</a>
+            </div>
+            <div class="bottomText">
+                Forget Password? <a href="resetform">Recover</a>
             </div>
 
         </form>

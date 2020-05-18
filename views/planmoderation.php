@@ -9,6 +9,10 @@
     if (strpos($_SERVER['REQUEST_URI'], '/views/') !== false) {
         exit();
     }
+    if(!isset($_SESSION['admin']))
+    {
+        header("Location:login");
+    }
 
     date_default_timezone_set("Asia/Dhaka");
 
@@ -86,7 +90,7 @@
                     <ul>
                         <li><a href="dashboard">Dashboard</a></li>
                         <li><a href="planmoderation">Plan Moderation</a></li>
-                        <li><a href="clientquery.html">Client Query</a></li>
+                        <li><a href="controllers/destroysessionmodule.php">Logout</a></li>
                     </ul>
                     <!-- <div class="side-contents">
                     </div> -->

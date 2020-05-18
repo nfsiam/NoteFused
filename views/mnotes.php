@@ -161,6 +161,7 @@
         />
         <!-- <link rel="stylesheet" href="styles/main.css"> -->
         <link rel="stylesheet" href="views/styles/all.css">
+        <link rel="stylesheet" href="views/styles/throwlert.css">
         <link rel="stylesheet" href="views/styles/side2.css" />
         <link rel="stylesheet" href="views/styles/login.css" />
         <link rel="stylesheet" href="views/styles/form.css" />
@@ -169,6 +170,8 @@
         <link rel="stylesheet" href="views/styles/userdashcard.css">
         <link rel="stylesheet" href="views/styles/sidebar.css">
         <link rel="stylesheet" href="views/styles/pagination.css">
+        <link rel="stylesheet" href="views/styles/semiloader.css">
+
 
 
 
@@ -176,12 +179,19 @@
         <script src="views/js/navbarfunctionality.js" defer></script>
         <script src="views/js/userdashcardfunctionality.js" defer></script>
         <script src="views/js/sidebar.js" defer></script>
+        <script src="views/js/throwlert.js" defer></script>
 
 
 
     </head>
 
     <body>
+        <div class="semiloader">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+            <div class="four"></div>
+        </div>
         <?php require "sidebar.php"; ?>
 
         <div class="holder">
@@ -365,6 +375,20 @@
             
             </div>
         </div>
+        <div class="throwlert">
+            <div class="alert-box">
+                <div class="alert-close-button">
+                    <button><i class="fas fa-times"></i></button>
+                </div>
+                <div class="alert-type type-success">
+                    <i class="far fa-check-circle"></i>
+                </div>
+                <div class="alert-type type-error">
+                    <i class="far fa-times-circle"></i>
+                </div>
+                <div class="alert-dialog"></div>
+            </div>
+        </div>
         
         <script>
             // function hideChild() {
@@ -398,7 +422,7 @@
 
             $('.row-plates').on('click', '#delete a', function (e) {
                 e.preventDefault();
-                //alert('delete');
+                $('.semiloader').fadeIn();
                 let that = this;
                 
                 //return;
@@ -413,14 +437,16 @@
                         noteID: $(this).attr('id')
                     },
                     success:function(response){
-                        if(response.success == 'true'){
-                            $(that).parents('tr').fadeOut(500);
-                            let ttn =  $('#totalNotes').text();
-                            let tn = parseInt(ttn);
-                            tn = tn-1;
-                            $('#totalNotes').text(tn);
-                            console.log('done');
-                        }
+                        $('.semiloader').fadeOut(function(){
+                            if(response.success == 'true'){
+                                $(that).parents('tr').fadeOut(500);
+                                let ttn =  $('#totalNotes').text();
+                                let tn = parseInt(ttn);
+                                tn = tn-1;
+                                $('#totalNotes').text(tn);
+                                console.log('done');
+                            }
+                        });
                     }
                 });
 
@@ -441,6 +467,8 @@
 
             $('.row-plates').on('click', '#newer', function (e) {
                 e.preventDefault();
+                $('.semiloader').fadeIn();
+
                 let that = $(this);
 
                 $.ajax({
@@ -452,11 +480,14 @@
                     },
                     success: function (data) {
                         $('.row-plates').html(data);
+                        $('.semiloader').fadeOut();
                     },
                 });
             });
             $('.row-plates').on('click', '#older', function (e) {
                 e.preventDefault();
+                $('.semiloader').fadeIn();
+
                 let that = $(this);
 
                 $.ajax({
@@ -468,6 +499,8 @@
                     },
                     success: function (data) {
                         $('.row-plates').html(data);
+                        $('.semiloader').fadeOut();
+
                     },
                 });
             });

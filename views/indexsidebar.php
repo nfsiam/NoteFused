@@ -29,21 +29,21 @@
             <a href="" class="primary-index-sidebar-a">Note</a>
             <div class="secondary-index-sidebar-content">
                 <a href="./" class="secondary-index-sidebar-a">New Note</a>
-                <a href="mynotes" class="secondary-index-sidebar-a">My Notes</a>
+                <a href="mynotes" class="secondary-index-sidebar-a guest-secondary-index-a">My Notes</a>
             </div>
         </div>
         <div class="primary-index-sidebar-content">
             <a href="" class="primary-index-sidebar-a">File</a>
             <div class="secondary-index-sidebar-content">
-                <a href="file" class="secondary-index-sidebar-a">Upload File</a>
-                <a href="myfiles" class="secondary-index-sidebar-a">My Files</a>
+                <a href="file" class="secondary-index-sidebar-a guest-secondary-index-a">Upload File</a>
+                <a href="myfiles" class="secondary-index-sidebar-a guest-secondary-index-a">My Files</a>
             </div>
         </div>
         <div class="primary-index-sidebar-content">
             <a href="" class="primary-index-sidebar-a">URL</a>
             <div class="secondary-index-sidebar-content">
-                <a href="go" class="secondary-index-sidebar-a">Shorten URL</a>
-                <a href="myurls" class="secondary-index-sidebar-a">My URLs</a>
+                <a href="go" class="secondary-index-sidebar-a guest-secondary-index-a">Shorten URL</a>
+                <a href="myurls" class="secondary-index-sidebar-a guest-secondary-index-a">My URLs</a>
             </div>
         </div>
     </div>

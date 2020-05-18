@@ -1,7 +1,12 @@
 <?php
+    session_start();
     //preventing access from view route
     if (strpos($_SERVER['REQUEST_URI'], '/views/') !== false) {
         exit();
+    }
+    if(!isset($_SESSION['admin']))
+    {
+        header("Location:login");
     }
 ?>
 <!DOCTYPE html>
@@ -36,7 +41,7 @@
                         <li>
                             <a href="planmoderation">Plan Moderation</a>
                         </li>
-                        <li><a href="clientquery.html">Client Query</a></li>
+                        <li><a href="controllers/destroysessionmodule.php">Logout</a></li>
                     </ul>
                 </div>
             </section>

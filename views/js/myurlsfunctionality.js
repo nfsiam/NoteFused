@@ -20,6 +20,7 @@ $('.result-row-plate-container').on('click', '.col4 a', function (e) {
 //handling delete button functionlity
 $('.result-row-plate-container').on('click', '.col5 a', function (e) {
     e.preventDefault();
+    $('.semiloader').fadeIn();
     let that = this;
     console.log($(this).attr('id'));
     $.ajax({
@@ -31,9 +32,11 @@ $('.result-row-plate-container').on('click', '.col5 a', function (e) {
             surl: $(this).attr('id'),
         },
         success: function (data) {
-            if (data.success == 'true') {
-                $(that).parents('.row-plate').fadeOut(500);
-            }
+            $('.semiloader').fadeOut(function () {
+                if (data.success == 'true') {
+                    $(that).parents('.row-plate').fadeOut(500);
+                }
+            });
         },
     });
 });
@@ -53,6 +56,8 @@ $('.search-row input').keyup(function () {
 
 $('.result-row-plate-container').on('click', '#newer', function (e) {
     e.preventDefault();
+    $('.semiloader').fadeIn();
+
     let that = $(this);
 
     $.ajax({
@@ -64,11 +69,14 @@ $('.result-row-plate-container').on('click', '#newer', function (e) {
         },
         success: function (data) {
             $('.result-row-plate-container').html(data);
+            $('.semiloader').fadeOut();
         },
     });
 });
 $('.result-row-plate-container').on('click', '#older', function (e) {
     e.preventDefault();
+    $('.semiloader').fadeIn();
+
     let that = $(this);
 
     $.ajax({
@@ -80,6 +88,7 @@ $('.result-row-plate-container').on('click', '#older', function (e) {
         },
         success: function (data) {
             $('.result-row-plate-container').html(data);
+            $('.semiloader').fadeOut();
         },
     });
 });

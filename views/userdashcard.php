@@ -69,6 +69,6 @@
         </div>
     </div>
     <div class="upgrade">
-        <a href="settings.php#plans" class="upgrade-button">UPGRADE</a>
+        <a href="settings#plans" class="upgrade-button">UPGRADE</a>
     </div>
 </div>

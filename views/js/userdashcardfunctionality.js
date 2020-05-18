@@ -127,5 +127,7 @@ function updateStats() {
 updateStats();
 
 setInterval(function () {
-    updateStats();
+    if ($('.user-dash-card').is(':visible')) {
+        updateStats();
+    }
 }, 2000);

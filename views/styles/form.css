@@ -8,6 +8,7 @@
     padding: 0 5px;
     width: 100%;
     color: #d76d77;
+    transition: 0.3s linear;
 }
 .headingz {
     display: flex;
@@ -164,4 +165,6 @@
 
 .bottomText {
     text-align: center;
+    margin-top: 10px;
+    font-size: 0.9rem;
 }

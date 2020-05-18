@@ -31,15 +31,15 @@
                     </ul>
                 </li>
                 <li class="top-li" id="short-li">
-                    <a href="">URL</a>
+                    <a href="">URL &nbsp; Shortner</a>
                     <ul id="u4">
                         <li><a href="go">Shorten URL</a></li>
                         <li><a href="myurls">My Short URLs</a></li>
                     </ul>
                 </li>
-                <li class="top-li">
+                <!-- <li class="top-li">
                     <a href="contact.php">Contact</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>

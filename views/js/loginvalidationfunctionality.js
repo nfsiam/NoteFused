@@ -49,10 +49,13 @@ $('#login_form').submit(function (e) {
                 $('#errProfile').html(data.errProfile);
                 $('#errUname').html(data.errUname);
                 $('#errPass').html(data.errPass);
-                console.log(data.loggdUser);
-                if (data.loggedUser != undefined) {
+                // console.log(data.loggdUser);
+                if ('loggedAdmin' in data) {
+                    loggedAdmin = data.loggedAdmin;
+                    window.location.href = 'dashboard';
+                } else if ('loggedUser' in data) {
                     loggedUser = data.loggedUser;
-
+                    window.location.href = './';
                     $('.guest-index-sidebar-contents').css('display', 'none');
                     $('.user-index-sidebar-contents').css('display', 'flex');
 

@@ -20,6 +20,11 @@
             $loggedUser = $user['username'];
         }
     }
+    else
+    {
+        header('Location:../login');
+        exit();
+    }
 
     function insertUrl($url,$longUrl)
     {

@@ -14,6 +14,25 @@
             $loggedUser = $user['username'];
         }
     }
+    else
+    {
+        header('Location:../login');
+        exit();
+    }
+
+    function sanitizer($string)
+    {
+        $con = getCon();
+        if(!empty($string))
+        {
+            return  mysqli_real_escape_string($con, trim(htmlspecialchars($string)));
+        }
+        else
+        {
+            return "";
+        }
+
+    }
     
     $jsn = array();
     $jsn['success'] = 'false';
@@ -22,13 +41,13 @@
     {
         if(!empty($_POST['delete']))
         {
-            $delete = htmlspecialchars($_POST['delete']);
+            $delete = sanitizer($_POST['delete']);
             if($delete == 'note')
             {
                 try
                 {
-                    $noteID = htmlspecialchars($_POST['noteID']);
-                    $query = "DELETE from notes where noteID='$noteID'";
+                    $noteID = sanitizer($_POST['noteID']);
+                    $query = "DELETE from notes where noteID='$noteID' and noteOwner='$loggedUser'";
                     execute($query);
                     //stat update
                     $datestamp = time();
@@ -46,14 +65,17 @@
             {
                 try
                 {
-                    $fileID = htmlspecialchars($_POST['fileID']);
-                    $query = "DELETE from files where fileID='$fileID'";
+                    $fileID = sanitizer($_POST['fileID']);
+                    $query = "DELETE from files where fileID='$fileID' and fileOwner='$loggedUser'";
+                    execute($query);
+                    //fwork
+                    
                     // if(file_exists("upload/$fileID"))
                     if(file_exists(dirname(__FILE__).'/../upload/'.$fileID))
                     {
                         unlink(dirname(__FILE__).'/../upload/'.$fileID); //deleting file from server
                     }
-                    execute($query); //removing record from database
+                    //execute($query); //removing record from database
                     //stat update
                     $datestamp = time();
                     $query = "INSERT INTO stat (datestamp,username,filedelete) VALUES('$datestamp','$loggedUser', '1');";
@@ -69,7 +91,7 @@
             {
                 try
                 {
-                    $surl = htmlspecialchars($_POST['surl']);
+                    $surl = sanitizer($_POST['surl']);
                     //it will delete record for logged user
                     $query = "DELETE from urlmap where surl='$surl' and urlOwner='$loggedUser'";
                     execute($query); //removing record from urlmap

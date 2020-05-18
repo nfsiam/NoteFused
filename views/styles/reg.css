@@ -1,26 +1,22 @@
-*
-{
+* {
     margin: 0;
     padding: 0;
     text-decoration: none;
     box-sizing: border-box;
-    font-family: "IBM Plex Sans";
+    font-family: 'IBM Plex Sans';
 }
 
- html
- {
+html {
     -ms-overflow-style: -ms-autohiding-scrollbar;
     /* overflow: hidden; */
- }
+}
 
-body
-{
+body {
     /* background: -webkit-linear-gradient(-90deg, #3a1c71, #d76d77, #ffffff); */
-    background: -webkit-linear-gradient(90deg,#3a1c71 , #d76d77 , #ffaf7b);
-    background: linear-gradient(-90deg,#3a1c71 , #d76d77 , #ffaf7b);
+    background: -webkit-linear-gradient(90deg, #3a1c71, #d76d77, #ffaf7b);
+    background: linear-gradient(-90deg, #3a1c71, #d76d77, #ffaf7b);
     /* background: linear-gradient(90deg, /* mantle  #24c6dc,#514a9d);
     background: linear-gradient(90deg, /* sexy blue  #2193b0,#6dd5ed); */
-
 
     /* transform: rotate(120deg); */
     background-size: 100%;
@@ -28,39 +24,31 @@ body
     /* background-position: right; */
     z-index: -5;
     height: 100%;
-    
 }
 
-
-.form-wrap
-{
+.form-wrap {
     padding: 25px;
     padding-top: 5px;
-    margin:35px auto;
+    margin: 35px auto;
     width: 350px;
     /* height: 800px; */
     background-color: white;
     position: static;
-    transform: translate(0%,0%);
+    transform: translate(0%, 0%);
     z-index: 5;
-    box-shadow: 3px 5px 10px rgba(0,0,0,0.30);
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.3);
     border: 1px solid rgb(218, 218, 218);
-
-
+    transition: 0.5s linear;
 }
 
-@media only screen and (max-height:800px)
-{
-    .form-wrap
-    {
+@media only screen and (max-height: 800px) {
+    .form-wrap {
         /* position: static; */
         padding: 25px;
         width: 350px;
         background-color: white;
         position: static;
         margin: 20px auto;
-        transform: translate(0%,0%);
+        transform: translate(0%, 0%);
     }
-  
 }
-

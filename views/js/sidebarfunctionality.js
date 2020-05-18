@@ -87,3 +87,12 @@ $('.secondary-sidebar-content #sideLoginBtn').click(function (e) {
     e.preventDefault();
     openForm();
 });
+
+$('.guest-secondary-a').click(function (e) {
+    e.preventDefault();
+    throwlert(0, 'You need to create an account to access this feature');
+});
+$('.guest-secondary-index-a').click(function (e) {
+    e.preventDefault();
+    throwlert(0, 'You need to create an account to access this feature');
+});

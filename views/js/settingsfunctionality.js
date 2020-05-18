@@ -156,7 +156,7 @@ let validate = () => {
         valid = false;
     } else {
         warn('namebox', '');
-        valid = true;
+        // valid = true;
         pinfarr.push(name);
     }
 
@@ -170,7 +170,7 @@ let validate = () => {
         valid = false;
     } else {
         warn('emailbox', '');
-        valid = true;
+        // valid = true;
         pinfarr.push(email);
     }
     // pinfarr.push(email);
@@ -181,7 +181,7 @@ let validate = () => {
         valid = false;
     } else {
         warn('oldpassbox', '');
-        valid = true;
+        // valid = true;
         pinfarr.push(opass);
     }
     // pinfarr.push(opass);
@@ -193,7 +193,7 @@ let validate = () => {
             valid = false;
         } else {
             warn('newpassbox', '');
-            valid = true;
+            // valid = true;
             pinfarr.push(npass);
         }
         // pinfarr.push(npass);
@@ -207,7 +207,7 @@ let validate = () => {
             valid = false;
         } else {
             warn('cnewpassbox', '');
-            valid = true;
+            // valid = true;
             pinfarr.push(cnpass);
         }
         // pinfarr.push(cnpass);

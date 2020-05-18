@@ -7,17 +7,35 @@
     $err_pass = "";
     $err_profile = "";
     $data = array();
+
+
+
+    function sanitizer($string)
+    {
+        $con = getCon();
+        if(!empty($string))
+        {
+            return  mysqli_real_escape_string($con, trim(htmlspecialchars($string)));
+        }
+        else
+        {
+            return "";
+        }
+
+    }
+
     if(isset($_POST['login']))
     {
         $hasNoError = true;
-        if(empty($_POST['uname']))
+        $un = sanitizer($_POST['uname']);
+        if(empty($un))
         {
             $err_uname = "Username can not be empty";
             $hasNoError = false;
         }
         else
         {
-            $uname = htmlspecialchars($_POST['uname']);
+            $uname = $un;
         }
 
         if(empty($_POST['pass']))
@@ -27,7 +45,7 @@
         }
         else
         {
-            $pass = htmlspecialchars($_POST['pass']);
+            $pass = md5($_POST['pass']);
         }
         if($hasNoError)
         {
@@ -35,10 +53,20 @@
 			$result=get($query);
 			if(mysqli_num_rows($result) > 0)
 			{
-                $user=mysqli_fetch_assoc($result);
-                $_SESSION['user'] = $user;
-                $loggedUser = $user['username'];
-                $data['loggedUser'] = $loggedUser;
+                $res=mysqli_fetch_assoc($result);
+                if($res['level'] == 1)
+                {
+                    $_SESSION['admin'] = $res;
+                    $loggedAdmin = $res['username'];
+                    $data['loggedAdmin'] = $loggedAdmin;
+
+                }
+                else
+                {
+                    $_SESSION['user'] = $res;
+                    $loggedUser = $res['username'];
+                    $data['loggedUser'] = $loggedUser;
+                }
                 unset($_POST['login']);
                 
 			}

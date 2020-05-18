@@ -30,6 +30,10 @@ RewriteRule ^go$  views/short.php [L]
 RewriteRule ^myurls$  views/myurls.php [L]
 
 
+RewriteRule ^resetform$  views/resetform.php [L]
+RewriteRule ^resetconfirm$  views/resetconfirm.php [L]
+
+
 
 #admin
 

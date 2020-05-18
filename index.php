@@ -118,7 +118,7 @@
 
     <div class="loginform" id="loginForm">
         <button id="close" onclick="closeForm()">x</button>
-        <form action="" id="login_form" method="post">
+        <form action="" id="login_form" method="post" autocomplete="off">
             <h1 class="form-heading">Login</h1>
             <div class="warn" id="errProfile"><?php //echo $err_profile; ?></div>
             <div class="input-sec">
@@ -135,7 +135,10 @@
                 <input type="submit" value="Login" class="subBtn" name="login" >
             </div>
             <div class="bottomText">
-                Don't have an account? <a href="reg.php">Register Now</a>
+                Don't have an account? <a href="registration">Register Now</a>
+            </div>
+            <div class="bottomText">
+                Forget Password? <a href="resetform">Recover</a>
             </div>
 
         </form>

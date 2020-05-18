@@ -100,6 +100,7 @@
     <link rel="stylesheet" href="views/styles/userdashcard.css">
     <link rel="stylesheet" href="views/styles/sidebar.css">
     <link rel="stylesheet" href="views/styles/pagination.css">
+    <link rel="stylesheet" href="views/styles/semiloader.css">
 
 
     <script src="views/js/jquery341.js"></script>
@@ -117,6 +118,12 @@
 
 </head>
 <body>
+    <div class="semiloader">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+        <div class="four"></div>
+    </div>
     <?php require "sidebar.php"; ?>
     <div class="holder">
         <!-- <div class="navbar">

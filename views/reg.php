@@ -8,220 +8,16 @@
         exit();
     }
 
-    function sanitizer($string)
+    if(isset($_SESSION['user'])) 
     {
-        $con = getCon();
-        if(!empty($string))
+        $user = $_SESSION['user'];
+        if(isset($user['username']))
         {
-            return  mysqli_real_escape_string($con, trim(htmlspecialchars($string)));
-        }
-        else
-        {
-            return "";
-        }
-
-    }
-
-    function validateName($n)
-    {
-        
-        $name = preg_replace('/\s\s+/', ' ', $n);
-        if(empty($name))
-        {
-            return "please enter your name above";
-        }
-        elseif(!ctype_alpha(str_replace(' ', '', $name)))
-        {
-            return  "please enter letters and Space only (e.g. Abcd Efgh)";
-        }
-        else
-        {
-            return true;
-        }
-    }
-
-    function validateUsername($un)
-    {
-        if(preg_match('/^[a-z0-9]{5,31}$/', $un))
-        {
-            return true;
-        }
-        else
-        {
-            return "Invalid username. Make sure it conatins lower case letters and number only and length between 6 to 32 characters";
-        }
-    }
-
-    $name = "";
-    $err_name = "";
-    $uname = "";
-    $err_uname = "";
-    $pass = "";
-    $err_pass = "";
-    $email = "";
-    $err_email = "";
-    $pass ="";
-    $err_pass = "";
-    $cpass = "";
-    $err_cpass = "";
-    $mpass ="";
-
-    //below function ensures unique email from user
-    function emailAvailable($email)
-    {
-        $query = "SELECT * from profiles where email='$email'";
-        $result = get($query);
-        if(mysqli_num_rows($result)>0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-    //below function ensures unique username from user
-    function isAvailable($uname)
-    {
-        $query = "SELECT * from profiles where username='$uname'";
-        $result = get($query);
-        if(mysqli_num_rows($result)>0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-
-    //below function automatically logs in the user
-    //and redirects him to the homepage
-    function autoLogin($uname,$pass)
-    {
-        $pass = md5($pass);
-        $query = "SELECT * FROM profiles WHERE username='$uname' AND pass='$pass'";
-        $result=get($query);
-        if(mysqli_num_rows($result) > 0)
-        {
-            $user=mysqli_fetch_assoc($result);
-            $_SESSION['user'] = $user;
-            unset($_POST['register']);
+            $loggedUser = $user['username'];
             header("Location:./");
-            
         }
     }
-    
-    if(isset($_POST['register']))
-    {
-        $hasNoError = true;
-        if(empty($_POST['name']))
-        {
-            $err_name = "Name can not be empty";
-            $hasNoError = false;
-        }
-        else
-        {
-            //$name = htmlspecialchars($_POST['name']);
-            $name = sanitizer($_POST['name']);
-            $n = validateName($name);
-            if($n !== true)
-            {
-                $err_name = $n;
-                $hasNoError = false;
-            }
-        }
-        if(empty($_POST['uname']))
-        {
-            $err_uname = "Username can not be empty";
-            $hasNoError = false;
-        }
-        else
-        {
-            $uname = sanitizer($_POST['uname']);
 
-            $un = validateUsername($uname);
-            if($un !== true)
-            {
-                $err_uname = $un;
-                $hasNoError = false;
-            }
-            else
-            {
-                if(!isAvailable($uname))
-                {
-                    $err_uname = "Opps! username is already taken...";
-                    $hasNoError = false;
-                }
-            }
-        }
-        if(empty($_POST['email']))
-        {
-            $err_email = "Email can not be empty";
-            $hasNoError = false;
-        }
-        else if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
-        {			
-            
-            $err_email = "Email ID is not valid";
-            $hasNoError = false;
-        }
-        else
-        {
-            $email = sanitizer($_POST['email']);
-            if(!emailAvailable($email))
-            {
-                $err_email = "Opps! There is already an account associated with this email...";
-                $hasNoError = false;
-            }
-        }
-
-        if(empty($_POST['pass']))
-        {
-            $err_pass = "Password can not be empty";
-            $hasNoError = false;
-        }
-        else
-        {
-            $pass = sanitizer($_POST['pass']);
-            if(strlen($pass) < 6 || strlen($pass) > 32)
-            {
-                $err_pass = "Password must be in between 6 and 32 characters long";
-                $hasNoError = false;
-            }
-        }
-        if(empty($_POST['cpass']))
-        {
-            $err_cpass = "Password can not be empty";
-            $hasNoError = false;
-        }
-        else
-        {
-            $cpass = sanitizer($_POST['cpass']);
-        }
-        if(!empty($cpass) and !empty($pass))
-        {
-            if($cpass !== $pass)
-            {
-                $err_cpass = "Passwords didn't match";
-                $hasNoError = false;
-            }
-            else
-            {
-                $mpass = md5($pass);
-            }
-        }
-
-        if($hasNoError)
-        {
-            $query = "INSERT INTO profiles (username, name, email, pass, plan, `level`,`status`)
-                VALUES ('$uname', '$name', '$email','$mpass','0','0','0')";
-            execute($query);
-
-            autoLogin($uname,$pass);
-        }
-
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -232,8 +28,11 @@
     <title>Registration | NoteFused</title>
     <link rel="stylesheet" href="views/styles/reg.css">
     <link rel="stylesheet" href="views/styles/form.css">
+    <link rel="stylesheet" href="views/styles/throwlert.css">
 
     <script src="views/js/jquery341.js"></script>
+    <script src="views/js/throwlert.js"></script>
+    
 
 </head>
 
@@ -242,10 +41,10 @@
 
     </div>
     <div class="form-wrap">
-        <form action="" method="post">
+        <form action="" method="post" id="rform" autocomplete="off">
             <div class="headingz">
                 <div class="title">
-                    <a href="index.php" id="ttl">NoteFused</a>
+                    <a href="./" id="ttl">NoteFused</a>
                 </div>
                 <div><span>&nbsp>&nbsp</span></div>
                 <div>
@@ -255,30 +54,30 @@
 
 
             <div class="input-sec">
-                <input type="text" name="name" id="namebox" value="<?php echo $name ;?>">
+                <input type="text" name="name" id="namebox" value="<?php //echo $name ;?>">
                 <span data-placeholder="name"></span>
             </div>
-            <div class="warn"><?php echo $err_name; ?></div>
+            <div class="warn"><?php //echo $err_name; ?></div>
             <div class="input-sec">
-                <input type="text" name="uname" id="unamebox" value="<?php echo $uname ;?>">
+                <input type="text" name="uname" id="unamebox" value="<?php //echo $uname ;?>">
                 <span data-placeholder="username"></span>
             </div>
-            <div class="warn"><?php echo $err_uname; ?></div>
+            <div class="warn"><?php //echo $err_uname; ?></div>
             <div class="input-sec">
-                <input type="text" name="email" id="emailbox" value="<?php echo $email ;?>">
+                <input type="text" name="email" id="emailbox" value="<?php //echo $email ;?>">
                 <span data-placeholder="email"></span>
             </div>
-            <div class="warn"><?php echo $err_email; ?></div>
+            <div class="warn"><?php //echo $err_email; ?></div>
             <div class="input-sec">
-                <input type="password" name="pass" id="passbox" value="<?php echo $pass ;?>">
+                <input type="password" name="pass" id="passbox" value="<?php //echo $pass ;?>">
                 <span data-placeholder="password"></span>
             </div>
-            <div class="warn"><?php echo $err_pass; ?></div>
+            <div class="warn"><?php //echo $err_pass; ?></div>
             <div class="input-sec">
-                <input type="password" name="cpass" id="cpassbox" value="<?php echo $cpass ?>">
+                <input type="password" name="cpass" id="cpassbox" value="<?php //echo $cpass ?>">
                 <span data-placeholder="confirm password"></span>
             </div>
-            <div class="warn"><?php echo $err_cpass; ?></div>
+            <div class="warn"><?php //echo $err_cpass; ?></div>
             <div class="button-holder">
                 <input type="reset" value="Clear Form" class="resBtn" id="resetButton" onclick="resetForm()">
                 <div class="gap"></div>
@@ -293,8 +92,141 @@
     </div>
 
     <script>
+
+        //JS validation
+        function warn(that, msg) {
+            $(`#${that}`).parent().next('.warn').text(msg);
+        }
+        let pinfarr;
+        let validate = () => {
+            pinfarr = [];
+            let valid = true;
+            function warn(that, msg) {
+                $(`#${that}`).parent().next('.warn').text(msg);
+            }
+
+            const letters = /^[A-Za-z ]+$/;
+            const name = $('#namebox').val();
+            if (name == '') {
+                warn('namebox', 'please enter your name above');
+                valid = false;
+            } else if (!name.match(letters)) {
+                warn('namebox', 'please enter letters and Space only (e.g. Abcd Efgh)');
+                valid = false;
+            } else {
+                warn('namebox', '');
+                // valid = true;
+                pinfarr.push(name);
+            }
+
+            const uletters = /^[a-z0-9]{6,32}$/;
+            const uname = $('#unamebox').val();
+            if (uname == '') {
+                warn('unamebox', 'please enter your username above');
+                valid = false;
+            } else if (!uname.match(uletters)) {
+                warn('unamebox', "Invalid username. Make sure it conatins lower case letters and number only and length between 6 to 32 characters");
+                valid = false;
+            } else {
+                warn('unamebox', '');
+                // valid = true;
+                pinfarr.push(uname);
+            }
+
+
+            const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            const email = $('#emailbox').val();
+            if (email == '') {
+                warn('emailbox', 'please enter your email above');
+                valid = false;
+            } else if (!email.match(mailformat)) {
+                warn('emailbox', 'please enter valid email only');
+                valid = false;
+            } else {
+                warn('emailbox', '');
+                // valid = true;
+                pinfarr.push(email);
+            }
+
+            const pass = $('#passbox').val();
+            if (pass == '') {
+                warn('passbox', 'please enter your password above');
+                valid = false;
+            } else {
+                warn('passbox', '');
+                // valid = true;
+                pinfarr.push(pass);
+            }
+            const cpass = $('#cpassbox').val();
+            if (cpass == '') {
+                warn('cpassbox', 'please enter your password above');
+                valid = false;
+            } else if (cpass !== pass) {
+                warn('cpassbox', "pleasword didn't match");
+                valid = false;
+            }else {
+                warn('passbox', '');
+                // valid = true;
+                pinfarr.push(cpass);
+            }
+            // pinfarr.push(opass);
+
+            return valid;
+        };
+
+        $('#rform').submit(function (e) {
+            e.preventDefault();
+
+            $('.warn').each(function () {
+                $(this).text('');
+            });
+            if (validate()) {
+                // $('.loader').fadeIn();
+                // alert('passing');
+                $.ajax({
+                    url: 'controllers/reghandler.php',
+                    method: 'POST',
+                    dataType: 'JSON',
+                    data: {
+                        infoArray: pinfarr,
+                    },
+                    success: function (data) {
+                        // alert(data);
+                        // $('.loader').fadeOut(function () {
+                            if ('err_name' in data) {
+                                warn('namebox', data.err_name);
+                            }
+                            if ('err_uname' in data) {
+                                warn('unamebox', data.err_uname);
+                            }
+                            if ('err_email' in data) {
+                                warn('emailbox', data.err_email);
+                            }
+                            if ('err_pass' in data) {
+                                warn('passbox', data.err_pass);
+                            }
+                            if ('err_cpass' in data) {
+                                warn('cpassbox', data.err_cpass);
+                            }
+                            if ('success' in data) {
+                                if (data.success == 'true') {
+                                    throwlert(1, 'Account created Successfully');
+                                    window.location.href = './';
+                                } else if (data.success == 'false') {
+                                    throwlert(1, 'Something went wrong');
+                                }
+                            }
+                    },
+                });
+            }
+        });
+
+
         function resetForm() {
             $(".input-sec input").removeClass('focus');
+            $('.warn').each(function () {
+                $(this).text('');
+            });
         }
         $(".input-sec input").on("focus", function () {
             $(this).addClass("focus");
@@ -304,39 +236,19 @@
                 $(this).removeClass('focus');
             }
         });
+
+        function addRemoveFocus() {
+            $('.input-sec input').each(function () {
+                if ($(this).val() != '') {
+                    $(this).addClass('focus');
+                } else {
+                    $(this).removeClass('focus');
+                }
+            });
+        }
+        addRemoveFocus();
+
     </script>
-    <?php
-            if($name != "")
-            {
-                echo "<script>
-                $('#namebox').addClass('focus');
-                </script>";
-            }
-            if($uname != "")
-            {
-                echo "<script>
-                $('#unamebox').addClass('focus');
-                </script>";
-            }
-            if($email != "")
-            {
-                echo "<script>
-                $('#emailbox').addClass('focus');
-                </script>";
-            }
-            if($pass != "")
-            {
-                echo "<script>
-                $('#passbox').addClass('focus');
-                </script>";
-            }
-            if($pass != "")
-            {
-                echo "<script>
-                $('#cpassbox').addClass('focus');
-                </script>";
-            }
-        ?>
 </body>
 
 </html>

@@ -20,6 +20,11 @@
         {
             $loggedUser = $user['username'];
         }
+    }
+    else
+    {
+        header('Location:../login');
+        exit();
     }   
 
     function dbOperation($filename,$fileID,$fileSize)

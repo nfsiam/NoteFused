@@ -44,6 +44,7 @@ $('#shortenButton').click(function () {
     } else if (!validURL(longUrl)) {
         errorStyle('Invalid URL found');
     } else {
+        $('.semiloader').fadeIn();
         console.log('in ajax shorten button clicked');
         $.ajax({
             url: 'controllers/shorthandler.php',
@@ -53,24 +54,23 @@ $('#shortenButton').click(function () {
                 longUrl: longUrl,
             },
             success: function (data) {
-                // $('.result-row').css('display', 'block');
-                // alert(data);
-
-                if ('surl' in data) {
-                    if (data.surl != '') {
-                        $('.result-row').fadeIn();
-                        $('#resultUrlBox').val(data.surl);
+                $('.semiloader').fadeOut(function () {
+                    if ('surl' in data) {
+                        if (data.surl != '') {
+                            $('.result-row').fadeIn();
+                            $('#resultUrlBox').val(data.surl);
+                        }
+                    } else if ('limitError' in data) {
+                        // alert(
+                        //     'You have exceeded the limit of short urls as per your current plan. ' +
+                        //         'Upgrade your plan or delete 1 of your shortened urls'
+                        // );
+                        throwlert(
+                            0,
+                            'You have exceeded the limit of short urls as per your current plan. Upgrade your plan or delete 1 of your shortened urls'
+                        );
                     }
-                } else if ('limitError' in data) {
-                    // alert(
-                    //     'You have exceeded the limit of short urls as per your current plan. ' +
-                    //         'Upgrade your plan or delete 1 of your shortened urls'
-                    // );
-                    throwlert(
-                        0,
-                        'You have exceeded the limit of short urls as per your current plan. Upgrade your plan or delete 1 of your shortened urls'
-                    );
-                }
+                });
             },
         });
     }

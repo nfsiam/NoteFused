@@ -16,6 +16,11 @@
             $loggedUser = $user['username'];
         }
     }
+    else
+    {
+        header('Location:../login');
+        exit();
+    }
 
     function getInfo()
     {
@@ -53,7 +58,8 @@
         $query = "UPDATE profiles set name='$via[0]' , email='$via[1]' where username='$loggedUser'";
         if($passchange)
         {
-            $query = "UPDATE profiles set name='$via[0]' , email='$via[1]', pass='$via[4]' where username='$loggedUser'";
+            $pass = md5($via[4]);
+            $query = "UPDATE profiles set name='$via[0]' , email='$via[1]', pass='$pass' where username='$loggedUser'";
         }
         try
         {            
@@ -70,6 +76,8 @@
     function matchPass($opass)
     {
         global $loggedUser;
+
+        $opass = md5($opass);
 
         $query = "SELECT pass from profiles where username='$loggedUser';";
         try
@@ -98,6 +106,20 @@
         catch(Error $e)
         {
             return false;
+        }
+    }
+
+    function emailAvailable($email)
+    {
+        $query = "SELECT * from profiles where email='$email'";
+        $result = get($query);
+        if(mysqli_num_rows($result)>0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 
@@ -130,6 +152,10 @@
         if(empty($email))
         {
             $error[1] = "please enter your email above";
+        }
+        elseif(emailAvailable($email) === false)
+        {
+            $error[1] = "There is already an account with the email";
         }
         else if(!filter_var($email, FILTER_VALIDATE_EMAIL))
         {

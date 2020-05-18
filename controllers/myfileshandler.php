@@ -17,6 +17,12 @@
             $loggedUser = $user['username'];
         }
     }
+    else
+    {
+        header('Location:../login');
+        exit();
+    }
+    
     function shortDate($longDate)
     {
         return date('d/m/Y',$longDate);

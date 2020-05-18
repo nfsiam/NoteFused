@@ -108,7 +108,7 @@
                     if(empty($loggedUser))
                     {
                         //ask to login
-                        $location = dirname(__FILE__)."/../login.php";
+                        // $location = dirname(__FILE__)."/../login.php";
                         header("Location:login.php");
                         // header("Location:$location");
                     }

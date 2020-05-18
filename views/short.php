@@ -6,59 +6,19 @@
         exit();
     }
 
-    $logged = "";
-    $notlogged = "";
+
     if(isset($_SESSION['user'])) 
     {
-        $notlogged = "style='display:none'";
-        // $user = $_SESSION['user'];
-        // if(isset($user['username']))
-        // {
-        //     $loggedUser = $user['username'];
-        // }
+        $user = $_SESSION['user'];
+        if(isset($user['username']))
+        {
+            $loggedUser = $user['username'];
+        }
     }
     else
     {
-        $logged = "style='display:none'";
+        header("Location:login");
     }
-    // $userrrr = "";
-    // $guestttt = "";
-    // if(isset($_SESSION['user']))
-    // {
-    //     if(!empty($_SESSION['user']))
-    //     {
-    //         $guest = "style='display:none'";
-    //     }
-    //     else
-    //     {
-    //         $user = "style='display:none'";
-    //     }
-    // }
-    // else
-    // {
-    //     $user = "style='display:none'";
-    // }
-    // <?php
-    // session_start();
-    // require "includes/initiatenotepad.php";
-    //require "includes/indexloginvalidation.php";
-    //$guest = $user = "";
-    // if(isset($_SESSION['user']))
-    // {
-    //     if(!empty($_SESSION['user']))
-    //     {
-    //         $guest = "style='display:none'";
-    //     }
-    //     else
-    //     {
-    //         $user = "style='display:none'";
-    //     }
-    // }
-    // else
-    // {
-    //     $user = "style='display:none'";
-    // }
-
 
 ?>
 
@@ -80,6 +40,7 @@
     <link rel="stylesheet" href="views/styles/navbar.css">
     <link rel="stylesheet" href="views/styles/userdashcard.css">
     <link rel="stylesheet" href="views/styles/sidebar.css">
+    <link rel="stylesheet" href="views/styles/semiloader.css">
 
 
     <script src="views/js/jquery341.js"></script>
@@ -93,6 +54,12 @@
 
 </head>
 <body>
+    <div class="semiloader">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+        <div class="four"></div>
+    </div>
     <?php require "sidebar.php"; ?>
     <div class="holder">
         <?php require "navbar.php"; ?>

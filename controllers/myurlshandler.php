@@ -15,6 +15,12 @@
             $loggedUser = $user['username'];
         }
     }
+    else
+    {
+        header('Location:../login');
+        exit();
+    }
+    
     function sanitizer($string)
     {
         $con = getCon();
