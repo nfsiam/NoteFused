@@ -9,11 +9,9 @@
                 <li class="top-li" id="prof-li">
                     <a href="">Profile</a>
                     <ul id="u1">
-                        <!-- <li><a href="">Login</a></li> -->
                         <li><a href="settings#personalInfo">Profile Settings</a></li>
                         <li><a href="settings#plans">Plan Settings</a></li>
                         <li><a href="controllers/destroysessionmodule.php">Logout</a></li>
-                        <!-- <li><a href="">Register</a></li> -->
                     </ul>
                 </li>
                 <li class="top-li" id="note-li">
@@ -37,9 +35,6 @@
                         <li><a href="myurls">My Short URLs</a></li>
                     </ul>
                 </li>
-                <!-- <li class="top-li">
-                    <a href="contact.php">Contact</a>
-                </li> -->
             </ul>
         </div>
     </div>

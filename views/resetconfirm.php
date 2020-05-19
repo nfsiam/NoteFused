@@ -109,10 +109,7 @@
     <script>
         $('#resetform').submit(function (e) {
             e.preventDefault();
-
-            throwlert(0,"some");
-            if (/* validate() */ true) {
-                console.log(5);
+            if (/* validate() fwork */ true) {
                 $('.semiloader').fadeIn();
                 $.ajax({
                     url: 'controllers/resetconfirmhandler.php',
@@ -130,7 +127,6 @@
                             if('err_field' in data){
                                 throwlert(0,data.err_field);
                             }else if('err_code' in data){
-                                console.log(54);
                                 throwlert(0,data.err_code);
                             }else if('err_pass' in data){
                                 throwlert(0,data.err_pass);

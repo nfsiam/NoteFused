@@ -35,15 +35,15 @@ function setLimit() {
     }
 }
 function setLimitInSpans() {
-    console.log(typeof planInUDC);
+    // console.log(typeof planInUDC);
     $('.note-limit').text(notelimit);
     $('.file-limit').text(filelimit / 1024 + 'MB');
     $('.url-limit').text(urllimit);
-    console.log('pin');
+    // console.log('pin');
 }
 
 function updateStats() {
-    console.log('ooo');
+    // console.log('ooo');
     $.ajax({
         url: 'controllers/userdashcardhandler.php',
         method: 'POST',
@@ -52,7 +52,7 @@ function updateStats() {
             ustats: 'ustats',
         },
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             if (planInUDC != data.currentplan) {
                 planInUDC = data.currentplan;
                 setLimit();
@@ -72,12 +72,10 @@ function updateStats() {
                 }
                 $('.user-dash-card #noteprog').css('width', `${w}%`);
                 notecount = data.notecount;
-                console.log('mn');
             }
             if (pnotecount != data.pnotecount) {
                 $('.user-dash-card #pnotecount').text(data.pnotecount);
                 pnotecount = data.pnotecount;
-                console.log('mpn');
             }
 
             if (filecount != data.filecount) {

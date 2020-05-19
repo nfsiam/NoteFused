@@ -15,7 +15,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteFused</title>
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
     <link rel="stylesheet" href="views/styles/all.css">
     <link rel="stylesheet" href="views/styles/throwlert.css">
     <link rel="stylesheet" href="views/styles/optiontoggler.css">

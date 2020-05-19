@@ -23,10 +23,9 @@ $('#choose').change(function () {
         fileInfoAsElem += `<div>${file.name}</div>`;
     }
     totalSize = Math.ceil(totalSize / 1024);
-    console.log(totalSize);
-    console.log(fileInfo);
+    // console.log(totalSize);
+    // console.log(fileInfo);
     if (totalSize > 1024 * 10) {
-        // alert('You can not upload file more than 10MB at a time');
         throwlert(0, 'You can not upload file more than 10MB at a time');
 
         formData = null;
@@ -35,11 +34,10 @@ $('#choose').change(function () {
         return;
     }
 
-    //let fileInfoAsText = fileInfo.join(', ');
     $('.row4').html(fileInfoAsElem);
     return;
 
-    console.log(formData);
+    // console.log(formData);
 });
 
 $('.row2').on('dragover', function () {
@@ -67,10 +65,9 @@ $('.row2').on('drop', function (e) {
         fileInfoAsElem += `<div>${file.name}</div>`;
     }
     totalSize = Math.ceil(totalSize / 1024);
-    console.log(totalSize);
-    console.log(fileInfo);
+    // console.log(totalSize);
+    // console.log(fileInfo);
     if (totalSize > 1024 * 10) {
-        // alert('You can not upload file more than 10MB at a time');
         throwlert(0, 'You can not upload file more than 10MB at a time');
 
         formData = null;
@@ -79,16 +76,14 @@ $('.row2').on('drop', function (e) {
         return;
     }
 
-    //let fileInfoAsText = fileInfo.join(', ');
     $('.row4').html(fileInfoAsElem);
     return;
 
-    console.log(formData);
+    // console.log(formData);
 });
 
 $('#uploadButton').click(function () {
     if (formData == null || formData == undefined) {
-        // alert('Choose Files First');
         throwlert(0, 'Choose Files First');
 
         return;
@@ -96,19 +91,15 @@ $('#uploadButton').click(function () {
         $('#prog').show();
         if (totalFiles > 0 && totalSize <= 1024 * 10) {
             $.ajax({
-                // Your server script to process the upload
                 url: 'controllers/filehandler.php',
                 type: 'POST',
-
-                // Form data
                 data: formData,
 
                 // Tell jQuery not to process data or worry about content-type
-                // You *must* include these options!
+                // must* include
                 cache: false,
                 contentType: false,
                 processData: false,
-                /* dataType: 'JSON', */
 
                 // Custom XMLHttpRequest
                 xhr: function () {
@@ -143,7 +134,6 @@ $('#uploadButton').click(function () {
         } else {
             $('#prog').fadeOut();
 
-            // alert('You can not upload file more than 10MB at a time');
             throwlert(0, 'You can not upload file more than 10MB at a time');
 
             formData = null;

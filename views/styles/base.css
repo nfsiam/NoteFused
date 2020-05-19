@@ -13,7 +13,6 @@ html {
 
 .container {
     display: flex;
-    /* position: absolute; */
     width: 100%;
     background-color: white;
     z-index: -1;
@@ -22,7 +21,6 @@ html {
 .sidebar {
     width: 20%;
     margin-right: 20px;
-    /* display: inline-block; */
     float: left;
 }
 .sidemenu {
@@ -32,18 +30,12 @@ html {
 
 .fuse {
     background-color: rgb(255, 255, 255);
-    /* overflow-x: scroll; */
     width: 80%;
 }
 .mini-container {
-    /* position: absolute; */
     width: 100%;
     height: fit-content;
-    /* top: 40%;
-    transform: translateY(-60%); */
-    /* padding: 40px; */
     padding-top: 0;
-    /* background-color: #ffaf7b; */
 }
 
 @media only screen and (max-width: 1599px) {
@@ -81,8 +73,6 @@ html {
     }
     .button-box {
         width: 150px;
-        /* display: flex; */
-        /* justify-content: center; */
     }
     .button-box button {
         display: inline-block;
@@ -100,7 +90,6 @@ html {
         padding: 5px;
         padding-top: 20px;
         margin-top: 0px;
-        /* background-color: #ffaf7b; */
     }
 }
 @media only screen and (min-width: 1600px) {

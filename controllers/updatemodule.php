@@ -55,28 +55,6 @@
                     $jsn['success'] = 'false';
                 }
             }
-            // if($update == 'note')
-            // {
-            //     try
-            //     {
-            //         //VALIDATION REQUIRED**********************
-            //         $noteOwner = empty($loggedUser)? "guest" : $loggedUser;
-            //         $noteText =  $_POST['noteText'];
-            //         $notePrivacy = $_POST['notePrivacy'];
-            //         $xpire =  $_POST['xpire'];
-            //         $lastVisited = time();
-            //         $lastEdited = time();
-            //         $expiration = strtotime("+$xpire days", time());
-            //         $noteID = $_POST['noteID'];
-            //         $query = "UPDATE notes SET notePrivacy='$notePrivacy', noteOwner='$noteOwner', lastEdited='$lastEdited', xpire='$xpire', lastVisited = '$lastVisited', expiration ='$expiration', text='$noteText' WHERE noteID='$noteID'";
-            //         execute($query);
-            //         $jsn['success'] = 'true';
-            //     }
-            //     catch(Error $e)
-            //     {
-            //         $jsn['success'] = 'false';
-            //     }
-            // }
         }
 
         echo json_encode($jsn);

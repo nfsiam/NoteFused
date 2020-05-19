@@ -10,7 +10,6 @@
     $loggedUser = "";
     $surl = "";
     $data = array();
-    // $resarr = array();
 
     if(isset($_SESSION['user'])) 
     {
@@ -64,7 +63,6 @@
     
                 $longUrl = htmlspecialchars($_POST['longUrl']);
                 $longUrl = strpos($longUrl, 'http') !== 0 ? "http://$longUrl" : $longUrl;
-                //echo $longUrl;
                 if(filter_var($longUrl, FILTER_VALIDATE_URL))
                 {
     
@@ -78,17 +76,12 @@
     
                         //insert the new owner
                         updateOwner($loggedUser,$surl,$longUrl);
-                        /* $query = "INSERT INTO urlmap (urlOwner,surl) VALUES ('$loggedUser', '$surl')";
-                        execute($query); */
                     }
                     else
                     {
                         $surl = generateUniq('urls','surl');
                         insertUrl($surl,$longUrl);
                         updateOwner($loggedUser,$surl,$longUrl);
-                        //insert the new owner
-                        /* $query = "INSERT INTO urlmap (urlOwner,surl) VALUES ('$loggedUser', '$surl')";
-                        execute($query); */
     
                     }
                     $surl= "http://".$siteurl."/go/".$surl;

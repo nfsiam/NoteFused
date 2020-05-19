@@ -68,8 +68,7 @@
             $('#resetform').submit(function (e) {
             e.preventDefault();
 
-            // let uname  = $('#unamebox').val();
-            if (/* validate() */ true) {
+            if (/* validate() fwork*/ true) {
                 $('.semiloader').fadeIn();
                 $.ajax({
                     url: 'controllers/resethandler.php',

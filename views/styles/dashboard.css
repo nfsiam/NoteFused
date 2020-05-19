@@ -10,18 +10,13 @@
 }
 .counts .inner-row .count-card {
     background: #fff;
-    /* height: 200px; */
     margin: 20px 20px;
     border-radius: 5px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.07), 0 2px 2px rgba(0, 0, 0, 0.07),
-        0 4px 4px rgba(0, 0, 0, 0.07), 0 6px 8px rgba(0, 0, 0, 0.07),
-        0 8px 16px rgba(0, 0, 0, 0.07);
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
 
     transition: 0.3s;
     position: relative;
     color: #555;
-    /* overflow: hidden; */
 }
 
 .counts .inner-row .count-card:hover {
@@ -47,11 +42,6 @@
 .counts .inner-row .count-card .note-thumb {
     background-color: #ffaf7b;
     background-color: white;
-
-    box-shadow: 0 1px 1px rgba(215, 109, 119, 0.11),
-        0 2px 2px rgba(255, 175, 123, 0.11), 0 4px 4px rgba(255, 175, 123, 0.11),
-        0 6px 8px rgba(255, 175, 123, 0.11),
-        0 8px 16px rgba(255, 175, 123, 0.11);
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
         0 7px 10px -5px rgba(255, 175, 123, 0.4);
 }
@@ -67,11 +57,6 @@
 .counts .inner-row .count-card .file-thumb {
     background-color: #d76d77;
     background-color: white;
-
-    box-shadow: 0 1px 1px rgba(215, 109, 119, 0.11),
-        0 2px 2px rgba(215, 109, 119, 0.11), 0 4px 4px rgba(215, 109, 119, 0.11),
-        0 6px 8px rgba(215, 109, 119, 0.11),
-        0 8px 16px rgba(215, 109, 119, 0.11);
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
         0 7px 10px -5px rgba(215, 109, 119, 0.4);
 }
@@ -79,10 +64,6 @@
     background-color: #3a1c71;
     background-color: var(--vio);
     background-color: white;
-
-    box-shadow: 0 1px 1px rgba(215, 109, 119, 0.11),
-        0 2px 2px rgba(58, 28, 113, 0.11), 0 4px 4px rgba(58, 28, 113, 0.11),
-        0 6px 8px rgba(58, 28, 113, 0.11), 0 8px 16px rgba(58, 28, 113, 0.11);
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
         0 7px 10px -5px rgba(58, 28, 113, 0.4);
 }
@@ -210,8 +191,7 @@
 .file-graph .inner-file-graph .file-graph-header {
     background: linear-gradient(60deg, #ffc369, #ffa639);
     background: linear-gradient(60deg, #ffaf7b, salmon);
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
-        0 7px 10px -5px rgba(76, 175, 80, 0.4);
+
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
         0 7px 10px -5px rgba(255, 152, 0, 0.4);
 }
@@ -219,8 +199,7 @@
 .url-graph .inner-url-graph .url-graph-header {
     background: linear-gradient(60deg, #66bb6a, #43a047);
     background: linear-gradient(60deg, #26c6da, #00acc1);
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
-        0 7px 10px -5px rgba(76, 175, 80, 0.4);
+
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
         0 7px 10px -5px rgba(0, 188, 212, 0.4);
 }

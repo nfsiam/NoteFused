@@ -17,23 +17,17 @@ $('#login_form').submit(function (e) {
         everythingOk = false;
     } else {
         $('#errUname').html('');
-        everythingOk = true;
+        // everythingOk = true;
     }
     if (pass.trim() == '') {
         $('#errPass').html('password can not be empty');
         everythingOk = false;
     } else {
         $('#errPass').html('');
-        everythingOk = true;
+        // everythingOk = true;
     }
 
     if (everythingOk) {
-        // $('#errProfile').load('floatingloginvalidation.php',{
-        //     login:"submit",
-        //     uname:  uname,
-        //     pass:  pass
-        // });
-
         $.ajax({
             url: 'controllers/loginvalidationhandler.php',
             method: 'POST',
@@ -44,12 +38,9 @@ $('#login_form').submit(function (e) {
                 pass: pass,
             },
             success: function (data) {
-                //alert(response);
-
                 $('#errProfile').html(data.errProfile);
                 $('#errUname').html(data.errUname);
                 $('#errPass').html(data.errPass);
-                // console.log(data.loggdUser);
                 if ('loggedAdmin' in data) {
                     loggedAdmin = data.loggedAdmin;
                     window.location.href = 'dashboard';
@@ -67,7 +58,6 @@ $('#login_form').submit(function (e) {
         });
     }
 });
-//console.log(loggedUser);
 
 if ($('#unamebox').val() != '') {
     $(this).addClass('focus');

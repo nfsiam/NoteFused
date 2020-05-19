@@ -1,10 +1,7 @@
 <?php
     session_start();
-    // require_once dirname(__FILE__).'/../db/dbcon.php';
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
     require_once dirname(__FILE__).'/../controllers/variables.php';
-
-
 
     $loggedUser = "";
     $filename = "";
@@ -56,7 +53,6 @@
             $datestamp = time();
             $query = "INSERT INTO stat (datestamp,username,filedownload) VALUES('$datestamp','$loggedUser', '1');";
             execute($query);
-            //print_r($result);
             
 
             if(mysqli_num_rows($result) > 0)
@@ -64,9 +60,6 @@
                 $file=mysqli_fetch_assoc($result);
                 if($file['filePrivacy']==1)
                 {
-                    // echo "yes";
-                    // echo $loggedUser;
-                    // echo $file['fileOwner'];
                     if($file['fileOwner']!=$loggedUser)
                     {
                         header('Location:../controllers/destroysessionmodule.php');
@@ -228,7 +221,6 @@
 
                         echo "</div>"; //end of pagination
     }
-
 
 
 ?>

@@ -1,44 +1,32 @@
-*
-{
+* {
     margin: 0;
     padding: 0;
     text-decoration: none;
     box-sizing: border-box;
-    font-family: "IBM Plex Sans";
+    font-family: 'IBM Plex Sans';
 }
 
- html
- {
+html {
     -ms-overflow-style: -ms-autohiding-scrollbar;
-    /* overflow: hidden; */
- }
+}
 
-body
-{
-    background: -webkit-linear-gradient(90deg,#3a1c71 , #d76d77 , #ffaf7b);
-    background: linear-gradient(-90deg,#3a1c71 , #d76d77 , #ffaf7b);
-    /* transform: rotate(120deg); */
+body {
+    background: -webkit-linear-gradient(90deg, #3a1c71, #d76d77, #ffaf7b);
+    background: linear-gradient(-90deg, #3a1c71, #d76d77, #ffaf7b);
     background-size: 100% 100%;
-    /* background-repeat: no-repeat;
-    background-position: center; */
     z-index: -5;
     height: 100%;
-    
 }
 
-
-.form-wrap
-{
+.form-wrap {
     padding: 25px;
     padding-top: 5px;
-    margin:35px auto;
+    margin: 35px auto;
     width: 350px;
-    /* height: 800px; */
     background-color: white;
     position: static;
-    transform: translate(0%,0%);
+    transform: translate(0%, 0%);
     z-index: 5;
-    box-shadow: 3px 5px 10px rgba(0,0,0,0.30);
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.3);
     border: 1px solid rgb(218, 218, 218);
-
 }

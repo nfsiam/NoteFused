@@ -1,60 +1,3 @@
-/* .loader {
-    background-color: white;
-    z-index: 999;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-}
-
-.loader div {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.loader .one,
-.loader .two,
-.loader .three,
-.loader .four {
-    height: 5px;
-    width: 5px;
-    border-radius: 50%;
-    background-color: transparent;
-    border: 4px dotted orange;
-    animation: loader 1.5s linear infinite;
-}
-.loader .four {
-    animation-delay: 0s;
-}
-.loader .three {
-    animation-delay: 0.5s;
-}
-.loader .two {
-    animation-delay: 1s;
-}
-.loader .one {
-    animation-delay: 1.5s;
-}
-
-@keyframes loader {
-    0% {
-        height: 5px;
-        width: 5px;
-        opacity: 0;
-    }
-    50% {
-        height: 75px;
-        width: 75px;
-        opacity: 1;
-    }
-    100% {
-        height: 150px;
-        width: 150px;
-        opacity: 0;
-    }
-}
- */
-
 .loader {
     background-color: white;
     z-index: 999;
@@ -62,31 +5,6 @@
     width: 100%;
     height: 100%;
 }
-
-/* .loader .one {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 150px;
-    width: 150px;
-    background-color: transparent;
-    transform: translate(-50%, -50%) rotate(0deg);
-    border-left: 15px solid orange;
-    border-top: 15px solid yellowgreen;
-    border-right: 15px solid lightsalmon;
-    border-bottom: 15px solid lightcoral;
-    border-radius: 50%;
-    animation: a 1s linear infinite;
-}
-
-@keyframes a {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-} */
 
 .loader {
     background-color: white;

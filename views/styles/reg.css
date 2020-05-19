@@ -8,20 +8,12 @@
 
 html {
     -ms-overflow-style: -ms-autohiding-scrollbar;
-    /* overflow: hidden; */
 }
 
 body {
-    /* background: -webkit-linear-gradient(-90deg, #3a1c71, #d76d77, #ffffff); */
     background: -webkit-linear-gradient(90deg, #3a1c71, #d76d77, #ffaf7b);
     background: linear-gradient(-90deg, #3a1c71, #d76d77, #ffaf7b);
-    /* background: linear-gradient(90deg, /* mantle  #24c6dc,#514a9d);
-    background: linear-gradient(90deg, /* sexy blue  #2193b0,#6dd5ed); */
-
-    /* transform: rotate(120deg); */
     background-size: 100%;
-    /* background-repeat: no-repeat;*/
-    /* background-position: right; */
     z-index: -5;
     height: 100%;
 }
@@ -31,7 +23,6 @@ body {
     padding-top: 5px;
     margin: 35px auto;
     width: 350px;
-    /* height: 800px; */
     background-color: white;
     position: static;
     transform: translate(0%, 0%);
@@ -43,7 +34,6 @@ body {
 
 @media only screen and (max-height: 800px) {
     .form-wrap {
-        /* position: static; */
         padding: 25px;
         width: 350px;
         background-color: white;

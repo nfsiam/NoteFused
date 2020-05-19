@@ -8,8 +8,6 @@
     $err_profile = "";
     $data = array();
 
-
-
     function sanitizer($string)
     {
         $con = getCon();
@@ -59,7 +57,6 @@
                     $_SESSION['admin'] = $res;
                     $loggedAdmin = $res['username'];
                     $data['loggedAdmin'] = $loggedAdmin;
-
                 }
                 else
                 {
@@ -80,8 +77,6 @@
         $data['errProfile'] = $err_profile;
     
         echo json_encode($data);
-
-
     }
 
 ?>

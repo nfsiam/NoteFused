@@ -1,6 +1,5 @@
 <?php
     session_start();
-    // require "db/dbcon.php";
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
 
     //preventing access from view route
@@ -59,7 +58,6 @@
         
         $newText = "";
         $newText = wordwrap($text, 6, "\n", true);
-        echo "<script>console.log('$text');</script>";
         return $text;
 
     }
@@ -74,7 +72,6 @@
 
         $query = "SELECT * FROM notes WHERE noteOwner='$loggedUser'";
         $result=get($query);
-        //print_r($result);
         
         
 
@@ -84,12 +81,6 @@
             $notecounts++;
         }
 
-        // foreach($resarr as $res)
-        // {
-        //     echo $res['text'];
-        //     echo "<br>";
-        // }
-        //print_r($resarr);
     }
 
 
@@ -155,11 +146,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>NoteFused</title>
-        <link
-            rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"
-        />
-        <!-- <link rel="stylesheet" href="styles/main.css"> -->
+
         <link rel="stylesheet" href="views/styles/all.css">
         <link rel="stylesheet" href="views/styles/throwlert.css">
         <link rel="stylesheet" href="views/styles/side2.css" />
@@ -265,12 +252,9 @@
                             <div class="row-plates">
                                 <table>
                                     <?php
-                                    // for($i=0;$i<50;$i++)
-                                    // {
                                     foreach($resarr as $res)
                                     {
                                         $noteid = $res['noteID'];
-                                        // $slicedID = sliceID($noteid);
                                         $lastVisit = $res['lastVisited'];
                                         $lastVisit = shortDate($lastVisit);     
                                         $lastEdit = $res['lastEdited'];
@@ -391,42 +375,12 @@
         </div>
         
         <script>
-            // function hideChild() {
-            //     document.getElementById('drp1').display = 'none';
-            // }
-
-            // function goToReg() {
-            //     window.location.href = 'reg.php';
-            // }
-            // function showChild(ele) {
-            //     var id = ele.id;
-            //     if (id == 'p1') {
-            //         document.getElementById('drp1').style.display = 'block';
-            //         document.getElementById('drp1').focus();
-            //         document.getElementById('drp2').style.display = 'none';
-            //         document.getElementById('drp3').style.display = 'none';
-            //     }
-            //     if (id == 'p2') {
-            //         document.getElementById('drp2').style.display = 'block';
-            //         document.getElementById('drp2').focus();
-            //         document.getElementById('drp1').style.display = 'none';
-            //         document.getElementById('drp3').style.display = 'none';
-            //     }
-            //     if (id == 'p3') {
-            //         document.getElementById('drp3').style.display = 'block';
-            //         document.getElementById('drp3').focus();
-            //         document.getElementById('drp1').style.display = 'none';
-            //         document.getElementById('drp2').style.display = 'none';
-            //     }
-            // }
 
             $('.row-plates').on('click', '#delete a', function (e) {
                 e.preventDefault();
                 $('.semiloader').fadeIn();
                 let that = this;
-                
-                //return;
-                console.log($(this).attr('id'));
+                // console.log($(this).attr('id'));
                 $.ajax({
 
                     url:'controllers/deletemodule.php',
@@ -444,7 +398,7 @@
                                 let tn = parseInt(ttn);
                                 tn = tn-1;
                                 $('#totalNotes').text(tn);
-                                console.log('done');
+                                // console.log('done');
                             }
                         });
                     }

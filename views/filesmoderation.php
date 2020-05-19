@@ -1,6 +1,5 @@
 <?php
     session_start();
-    // require "db/dbcon.php";
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
 
     //preventing access from view route
@@ -114,8 +113,6 @@
                         <li><a href="urlsmoderation">URL Moderation</a></li>
                         <li><a href="controllers/destroysessionmodule.php">Logout</a></li>
                     </ul>
-                    <!-- <div class="side-contents">
-                    </div> -->
                 </div>
             </section>
             <section class="ad-container">
@@ -143,23 +140,6 @@
 
                             $size = number_format((float)$size, 2, '.', '');
                             $size = $size.' MB';
-
-                            // echo "<div class='note-plate'>
-                            //             <div class='row1'>
-                            //                 <div>Last Visited : $lastVisit</div> <div>Last Edited : $lastEdit</div>
-                            //             </div>
-                            //             <div class='row2'>
-                            //                 <div class='username'>$username</div>
-                            //                 <div class='noteID'><a href='./$noteid'>$noteid</a></div>
-                            //             </div>
-                            //             <div class='row3'>
-                            //                 <div class='expire'>Expiration: $expiration</div>
-                            //                 <div class='action-button-holder'>
-                            //                     <a href='' class='delete-button' data-noteid='$noteid'>Delete</a>
-                            //                 </div>
-                            //             </div>
-                            //         </div>";
-
                                    echo "<div class='note-plate'>
                                             <div class='row1'>
                                                 <div class='noteID'><a href='./$fileid'>$filename</a></div>
@@ -225,7 +205,6 @@
         </div>
         <script>
             $('.sidebar-toggler').click(function () {
-                // alert('lol');
                 $('.ad-sidebar').toggleClass('ad-sidebar-active');
             });
             $('.ad-side a').eq(3).css('background-color', '#555');
@@ -244,7 +223,6 @@
             // });
 
             $('.note-plate-row').on('click', '.delete-button', function (e) {
-                // alert('click!');
                 e.preventDefault();
                 let that = $(this);
                 $.ajax({

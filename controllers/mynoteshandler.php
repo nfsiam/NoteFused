@@ -91,14 +91,6 @@
         echo $txt;
     }
 
-
-
-
-
-
-
-
-
     if(isset($_POST['searchKeyword']))
     {
         $results_per_page = 10;
@@ -164,7 +156,6 @@
         foreach($resarr as $res)
         {
             $noteid = $res['noteID'];
-            // $slicedID = sliceID($noteid);
             $lastVisit = $res['lastVisited'];
             $lastVisit = shortDate($lastVisit);     
             $lastEdit = $res['lastEdited'];
@@ -259,17 +250,5 @@
 
             echo "</div>"; //end of pagination
     }
-                                
-
-
-
-
-
-
-
-
-
-
-
-    
+                                    
 ?>

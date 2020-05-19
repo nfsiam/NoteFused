@@ -97,8 +97,6 @@
                         <li><a href="urlsmoderation">URL Moderation</a></li>
                         <li><a href="controllers/destroysessionmodule.php">Logout</a></li>
                     </ul>
-                    <!-- <div class="side-contents">
-                    </div> -->
                 </div>
             </section>
             <section class="ad-container">
@@ -181,7 +179,6 @@
         </div>
         <script>
             $('.sidebar-toggler').click(function () {
-                // alert('lol');
                 $('.ad-sidebar').toggleClass('ad-sidebar-active');
             });
             $('.ad-side a').eq(1).css('background-color', '#555');
@@ -198,51 +195,6 @@
                 });
             });
 
-            // $('.approve-button').click(function(){
-            //     // alert($(this).data('username'));
-            //     let that = $(this);
-            //     $.ajax({
-            //         url:'handlers/planmoderationhandler.php',
-            //         method:'POST',
-            //         dataType:'JSON',
-            //         data:{
-            //             action: 1,
-            //             username:$(this).data('username'),
-            //         },
-            //         success:function(data){
-            //             if('success' in data){
-            //                 alert(data.success);
-            //                 that.closest('.user-plate').fadeOut();
-            //             }
-            //             else{
-            //                 alert('Something went wrong!');
-            //             }
-            //         },
-            //     });
-            // });
-            // $('.decline-button').click(function(){
-            //     // alert($(this).data('username'));
-            //     let that = $(this);
-            //     $.ajax({
-            //         url:'handlers/planmoderationhandler.php',
-            //         method:'POST',
-            //         dataType:'JSON',
-            //         data:{
-            //             action: 2,
-            //             username:$(this).data('username'),
-            //         },
-            //         success:function(data){
-            //             if('success' in data){
-            //                 alert(data.success);
-            //                 that.closest('.user-plate').fadeOut();
-            //             }
-            //             else{
-            //                 alert('Something went wrong!');
-            //             }
-            //         },
-            //     });
-            // });
-
             $('.user-plate-row').on('click', '.approve-button', function (){
                 let that = $(this);
                 $.ajax({
@@ -255,12 +207,10 @@
                     },
                     success:function(data){
                         if('success' in data){
-                            // alert(data.success);
                             throwlert(1,data.success);
                             that.closest('.user-plate').fadeOut();
                         }
                         else{
-                            // alert('Something went wrong!');
                             throwlert(0,'Something went wrong!');
 
                         }
@@ -268,7 +218,6 @@
                 });
             });
             $('.user-plate-row').on('click', '.decline-button', function (){
-                // alert('click!');
                 let that = $(this);
                 $.ajax({
                     url:'controllers/planmoderationhandler.php',
@@ -280,12 +229,10 @@
                     },
                     success:function(data){
                         if('success' in data){
-                            // alert(data.success);
                             throwlert(1,data.success);
                             that.closest('.user-plate').fadeOut();
                         }
                         else{
-                            // alert('Something went wrong!');
                             throwlert(0,'Something went wrong!');
                         }
                     },

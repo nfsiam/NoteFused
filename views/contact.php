@@ -134,11 +134,7 @@
                 $('#namebox').addClass('focus');
                 </script>";
             }
-            /* else if(isset($_POST['submit']) and $name == "") //this is a way to show error message in placeholder
-            {
-                echo "<script>$('#namebox').addClass('redfocus');</script>";
-            } */
-            
+
             if($email != "")
             {
                 echo "<script>

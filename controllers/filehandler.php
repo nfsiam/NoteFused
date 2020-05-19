@@ -1,9 +1,6 @@
 <?php
     session_start();
-    
-    // require_once dirname(__FILE__).'/../db/dbcon.php';
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
-
     require_once dirname(__FILE__).'/uniqstringgeneratormodule.php';
     require_once dirname(__FILE__).'/filenamesanitizermodule.php';
     require_once dirname(__FILE__).'/planmodule.php';
@@ -30,13 +27,8 @@
     function dbOperation($filename,$fileID,$fileSize)
     {
         global $loggedUser;
-        // $uploadDate = date("Y-m-d H:i:s");
         $uploadDate = time();
-        // $xpire = 3;
-        // $expiration = Date('Y-m-d H:i:s', strtotime("+$xpire days"));
         $privacy = 0;
-        // echo $loggedUser;
-
 
         if(empty($loggedUser))
         {
@@ -46,10 +38,6 @@
         {
             //users preferred template
         }
-
-        // $query = "INSERT INTO files (fileID,fileOwner, filePrivacy,fName,uploadDate,filesize)
-        // VALUES ('$fileID','$loggedUser', '$privacy', '$filename','$uploadDate','$fileSize')";
-        // execute($query);
 
         $query1 = "INSERT INTO files (fileID,fileOwner, filePrivacy,fName,uploadDate,filesize)
           VALUES('$fileID','$loggedUser', '$privacy', '$filename','$uploadDate','$fileSize');";
@@ -72,8 +60,6 @@
     
 
     $count = count($_FILES['file']['name']);
-    // $data = array();
-    // $filesize = 0;
     $fileNames = array();
     $fileSizeArray = array();
     $noProb = true; 
@@ -89,10 +75,6 @@
         
         $fileSizeArray[] = ceil($fs/1024);
         
-        
-        // $filesize += $_FILES['file']['size'][$i];
-        // echo "alert('$filesize')";
-
         $fsinKB += ceil($fs/1024);
 
         $usedSpace = getFileSize();
@@ -116,7 +98,6 @@
 
         if($fsinKB > 102410)
         {
-            //echo ceil($filesize/1024);
             $noProb =false;
             $errMsg = 'You can not upload more than 10MB at a time'; 
             break;
@@ -157,28 +138,22 @@
                 else
                 {
                     //db operation error
-                    // echo "<script>alert('Something Went wrong');</script>";
                     echo "<script>throwlert(0, 'Something Went wrong');</script>";
                 }
                 
             }
             catch(Exception $e)
             {
-                // echo "<script>alert('Something Went wrong');</script>";
                 echo "<script>throwlert(0, 'Something Went wrong');</script>";
-
             }
         }
         echo $output;
     }
     elseif($noProb == false)
     {
-        // echo "<script type='application/javascript'>  alert('$errMsg'); </script>";
         ?>
         <script>
-            // alert("<?php echo $errMsg; ?>");
             throwlert(0, '<?php echo $errMsg; ?>');
-
         </script>
         <?php
     }

@@ -13,7 +13,6 @@ $('.result-row-plate-container').on('click', '.col5 a', function (e) {
     temp.val(urlForClip).select();
     document.execCommand('copy');
     temp.remove();
-    // alert('Url copied');
     throwlert(1, 'URL copied');
 });
 
@@ -22,7 +21,6 @@ $('.result-row-plate-container').on('click', '.col7 a', function (e) {
     e.preventDefault();
     $('.semiloader').fadeIn();
     let that = this;
-    console.log($(this).attr('id'));
     $.ajax({
         url: 'controllers/deletemodule.php',
         method: 'POST',
@@ -41,7 +39,7 @@ $('.result-row-plate-container').on('click', '.col7 a', function (e) {
     });
 });
 
-//sorting row-plates
+//sorting row-plates ////this code is not used
 $('#sortSel').on('change', function () {
     let miniContainer = $('.mini-container');
     if (this.value == 'bydate') {
@@ -70,18 +68,16 @@ $('#sortSel').on('change', function () {
     }
 });
 
-//radio
-
+////radio
 $('.result-row-plate-container').on('change', '.col3-inner input', function (
     e
 ) {
     let privacy;
     let oldprivacy = this.value == 0 ? 1 : 0;
     let that = this;
-    // console.log(that);
 
     let fileID = $(this).parents('.row-plate').attr('id');
-    console.log(fileID);
+    // console.log(fileID);
 
     if (this.value == 0) {
         privacy = 0;
@@ -98,17 +94,10 @@ $('.result-row-plate-container').on('change', '.col3-inner input', function (
             fileID: fileID,
         },
         success: function (data) {
-            //alert(data);
             if (data.success == 'false') {
-                // console.log(data);
                 $(`#${fileID}`)
                     .find(`input:radio[value='${oldprivacy}']`)
                     .prop('checked', true);
-                // console.log(
-                //     $(`#${fileID}`)
-                //         .find(`input:radio[value='${oldprivacy}']`)
-                //         .get(0)
-                // );
             }
         },
     });

@@ -110,8 +110,6 @@
             Ignore if you haven't requested this code
         </div>
     </body>";
-
-        // $mail->msgHTML(file_get_contents('changepassword.html'));
         
         if (!$mail->send()) {
             return false;
@@ -216,14 +214,12 @@
             }
             else
             {
-                // echo "<script> throwlert(0,'No records found associated with the username and email'); </script>";
                 $data['error_record'] = "No records found associated with the username and email";
             }
 
         }
         else
         {
-            // echo "<script> throwlert(0,'Something went wrong!'); </script>";
             $data['error'] = "Something went wrong";
         }
 

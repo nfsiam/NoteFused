@@ -42,7 +42,6 @@
 
     border: 2px solid #ffaf7b;
     border-right: none;
-    /* border-radius: 10px; */
     padding: 8px 5px;
     font-size: 1.2em;
     color: #333;
@@ -86,12 +85,9 @@
     transition: 0.5s;
     color: #fff;
     font-size: 1.5em;
-    /* margin: 5px; */
     cursor: pointer;
     padding: 8px 20px;
     text-transform: uppercase;
-    /* border-top-right-radius: 8px; */
-    /* border-bottom-right-radius: 8px; */
 }
 .button-box button:hover {
     background-position: right;
@@ -102,13 +98,6 @@
 .copy-button-box {
     width: 60px;
 }
-
-/* @media only screen and (min-width: 1200px) {
-    .holder {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-} */
 
 @media only screen and (max-width: 800px) {
     #exampleSpan {
@@ -122,8 +111,6 @@
     }
     .button-box {
         width: 150px;
-        /* display: flex; */
-        /* justify-content: center; */
     }
     .button-box button {
         display: inline-block;

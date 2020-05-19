@@ -5,9 +5,6 @@ let resultUrlBox = document.getElementById('resultUrlBox');
 function autoBlur() {
     resultUrlBox.blur();
 }
-// resultUrlBox.addEventListener('focus', () => {
-//     resultUrlBox.blur();
-// });
 
 function validURL(str) {
     var pattern = new RegExp(
@@ -26,7 +23,7 @@ function errorStyle(msg) {
     urlBox.val('');
     urlBox.attr('placeholder', msg);
     urlBox.addClass('error-class');
-    console.log(urlBox.hasClass('error-class'));
+    // console.log(urlBox.hasClass('error-class'));
 }
 
 urlBox.bind('change keyup input', function () {
@@ -45,7 +42,6 @@ $('#shortenButton').click(function () {
         errorStyle('Invalid URL found');
     } else {
         $('.semiloader').fadeIn();
-        console.log('in ajax shorten button clicked');
         $.ajax({
             url: 'controllers/shorthandler.php',
             method: 'POST',
@@ -61,10 +57,6 @@ $('#shortenButton').click(function () {
                             $('#resultUrlBox').val(data.surl);
                         }
                     } else if ('limitError' in data) {
-                        // alert(
-                        //     'You have exceeded the limit of short urls as per your current plan. ' +
-                        //         'Upgrade your plan or delete 1 of your shortened urls'
-                        // );
                         throwlert(
                             0,
                             'You have exceeded the limit of short urls as per your current plan. Upgrade your plan or delete 1 of your shortened urls'
@@ -76,11 +68,11 @@ $('#shortenButton').click(function () {
     }
 });
 
-let copyText = () => {
-    document.getElementById('resultUrlBox').select();
-    let z = document.execCommand('copy');
-    console.log(z);
-};
+// let copyText = () => {
+//     document.getElementById('resultUrlBox').select();
+//     let z = document.execCommand('copy');
+//     // console.log(z);
+// };
 
 $('#copyButton').click(function () {
     let resUrl = $('#resultUrlBox').get(0);

@@ -13,7 +13,6 @@ $('.result-row-plate-container').on('click', '.col4 a', function (e) {
     temp.val(urlForClip).select();
     document.execCommand('copy');
     temp.remove();
-    // alert('Url copied');
     throwlert(1, 'URL copied');
 });
 
@@ -22,7 +21,7 @@ $('.result-row-plate-container').on('click', '.col5 a', function (e) {
     e.preventDefault();
     $('.semiloader').fadeIn();
     let that = this;
-    console.log($(this).attr('id'));
+    // console.log($(this).attr('id'));
     $.ajax({
         url: 'controllers/deletemodule.php',
         method: 'POST',

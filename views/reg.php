@@ -1,6 +1,5 @@
 <?php
     session_start();
-    // require "db/dbcon.php";
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
 
     //preventing access from view route
@@ -115,7 +114,6 @@
                 valid = false;
             } else {
                 warn('namebox', '');
-                // valid = true;
                 pinfarr.push(name);
             }
 
@@ -129,7 +127,6 @@
                 valid = false;
             } else {
                 warn('unamebox', '');
-                // valid = true;
                 pinfarr.push(uname);
             }
 
@@ -144,7 +141,6 @@
                 valid = false;
             } else {
                 warn('emailbox', '');
-                // valid = true;
                 pinfarr.push(email);
             }
 
@@ -154,7 +150,6 @@
                 valid = false;
             } else {
                 warn('passbox', '');
-                // valid = true;
                 pinfarr.push(pass);
             }
             const cpass = $('#cpassbox').val();
@@ -166,10 +161,8 @@
                 valid = false;
             }else {
                 warn('passbox', '');
-                // valid = true;
                 pinfarr.push(cpass);
             }
-            // pinfarr.push(opass);
 
             return valid;
         };
@@ -181,8 +174,6 @@
                 $(this).text('');
             });
             if (validate()) {
-                // $('.loader').fadeIn();
-                // alert('passing');
                 $.ajax({
                     url: 'controllers/reghandler.php',
                     method: 'POST',
@@ -191,8 +182,6 @@
                         infoArray: pinfarr,
                     },
                     success: function (data) {
-                        // alert(data);
-                        // $('.loader').fadeOut(function () {
                             if ('err_name' in data) {
                                 warn('namebox', data.err_name);
                             }

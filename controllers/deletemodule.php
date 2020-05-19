@@ -1,9 +1,6 @@
 <?php
     session_start();
-    // require_once dirname(__FILE__).'/../db/dbcon.php';
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
-
-
 
     $loggedUser = "";
     if(isset($_SESSION['user'])) 
@@ -70,12 +67,10 @@
                     execute($query);
                     //fwork
                     
-                    // if(file_exists("upload/$fileID"))
                     if(file_exists(dirname(__FILE__).'/../models/upload/'.$fileID))
                     {
                         unlink(dirname(__FILE__).'/../models/upload/'.$fileID); //deleting file from server
                     }
-                    //execute($query); //removing record from database
                     //stat update
                     $datestamp = time();
                     $query = "INSERT INTO stat (datestamp,username,filedelete) VALUES('$datestamp','$loggedUser', '1');";

@@ -13,7 +13,7 @@
     $privacypriv = "";
     $exp = array("","","","");
     $xpire = 3;
-    //date_default_timezone_set('UTC');
+
     if(isset($_SESSION['user'])) 
     {
         $user = $_SESSION['user'];
@@ -29,10 +29,7 @@
         
         $xpire = $note['xpire'];
 
-        // $lastVisited = date("Y-m-d H:i:s");
         $lastVisited = time();
-
-        // $expiration = Date('Y-m-d H:i:s', strtotime("+$xpire days"));
 
         $expiration = strtotime("+$xpire days", time());
 
@@ -76,11 +73,7 @@
     {
         if(empty($_GET['id']))
         {
-            //we wll generate auto url for id
-            // $noteID = generateURL();
             $noteID = generateUniq('notes','noteID',6);
-            // $location = dirname(__FILE__)."/../$noteID";
-            // header("Location:$location");
             header("Location:./$noteID");
         }
         else
@@ -108,9 +101,7 @@
                     if(empty($loggedUser))
                     {
                         //ask to login
-                        // $location = dirname(__FILE__)."/../login.php";
                         header("Location:login.php");
-                        // header("Location:$location");
                     }
                     else
                     {
@@ -121,10 +112,7 @@
                         else
                         {
                             session_destroy();
-                            // header("Location:./");
-                            // $location = dirname(__FILE__)."/../login.php";
                             header("Location:login.php");
-                            // header("Location:$location");
                         }
                     }
                 }
@@ -132,15 +120,10 @@
             else
             {
                 //create new note against the id
-                // $lastEdited = date("Y-m-d H:i:s");
 
                 $lastEdited = time();
 
-                // $lastVisited = date("Y-m-d H:i:s");
-
                 $lastVisited = time();
-
-                // $expiration = Date('Y-m-d H:i:s', strtotime("+$xpire days"));
 
                 $expiration = strtotime("+$xpire days", time());
 
@@ -154,7 +137,6 @@
                 {
                     //users preferred template
                     $xpire = 3650;
-                    // $expiration = Date('Y-m-d H:i:s', strtotime("+$xpire days"));
 
                     $expiration = strtotime("+$xpire days", time());
 

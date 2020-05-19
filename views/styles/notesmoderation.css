@@ -52,18 +52,12 @@
     padding: 10px 0;
 }
 
-.note-plate div {
-    /* margin: 5px 0px; */
-}
-
 .row1 {
     display: flex;
-    /* align-items: center; */
     align-items: flex-start;
     flex-direction: column;
     margin: 5px 0px;
     margin-bottom: 10px;
-    /* justify-content: space-between; */
 }
 .noteID {
     color: #2e6e31;
@@ -90,7 +84,6 @@
 }
 .row2 {
     display: flex;
-    /* justify-content: space-between; */
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
@@ -144,22 +137,4 @@
     .mini-ad-container {
         width: calc(100% - 20px);
     }
-    /* .row3 {
-        position: static;
-        display: block;
-    }
-    .summary {
-        position: static;
-    }
-    .action-buttons-wrapper {
-        margin-top: 10px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        position: static;
-    }
-    .action-buttons-holder {
-        position: static;
-        bottom: auto;
-    } */
 }

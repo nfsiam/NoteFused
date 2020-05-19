@@ -1,7 +1,5 @@
 <?php
     session_start();
-    // require "includes/initiatenotepad.php";
-    //require "includes/indexloginvalidation.php";
 
     //preventing access from view route
     if (strpos($_SERVER['REQUEST_URI'], '/views/') !== false) {
@@ -55,11 +53,6 @@
 <body>
     <?php require "sidebar.php"; ?>
     <div class="holder">
-        <!-- <div class="navbar">
-            <div class="headings">
-                <a href="./">NoteFused</a>
-            </div>
-        </div> -->
         <?php require "navbar.php"; ?>
 
         <div class="container">
@@ -123,35 +116,6 @@
                 </div>
     
             </div>
-        </div>
-            
-            
-        </div>
-        <div id="disableDiv"></div>
-    
-        <div class="loginform" id="loginForm">
-            <button id="close" onclick="closeForm()">x</button>
-            <form action="" id="login_form" method="post">
-                <h1 class="form-heading">Login</h1>
-                <div class="warn" id="errProfile"><?php //echo $err_profile; ?></div>
-                <div class="input-sec">
-                    <input type="text" name="uname" id="unamebox" value="<?php //echo $uname; ?>">
-                    <span data-placeholder="username" ></span>
-                </div>
-                <div class="warn" id="errUname"><?php //echo $err_uname; ?></div>
-                <div class="input-sec">
-                    <input type="password" name="pass" id="passbox" value="<?php //echo $pass;?>">
-                    <span data-placeholder="password"></span>
-                </div>
-                <div class="warn" id="errPass"><?php //echo $err_pass; ?></div>
-                <div class="button-holder">
-                    <input type="submit" value="Login" class="subBtn" name="login" >
-                </div>
-                <div class="bottomText">
-                    Don't have an account? <a href="reg.php">Register Now</a>
-                </div>
-    
-            </form>
         </div>
     </div>
     <div class="throwlert">

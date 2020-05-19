@@ -8,11 +8,6 @@
     background-color: rgba(0, 0, 0, 0);
     pointer-events: none;
     transition: 0.3s linear;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    /* background: #fff; */
-    /* opacity: 0.5; */
 }
 .throwlert-active {
     background-color: rgba(0, 0, 0, 0.7);
@@ -60,7 +55,6 @@
     font-size: 1.2rem;
     font-weight: lighter;
     color: #999;
-    /* user-select: none; */
     cursor: pointer;
 }
 .alert-type {

@@ -17,14 +17,14 @@ $('#login_form').submit(function (e) {
         everythingOk = false;
     } else {
         $('#errUname').html('');
-        everythingOk = true;
+        // everythingOk = true;
     }
     if (pass.trim() == '') {
         $('#errPass').html('password can not be empty');
         everythingOk = false;
     } else {
         $('#errPass').html('');
-        everythingOk = true;
+        // everythingOk = true;
     }
 
     if (everythingOk) {
@@ -41,7 +41,6 @@ $('#login_form').submit(function (e) {
                 $('#errProfile').html(data.errProfile);
                 $('#errUname').html(data.errUname);
                 $('#errPass').html(data.errPass);
-                // console.log(data.loggdUser);
                 if ('loggedAdmin' in data) {
                     loggedAdmin = data.loggedAdmin;
                     window.location.href = 'dashboard';
@@ -49,15 +48,10 @@ $('#login_form').submit(function (e) {
                     loggedUser = data.loggedUser;
                     window.location.href = './';
                 }
-                // if (data.loggedUser != undefined) {
-                //     loggedUser = data.loggedUser;
-                //     window.location.href = './';
-                // }
             },
         });
     }
 });
-// console.log(loggedUser);
 
 if ($('#unamebox').val() != '') {
     $(this).addClass('focus');

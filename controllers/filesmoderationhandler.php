@@ -1,5 +1,11 @@
 <?php
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
+
+    if(!isset($_SESSION['admin']))
+    {
+        exit();
+    }
+
     function sanitizer($string)
     {
         $con = getCon();
@@ -24,7 +30,6 @@
                 $query = "DELETE from files where fileID='$fileid';";
                 execute($query);
                 //fwork
-                // if(file_exists("upload/$fileID"))
                 if(file_exists(dirname(__FILE__).'/../models/upload/'.$fileid))
                 {
                     unlink(dirname(__FILE__).'/../models/upload/'.$fileid); //deleting file from server

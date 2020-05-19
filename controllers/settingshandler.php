@@ -49,9 +49,7 @@
     }
 
 
-    //update personal info
-
-
+    //// update personal info
     function updatePersonalInfo($via,$passchange = false)
     {
         global $loggedUser;
@@ -142,7 +140,6 @@
             $infoArray[$i] = mysqli_real_escape_string($con, trim(htmlspecialchars($irray[$i])));
         }
         $error = array();
-        //$valid = true;
         $name = preg_replace('/\s\s+/', ' ', $infoArray[0]);
         if(empty($name))
         {
@@ -219,7 +216,6 @@
             }
 
         }
-        //print_r($error);
         $data['errors'] = $error;
         if(count($error)>0)
         {
@@ -242,7 +238,6 @@
             if(count($infoArray)==4)
             {
                 //sanitize, validate, update
-                //$data['errName'] = "name can not be empty";
                 $validatedInfoArray = validate($infoArray,$data);
                 if(is_array($validatedInfoArray))
                 {
@@ -361,7 +356,6 @@
         if($res!== false && $res!== 'no' && is_array($res))
         {
             $cpinfo['dp'] = $res['plan'];
-            // $cpinfo['reqDate'] = $res['reqDate'];
             $requts =  $res['reqDate'];
             $unlockuts = $requts + 604800;
             $cpinfo['unlockDate'] = date('d/m/Y h:i:s a',$unlockuts);

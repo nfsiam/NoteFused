@@ -84,9 +84,7 @@
                 $(this).removeClass('focus');
             }
         });
-        
-        /* $("#passbox").addClass('focus'); */
-        
+                
     </script>
 </body>
 

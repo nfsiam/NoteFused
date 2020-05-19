@@ -20,10 +20,8 @@ html {
     padding-top: 5px;
     position: absolute;
     display: none;
-    /* max-height: 400px; */
     max-width: 350px;
     min-width: 350px;
-    /* min-height: 500px; */
     background-color: white;
     top: 50%;
     left: 50%;

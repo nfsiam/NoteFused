@@ -1,6 +1,5 @@
 <?php
     session_start();
-    // require "db/dbcon.php";
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
 
     //preventing access from view route
@@ -114,8 +113,6 @@
                         <li><a href="urlsmoderation">URL Moderation</a></li>
                         <li><a href="controllers/destroysessionmodule.php">Logout</a></li>
                     </ul>
-                    <!-- <div class="side-contents">
-                    </div> -->
                 </div>
             </section>
             <section class="ad-container">
@@ -141,22 +138,6 @@
 
                             $expiration = $res['expiration'];
                             $expiration = shortDate($expiration);
-
-                            // echo "<div class='note-plate'>
-                            //             <div class='row1'>
-                            //                 <div>Last Visited : $lastVisit</div> <div>Last Edited : $lastEdit</div>
-                            //             </div>
-                            //             <div class='row2'>
-                            //                 <div class='username'>$username</div>
-                            //                 <div class='noteID'><a href='./$noteid'>$noteid</a></div>
-                            //             </div>
-                            //             <div class='row3'>
-                            //                 <div class='expire'>Expiration: $expiration</div>
-                            //                 <div class='action-button-holder'>
-                            //                     <a href='' class='delete-button' data-noteid='$noteid'>Delete</a>
-                            //                 </div>
-                            //             </div>
-                            //         </div>";
 
                                    echo "<div class='note-plate'>
                                             <div class='row1'>
@@ -223,26 +204,11 @@
         </div>
         <script>
             $('.sidebar-toggler').click(function () {
-                // alert('lol');
                 $('.ad-sidebar').toggleClass('ad-sidebar-active');
             });
             $('.ad-side a').eq(2).css('background-color', '#555');
 
-            // $('.search-row input').keyup(function () {
-            //     $.ajax({
-            //         url: 'controllers/planmoderationhandler.php',
-            //         method: 'POST',
-            //         data: {
-            //             searchByUser: $('.search-row input').val(),
-            //         },
-            //         success: function (data) {
-            //             $('.user-plate-row').html(data);
-            //         },
-            //     });
-            // });
-
             $('.note-plate-row').on('click', '.delete-button', function (e) {
-                // alert('click!');
                 e.preventDefault();
                 let that = $(this);
                 $.ajax({

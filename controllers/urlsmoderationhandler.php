@@ -1,5 +1,11 @@
 <?php
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
+
+    if(!isset($_SESSION['admin']))
+    {
+        exit();
+    }
+
     function sanitizer($string)
     {
         $con = getCon();

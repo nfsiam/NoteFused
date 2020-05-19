@@ -37,7 +37,6 @@ $('#passchange').on('change', function () {
 });
 
 function reloadPersonal() {
-    // $('.loader').fadeIn();
     $.ajax({
         url: 'controllers/settingshandler.php',
         method: 'POST',
@@ -46,7 +45,6 @@ function reloadPersonal() {
             fetchPersonal: 'fetchInfo',
         },
         success: function (data) {
-            // alert(data);
             if ('info' in data) {
                 $('#namebox').val(data.info.name);
                 $('#unamebox').val(data.info.uname);
@@ -156,7 +154,6 @@ let validate = () => {
         valid = false;
     } else {
         warn('namebox', '');
-        // valid = true;
         pinfarr.push(name);
     }
 
@@ -170,10 +167,8 @@ let validate = () => {
         valid = false;
     } else {
         warn('emailbox', '');
-        // valid = true;
         pinfarr.push(email);
     }
-    // pinfarr.push(email);
 
     const opass = $('#oldpassbox').val();
     if (opass == '') {
@@ -181,10 +176,8 @@ let validate = () => {
         valid = false;
     } else {
         warn('oldpassbox', '');
-        // valid = true;
         pinfarr.push(opass);
     }
-    // pinfarr.push(opass);
     if ($('#passchange').is(':checked')) {
         pinfarr.push('passchange');
         const npass = $('#newpassbox').val();
@@ -193,10 +186,8 @@ let validate = () => {
             valid = false;
         } else {
             warn('newpassbox', '');
-            // valid = true;
             pinfarr.push(npass);
         }
-        // pinfarr.push(npass);
 
         const cnpass = $('#cnewpassbox').val();
         if (cnpass == '') {
@@ -207,10 +198,8 @@ let validate = () => {
             valid = false;
         } else {
             warn('cnewpassbox', '');
-            // valid = true;
             pinfarr.push(cnpass);
         }
-        // pinfarr.push(cnpass);
     } else {
         pinfarr.push('nopasschange');
     }
@@ -229,11 +218,9 @@ $('.subBtn').click(function () {
             method: 'POST',
             dataType: 'JSON',
             data: {
-                // update: 'personal',
                 infoArray: pinfarr,
             },
             success: function (data) {
-                // alert(data);
                 $('.loader').fadeOut(function () {
                     if (Object.keys(data.errors).length > 0) {
                         //if validation error response from server side
@@ -256,10 +243,8 @@ $('.subBtn').click(function () {
                     if ('success' in data) {
                         if (data.success == 'true') {
                             reloadPersonal();
-                            // alert('Information Updated Successfully');
                             throwlert(1, 'Information Updated Successfully');
                         } else if (data.success == 'false') {
-                            // alert('Something went wrong');
                             throwlert(1, 'Something went wrong');
                         }
                     }
@@ -294,18 +279,15 @@ $('.card button').click(function () {
                 that.text('Requested');
                 $('.card button').attr('disabled', true);
                 $('.loader').fadeOut(function () {
-                    // alert(data);
                     if ('success' in data) {
                         reloadPlan();
                     } else if ('hasExistingReq' in data) {
-                        // alert(data.hasExistingReq);
                         throwlert(0, data.hasExistingReq);
 
                         that.text('Select');
                         $('.card button').attr('disabled', false);
                         selectPlan();
                     } else {
-                        // alert('Something went wrong');
                         throwlert(0, 'Something went wrong');
 
                         that.text('Select');

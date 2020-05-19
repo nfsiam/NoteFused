@@ -6,7 +6,6 @@
 
 .drp {
     display: none;
-    /* transition: 0.3s; */
 }
 
 .parentButton,
@@ -50,10 +49,6 @@
     background-position: center;
 }
 
-.parentButton:focus + .drp {
-    /* display: block; */
-}
-
 .childButton {
     width: 100%;
     height: 40px;
@@ -64,7 +59,6 @@
     transition: all 0.7s ease;
     overflow: hidden;
     border: none;
-    /*     box-shadow: 2px 2px 2px rgba(0,0,0,0.10);*/
     background: -webkit-linear-gradient(120deg, #bdbdbd, #ffffff);
     background: -ms-linear-gradient(120deg, #bdbdbd, #ffffff);
 
@@ -75,7 +69,6 @@
     outline: none;
 }
 .childButton:hover {
-    /* background-position: center; */
     color: #d76d77;
     font-size: 1em;
     font-weight: 700;
@@ -91,5 +84,4 @@
 
 .drp li {
     margin: 0;
-    /* box-shadow: 2px 2px 2px rgba(0,0,0,0.10); */
 }

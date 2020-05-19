@@ -13,7 +13,6 @@
 }
 .row2 {
     display: flex;
-    /* border: 1px solid orangered; */
     align-content: center;
     justify-content: center;
     margin: 0;
@@ -49,7 +48,6 @@
 }
 .row3 {
     display: flex;
-    /* border: 1px solid orangered; */
     align-content: center;
     justify-content: center;
     display: none;
@@ -65,14 +63,12 @@
 }
 .row5 {
     display: flex;
-    /* border: 1px solid orangered; */
     align-content: center;
     justify-content: center;
     margin: 10px 0 10px 0;
 }
 .row6 {
     display: flex;
-    /* border: 1px solid orangered; */
     align-content: center;
     justify-content: center;
     margin: 10px 0 10px 0;

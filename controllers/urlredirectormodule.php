@@ -1,5 +1,4 @@
 <?php
-    // require_once dirname(__FILE__).'/../db/dbcon.php';
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
 
 
@@ -8,7 +7,6 @@
     if(isset($_GET['id']))
     {
         //header("location: http://example.com",  true,  301 );  exit;
-       // return;
         $ul = "";
         if(empty($_GET['id']))
         {
@@ -28,9 +26,6 @@
                 {
                     $lurl = "http://".$lurl;
                 }
-                // header("Location:$lurl");
-                // echo $lurl;
-                // return;
                 header("location: $lurl",  true,  301 );  exit;
             }
 

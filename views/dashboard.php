@@ -232,7 +232,6 @@
         <script>
             $('.ad-side a').eq(0).css('background-color', '#555');
             $('.sidebar-toggler').click(function () {
-                // alert('lol');
                 $('.ad-sidebar').toggleClass('ad-sidebar-active');
             });
             $('.thumb a').click(function (e) {
@@ -247,7 +246,7 @@
                     getStat: 1,
                 },
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     obj0 = data;
                     google.charts.setOnLoadCallback(drawChart0);
                 },
@@ -261,7 +260,7 @@
                     getRec: 1,
                 },
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     obj = data;
                     google.charts.setOnLoadCallback(drawChart1);
                 },
@@ -275,8 +274,7 @@
                     getRec2: 1,
                 },
                 success: function (data) {
-                    // alert(data);
-                    console.log(data);
+                    // console.log(data);
                     obj2 = data;
                     google.charts.setOnLoadCallback(drawChart2);
                 },
@@ -290,8 +288,7 @@
                     getRec3: 1,
                 },
                 success: function (data) {
-                    // alert(data);
-                    console.log(data);
+                    // console.log(data);
                     obj3 = data;
                     google.charts.setOnLoadCallback(drawChart3);
                 },
@@ -302,11 +299,9 @@
                 var data = google.visualization.arrayToDataTable(obj0);
 
                 var options = {
-                    // curveType: 'none',
                     animation: {
                         startup: 'true',
                         duration: 1000,
-                        // easing: 'in',
                     },
                     legend: { position: 'bottom', alignment: 'center' },
 
@@ -346,17 +341,12 @@
                         easing: 'in',
                     },
                     legend: { position: 'none' },
-                    // backgroundColor: '#66bb6a',
                     backgroundColor: { fill: 'transparent' },
-                    // backgroundColor: '#ffaf7b',
-                    // backgroundColor: '#d76d77',
-                    // background: linear-gradient(60deg,#66bb6a,#43a047);
                     is3D: true,
                     vAxis: {
                         gridlines: { color: '#fff' },
                         textStyle: { color: '#fff' },
                         baseline: { color: '#fff' },
-                        // maxValue: 10,
                     },
                     colors: ['#fff'],
                     lineWidth: 4,
@@ -386,17 +376,12 @@
                         easing: 'in',
                     },
                     legend: { position: 'none' },
-                    // backgroundColor: '#66bb6a',
                     backgroundColor: { fill: 'transparent' },
-                    // backgroundColor: '#ffaf7b',
-                    // backgroundColor: '#d76d77',
-                    // background: linear-gradient(60deg,#66bb6a,#43a047);
                     is3D: true,
                     vAxis: {
                         gridlines: { color: '#fff' },
                         textStyle: { color: '#fff' },
                         baseline: { color: '#fff' },
-                        // maxValue: 10,
                     },
                     colors: ['#fff'],
                     lineWidth: 4,
@@ -426,17 +411,12 @@
                         easing: 'in',
                     },
                     legend: { position: 'none' },
-                    // backgroundColor: '#66bb6a',
                     backgroundColor: { fill: 'transparent' },
-                    // backgroundColor: '#ffaf7b',
-                    // backgroundColor: '#d76d77',
-                    // background: linear-gradient(60deg,#66bb6a,#43a047);
                     is3D: true,
                     vAxis: {
                         gridlines: { color: '#fff' },
                         textStyle: { color: '#fff' },
                         baseline: { color: '#fff' },
-                        // maxValue: 10,
                     },
                     colors: ['#fff'],
                     lineWidth: 4,

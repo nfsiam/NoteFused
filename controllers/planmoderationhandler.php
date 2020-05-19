@@ -69,8 +69,6 @@
                         $query = "UPDATE cpreq SET actions='1' WHERE username='$username'";
                         execute($query);
                         
-                        // echo "<script>alert('Request Approved!');</script>";
-
                         $data['success'] = "Request Approved";
 
                     }
@@ -79,7 +77,6 @@
                         $query = "UPDATE cpreq SET actions='2' WHERE username='$username'";
                         execute($query);
 
-                        // echo "<script>alert('Request Declined!');</script>";
                         $data['success'] = "Request Declined!";
 
                     }
@@ -113,14 +110,9 @@
         $star = (int)sanitizer($_POST['star']);
         if(!empty($star) || $star == 0)
         {
-            // echo $star;
 
             if(isset($_POST['username']))
             {
-                // echo $_POST['username'];
-                // echo "us";
-                // echo "us";
-
                 $username = sanitizer($_POST['username']);
                 if(!empty($username))
                 {
@@ -155,8 +147,6 @@
             else
             {
                 // echo "<script>alert('Something Went wrong');</script>";
-                // echo "nus";
-
             }
         }
         else

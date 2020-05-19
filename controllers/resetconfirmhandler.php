@@ -3,8 +3,6 @@
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
     require_once dirname(__FILE__).'/uniqstringgeneratormodule.php';
 
- 
-
     function sanitizer($string)
     {
         $con = getCon();
@@ -18,7 +16,6 @@
         }
 
     }
-
 
     function checkRecord($uname,$code)
     {

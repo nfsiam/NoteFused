@@ -51,7 +51,6 @@
             <a href="" class="primary-sidebar-a">Profile</a>
             <div class="secondary-sidebar-content">
                 <?php 
-                    // require "userdashcard.php";
                     require 'userdashcard.php';
                  ?>
                 <a href="settings#personalInfo" class="secondary-sidebar-a">Profile Settings</a>

@@ -1,5 +1,4 @@
 <?php
-    // require_once "db/dbcon.php";
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
     require_once dirname(__FILE__).'/../controllers/userdashcardhandler.php';
 
