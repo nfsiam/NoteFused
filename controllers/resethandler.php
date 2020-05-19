@@ -12,8 +12,30 @@
     use PHPMailer\PHPMailer\Exception;
 
 
+    function getPass()
+    {
+        $query = "SELECT p from ps where id='1'";
+        $result=get($query);
+        if(mysqli_num_rows($result) > 0)
+        {
+            $res =  mysqli_fetch_assoc($result);
+            return $res['p'];
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
     function sendmail($email, $code)
     {
+        $pass = getPass();
+        if(!is_string($pass))
+        {
+            return;
+        }
+
         $mail = new PHPMailer;
     
         $mail->isSMTP();
@@ -36,7 +58,7 @@
         
         $mail->Username = 'notefused@gmail.com';
         
-        $mail->Password = '********************';
+        $mail->Password = $pass;
         
         $mail->setFrom('notefused@gmail.com');
         

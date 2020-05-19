@@ -41,6 +41,9 @@
                         <li>
                             <a href="planmoderation">Plan Moderation</a>
                         </li>
+                        <li><a href="notesmoderation">Note Moderation</a></li>
+                        <li><a href="filesmoderation">File Moderation</a></li>
+                        <li><a href="urlsmoderation">URL Moderation</a></li>
                         <li><a href="controllers/destroysessionmodule.php">Logout</a></li>
                     </ul>
                 </div>
@@ -146,7 +149,7 @@
                 <div class="overall-graph-holder">
                     <div class="overall-graph-card">
                         <div class="overall-graph-title">
-                            Activity For last 30 Days
+                            Sitewide Activity Statistics For last 15 Days
                         </div>
                         <div id="areachart" class="areachart"></div>
                     </div>
@@ -166,7 +169,7 @@
                                 <div
                                     class="inner-note-graph-title graph-card-title"
                                 >
-                                    Note Activity For last 30 Days
+                                    Note Activity For last 7 Days
                                 </div>
                             </div>
                         </div>
@@ -185,7 +188,7 @@
                                 <div
                                     class="inner-file-graph-title graph-card-title"
                                 >
-                                    file Activity For last 30 Days
+                                    File Activity For last 7 Days
                                 </div>
                             </div>
                         </div>
@@ -202,7 +205,7 @@
                                 <div
                                     class="inner-url-graph-title graph-card-title"
                                 >
-                                    url Activity For last 30 Days
+                                    url Activity For last 7 Days
                                 </div>
                             </div>
                         </div>

@@ -71,9 +71,9 @@
                     //fwork
                     
                     // if(file_exists("upload/$fileID"))
-                    if(file_exists(dirname(__FILE__).'/../upload/'.$fileID))
+                    if(file_exists(dirname(__FILE__).'/../models/upload/'.$fileID))
                     {
-                        unlink(dirname(__FILE__).'/../upload/'.$fileID); //deleting file from server
+                        unlink(dirname(__FILE__).'/../models/upload/'.$fileID); //deleting file from server
                     }
                     //execute($query); //removing record from database
                     //stat update

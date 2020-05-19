@@ -42,6 +42,50 @@ $('#choose').change(function () {
     console.log(formData);
 });
 
+$('.row2').on('dragover', function () {
+    $(this).addClass('row2-drag');
+    return false;
+});
+$('.row2').on('dragleave', function () {
+    $(this).removeClass('row2-drag');
+    return false;
+});
+$('.row2').on('drop', function (e) {
+    e.preventDefault();
+    $(this).removeClass('row2-drag');
+
+    fileInfoAsElem = '';
+    $('.row4').html(fileInfoAsElem);
+    formData = new FormData();
+    fileList = e.originalEvent.dataTransfer.files;
+    totalFiles = fileList.length;
+
+    for (const file of fileList) {
+        totalSize = totalSize + file.size;
+        formData.append('file[]', file);
+        fileInfo.push(file.name);
+        fileInfoAsElem += `<div>${file.name}</div>`;
+    }
+    totalSize = Math.ceil(totalSize / 1024);
+    console.log(totalSize);
+    console.log(fileInfo);
+    if (totalSize > 1024 * 10) {
+        // alert('You can not upload file more than 10MB at a time');
+        throwlert(0, 'You can not upload file more than 10MB at a time');
+
+        formData = null;
+        fileInfo = [];
+        fileInfoAsElem = '';
+        return;
+    }
+
+    //let fileInfoAsText = fileInfo.join(', ');
+    $('.row4').html(fileInfoAsElem);
+    return;
+
+    console.log(formData);
+});
+
 $('#uploadButton').click(function () {
     if (formData == null || formData == undefined) {
         // alert('Choose Files First');

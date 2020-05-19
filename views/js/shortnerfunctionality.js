@@ -89,6 +89,6 @@ $('#copyButton').click(function () {
     let z = document.execCommand('copy');
     autoBlur(); //to deselct the selection
     if (z == true) {
-        $('.alert').fadeIn();
+        throwlert(1, 'URL copied to your clipboard');
     }
 });

@@ -39,6 +39,9 @@ RewriteRule ^resetconfirm$  views/resetconfirm.php [L]
 
 RewriteRule ^dashboard$  views/dashboard.php [L]
 RewriteRule ^planmoderation$  views/planmoderation.php [L]
+RewriteRule ^notesmoderation$  views/notesmoderation.php [L]
+RewriteRule ^filesmoderation$  views/filesmoderation.php [L]
+RewriteRule ^urlsmoderation$  views/urlsmoderation.php [L]
 
 
 

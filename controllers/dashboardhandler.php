@@ -53,7 +53,7 @@
         SUM(notecreate)+SUM(notedelete)+SUM(notedownload) as note,
         SUM(fileupload)+SUM(filedelete)+SUM(filedownload) as file,
         SUM(urlshort)+SUM(urldelete) as url
-        FROM stat WHERE FROM_UNIXTIME(datestamp) >= CURDATE() - INTERVAL 30 Day  GROUP by day order by day;";
+        FROM stat WHERE FROM_UNIXTIME(datestamp) >= CURDATE() - INTERVAL 15 Day  GROUP by day order by day;";
         $result = get($query);
 
         if($result === false)
@@ -84,9 +84,11 @@
     {
 
         $data = array();
-        $data[] = array('Date', 'Visit');
+        $data[] = array('Date', 'Note Activity');
 
-        $query = "SELECT DISTINCT FROM_UNIXTIME(lastVisited,'%d/%M/%Y') AS day, count(*) as notevisit  FROM notes WHERE FROM_UNIXTIME(lastVisited) >= CURDATE() - INTERVAL 30 Day  GROUP by day order by lastVisited";
+        $query = "SELECT DISTINCT FROM_UNIXTIME(datestamp,'%d/%M/%Y') AS day, 
+        SUM(notecreate)+SUM(notedelete)+SUM(notedownload) as note 
+        FROM stat WHERE FROM_UNIXTIME(datestamp) >= CURDATE() - INTERVAL 7 Day  GROUP by day order by day;";
         $result = get($query);
 
         if($result === false)
@@ -104,7 +106,7 @@
         while($res = mysqli_fetch_assoc($result))
         {
             $day = $res['day'];
-            $hit = (int)$res['notevisit'];
+            $hit = (int)$res['note'];
             $data[] = array($day,$hit);
         }
 
@@ -114,9 +116,11 @@
     {
 
         $data = array();
-        $data[] = array('Date', 'Upload');
-
-        $query = "SELECT DISTINCT FROM_UNIXTIME(uploadDate,'%d/%M/%Y') AS day, count(*) as notevisit  FROM files WHERE FROM_UNIXTIME(uploadDate) >= CURDATE() - INTERVAL 30 Day  GROUP by day order by uploadDate";
+        $data[] = array('Date', 'File Activity');
+        
+        $query = "SELECT DISTINCT FROM_UNIXTIME(datestamp,'%d/%M/%Y') AS day,
+        SUM(fileupload)+SUM(filedelete)+SUM(filedownload) as file 
+        FROM stat WHERE FROM_UNIXTIME(datestamp) >= CURDATE() - INTERVAL 7 Day  GROUP by day order by day;";
         $result = get($query);
 
         if($result === false)
@@ -134,7 +138,7 @@
         while($res = mysqli_fetch_assoc($result))
         {
             $day = $res['day'];
-            $hit = (int)$res['notevisit'];
+            $hit = (int)$res['file'];
             $data[] = array($day,$hit);
         }
 
@@ -144,9 +148,11 @@
     {
 
         $data = array();
-        $data[] = array('Date', 'URL Shortened');
+        $data[] = array('Date', 'URL Activity');
 
-        $query = "SELECT DISTINCT FROM_UNIXTIME(createDate,'%d/%M/%Y') AS day, count(*) as urlcreate  FROM urlMap WHERE FROM_UNIXTIME(createDate) >= CURDATE() - INTERVAL 30 Day  GROUP by day order by createDate";
+        $query = "SELECT DISTINCT FROM_UNIXTIME(datestamp,'%d/%M/%Y') AS day, 
+        SUM(urlshort)+SUM(urldelete) as url
+        FROM stat WHERE FROM_UNIXTIME(datestamp) >= CURDATE() - INTERVAL 7 Day  GROUP by day order by day;";
         $result = get($query);
         if($result === false)
         {
@@ -163,7 +169,7 @@
         while($res = mysqli_fetch_assoc($result))
         {
             $day = $res['day'];
-            $hit = (int)$res['urlcreate'];
+            $hit = (int)$res['url'];
             $data[] = array($day,$hit);
         }
 

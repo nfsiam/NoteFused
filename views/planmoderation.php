@@ -89,7 +89,12 @@
                 <div class="ad-side">
                     <ul>
                         <li><a href="dashboard">Dashboard</a></li>
-                        <li><a href="planmoderation">Plan Moderation</a></li>
+                        <li>
+                            <a href="planmoderation">Plan Moderation</a>
+                        </li>
+                        <li><a href="notesmoderation">Note Moderation</a></li>
+                        <li><a href="filesmoderation">File Moderation</a></li>
+                        <li><a href="urlsmoderation">URL Moderation</a></li>
                         <li><a href="controllers/destroysessionmodule.php">Logout</a></li>
                     </ul>
                     <!-- <div class="side-contents">

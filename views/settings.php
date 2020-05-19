@@ -125,9 +125,7 @@
                                     <div>Unlimited Public Note</div>
                                     <div>50 Private Note Limit</div>
                                     <div>
-                                        10 Files Limit
-                                        <br>
-                                        Maximum 10MB
+                                        10MB File Limit
                                     </div>
                                     <div>50 Short URL Limit</div>
                                     <div>-</div>
@@ -140,9 +138,7 @@
                                     <div>Unlimited Public Note</div>
                                     <div>200 Private Note Limit</div>
                                     <div>
-                                        20 Files Limit
-                                        <br>
-                                        Maximum 50MB
+                                        20MB File Limit
                                     </div>
                                     <div>200 Short URL Limit</div>
                                     <div>Pinned Profile</div>
@@ -155,9 +151,7 @@
                                     <div>Unlimited Public Note</div>
                                     <div>Unlimited Private Note</div>
                                     <div>
-                                        200 Files Limit
-                                        <br>
-                                        Maximum 1GB
+                                        1GB File Limit
                                     </div>
                                     <div>Unlimited Short URL</div>
                                     <div>Pinned Profile</div>

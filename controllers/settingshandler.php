@@ -111,11 +111,20 @@
 
     function emailAvailable($email)
     {
+        global $loggedUser;
         $query = "SELECT * from profiles where email='$email'";
         $result = get($query);
         if(mysqli_num_rows($result)>0)
         {
-            return false;
+            $row = mysqli_fetch_assoc($result);
+            if($row['username'] === $loggedUser)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {

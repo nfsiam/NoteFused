@@ -35,19 +35,6 @@
         return date('d/m/Y',$longDate);
     }
 
-    // if(isset($_SESSION['user'])) 
-    // {
-        
-    //     $query = "SELECT * FROM files WHERE fileOwner='$loggedUser'";
-    //     $result=get($query);
-        
-        
-
-	// 	while($row = mysqli_fetch_assoc($result))
-	// 	{
-    //         $resarr[] = $row;
-    //     }
-    // }
     $results_per_page = 10;
 
     $query= "SELECT * FROM files WHERE fileOwner='$loggedUser';";
