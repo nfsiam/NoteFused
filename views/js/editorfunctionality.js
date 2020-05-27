@@ -22,6 +22,10 @@ $(window).resize(function () {
     setupFuseHeight();
 });
 
+$('#noteForm').submit(function (e) {
+    e.preventDefault();
+});
+
 $('#expand').on('click', function () {
     if ($('#editSettings').is(':visible')) {
         $('#editSettings').slideUp(function () {
@@ -111,6 +115,7 @@ $('.privacy-radio-holder input').change(function () {
         privacy = 1;
         oldprivacy = 'public';
     }
+    console.log(noteid);
     $.ajax({
         url: 'controllers/editorhandler.php',
         method: 'POST',
@@ -147,4 +152,25 @@ $('.privacy-radio-holder input').change(function () {
             }
         },
     });
+});
+
+//text zoom
+function setPercent(tsize) {
+    let percent = (tsize / 16) * 100;
+    percent = Math.round((percent + Number.EPSILON) * 100) / 100;
+    $('#tzpercent').text(`${percent}%`);
+}
+$('#tzmin').click(function () {
+    const csize = $('#pad').css('font-size');
+    const csizenum = parseFloat(csize, 10);
+    const tsize = csizenum - 2;
+    $('#pad').css('font-size', tsize);
+    setPercent(tsize);
+});
+$('#tzplus').click(function () {
+    const csize = $('#pad').css('font-size');
+    const csizenum = parseFloat(csize, 10);
+    const tsize = csizenum + 2;
+    $('#pad').css('font-size', tsize);
+    setPercent(tsize);
 });

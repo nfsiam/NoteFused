@@ -108,6 +108,7 @@
 
     if(isset($_POST['updateNotePrivacy']))
     {
+        
         $data = array();
         if(!alive())
         {
@@ -115,13 +116,13 @@
             echo json_encode($data);
             return;
         }
-
+        
         $con = getCon();
         $noteID = sanitizer($_POST['noteID']);
         $xpire =  (int)sanitizer($_POST['xpire']);
-
-
-        if(!empty($_POST['updateNotePrivacy']) && !empty($noteID))
+        
+        
+        if(/* !empty($_POST['updateNotePrivacy']) &&  */!empty($noteID))
         {
             if($_POST['updateNotePrivacy'] == '0')
             {

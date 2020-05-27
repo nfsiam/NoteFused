@@ -14,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NoteFused</title>
+    <title><?php echo $noteID." | NoteFused";?></title>
     <link rel="stylesheet" href="views/styles/all.css">
     <link rel="stylesheet" href="views/styles/throwlert.css">
     <link rel="stylesheet" href="views/styles/optiontoggler.css">
@@ -84,6 +84,9 @@
                             <span>Author</span>
                             <input type="text" name="" id="author" value="<?php echo $noteOwner; ?>" readonly>
                         </div>
+                    </div>
+                    <div class="sub-settings zoom-buttons">
+                        <button id="tzmin"><i class="fas fa-minus"></i></button> <span>zoom</span><span id='tzpercent'>100%</span><button id="tzplus"><i class="fas fa-plus"></i></button>
                     </div>
                     
                 </div>

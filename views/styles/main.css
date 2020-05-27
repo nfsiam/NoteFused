@@ -128,7 +128,7 @@ html {
     fill: #3a1c71;
 }
 .edit-settings {
-    display: none;
+    /* display: none; */
     margin: 0 7px 5px;
     color: #aaa;
 }
@@ -163,6 +163,24 @@ html {
 .sep-div select option {
     color: #aaa;
     outline: none;
+}
+
+.zoom-buttons {
+    display: inline-flex;
+    align-items: center;
+}
+.zoom-buttons span {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#tzmin,
+#tzplus {
+    color: #aaa;
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .fuse {
