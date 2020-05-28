@@ -120,13 +120,24 @@
         $con = getCon();
         $noteID = sanitizer($_POST['noteID']);
         $xpire =  (int)sanitizer($_POST['xpire']);
-        
+        echo $_POST['updateNotePrivacy'];
         
         if(/* !empty($_POST['updateNotePrivacy']) &&  */!empty($noteID))
         {
             if($_POST['updateNotePrivacy'] == '0')
             {
                 if(updatePrivacy(0,$noteID,$xpire) === true)
+                {
+                    $data['success'] = 'true';
+                }
+                else
+                {
+                    $data['error'] = "something went wrong";
+                }
+            }
+            elseif($_POST['updateNotePrivacy'] == '2')
+            {
+                if(updatePrivacy(2,$noteID,$xpire) === true)
                 {
                     $data['success'] = 'true';
                 }

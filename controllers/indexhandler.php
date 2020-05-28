@@ -11,6 +11,8 @@
 
     $privacypub = "";
     $privacypriv = "";
+    $privacyview = "";
+    $oldpvc = "";
     $exp = array("","","","");
     $xpire = 3;
 
@@ -25,7 +27,7 @@
     
     function prepareNote($note,$noteID,$owner)
     {
-        global $noteText, $noteOwner, $notePrivacy, $expiration, $lastVisited, $lastVisited, $privacypub, $privacypriv, $exp;
+        global $noteText, $noteOwner, $notePrivacy, $expiration, $lastVisited, $lastVisited, $privacypub, $privacypriv,$privacyview,$oldpvc, $exp;
         
         $xpire = $note['xpire'];
 
@@ -40,10 +42,17 @@
         if($notePrivacy == 0)
         {
             $privacypub = "checked";
+            $oldpvc = 0;
+        }
+        elseif($notePrivacy == 2)
+        {
+            $privacyview = "checked";
+            $oldpvc = 2;
         }
         else
         {
             $privacypriv = "checked";
+            $oldpvc = 1;
         }
         
         $noteOwner = $owner;
@@ -92,7 +101,7 @@
                 $notePrivacy = $note['notePrivacy'];
                 $owner = $note['noteOwner'];
 
-                if($notePrivacy==0)
+                if($notePrivacy==0 || $notePrivacy == 2)
                 {
                     prepareNote($note,$noteID,$owner);
                 }
@@ -101,7 +110,7 @@
                     if(empty($loggedUser))
                     {
                         //ask to login
-                        header("Location:login.php");
+                        header("Location:login");
                     }
                     else
                     {
@@ -112,7 +121,7 @@
                         else
                         {
                             session_destroy();
-                            header("Location:login.php");
+                            header("Location:login");
                         }
                     }
                 }

@@ -173,6 +173,10 @@ html {
     margin-left: 5px;
     margin-right: 5px;
 }
+#tzpercent {
+    width: 80px;
+    text-align: center;
+}
 
 #tzmin,
 #tzplus {
@@ -181,6 +185,11 @@ html {
     height: 16px;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+}
+#tzmin i,
+#tzplus i {
+    font-size: smaller;
 }
 
 .fuse {

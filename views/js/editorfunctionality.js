@@ -46,6 +46,26 @@ $('#expire')
         previousXpire = this.value;
     })
     .change(function () {
+        if (loggedUser === '') {
+            $(`#expire option[value='${previousXpire}']`).prop(
+                'selected',
+                'selected'
+            );
+            throwlert(0, 'Login or create an account for advanced features');
+            return;
+        } else if (oldpvc == 2) {
+            if (loggedUser != noteOwner) {
+                $(`#expire option[value='${previousXpire}']`).prop(
+                    'selected',
+                    'selected'
+                );
+                throwlert(
+                    0,
+                    'You have no authority to modify a view only note'
+                );
+                return;
+            }
+        }
         let expire = $('#expire', '#noteForm').val();
 
         $.ajax({
@@ -67,6 +87,8 @@ $('#expire')
                         'Login or create an account for advanced features'
                     );
                 } else if ('success' in data) {
+                    noteOwner = loggedUser;
+                    $('#author').val(noteOwner);
                 } else {
                     throwlert(0, 'Something went wrong!');
 
@@ -94,6 +116,8 @@ $('#pad').bind('change keyup input', function () {
         success: function (data) {
             if ('success' in data) {
                 // console.log('note updated');
+                noteOwner = loggedUser == '' ? 'guest' : loggedUser;
+                $('#author').val(noteOwner);
             } else {
                 // console.log('something went wrong');
             }
@@ -102,18 +126,34 @@ $('#pad').bind('change keyup input', function () {
 });
 
 $('.privacy-radio-holder input').change(function () {
+    if (loggedUser === '') {
+        $(`.privacy-radio-holder input:radio[value='${oldpvc}']`).prop(
+            'checked',
+            true
+        );
+        throwlert(0, 'Login or create an account for advanced features');
+        return;
+    } else if (oldpvc == 2) {
+        if (loggedUser != noteOwner) {
+            $(`.privacy-radio-holder input:radio[value='${oldpvc}']`).prop(
+                'checked',
+                true
+            );
+            throwlert(0, 'You have no authority to modify a view only note');
+            return;
+        }
+    }
     let privacy;
-    let oldprivacy;
     let that = this;
 
     let expire = $('#expire', '#noteForm').val();
 
-    if (this.value == 'public') {
+    if (this.value == '0') {
         privacy = 0;
-        oldprivacy = 'private';
+    } else if (this.value == '2') {
+        privacy = 2;
     } else {
         privacy = 1;
-        oldprivacy = 'public';
     }
     console.log(noteid);
     $.ajax({
@@ -135,6 +175,9 @@ $('.privacy-radio-holder input').change(function () {
                     'Login or create an account for advanced features'
                 );
             } else if ('success' in data) {
+                oldpvc = privacy;
+                noteOwner = loggedUser;
+                $('#author').val(noteOwner);
             } else if ('limitError' in data) {
                 throwlert(
                     0,

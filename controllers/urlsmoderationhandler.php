@@ -1,4 +1,7 @@
 <?php
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
 
     if(!isset($_SESSION['admin']))

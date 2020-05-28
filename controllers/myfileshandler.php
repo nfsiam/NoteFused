@@ -14,11 +14,11 @@
             $loggedUser = $user['username'];
         }
     }
-    else
-    {
-        header('Location:../login');
-        exit();
-    }
+    // else
+    // {
+    //     header('Location:../login');
+    //     exit();
+    // }
     
     function shortDate($longDate)
     {

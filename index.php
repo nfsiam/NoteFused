@@ -65,8 +65,9 @@
                 <form action="" id="noteForm">
                 <div class="edit-settings" id="editSettings">
                     <div class="privacy-radio-holder sub-settings">
-                        <div class="sep-div"><input type="radio" name="privacy" id="privpub" value="public" <?php echo $privacypub; ?> ><span>Public Note</span></div>
-                        <div class="sep-div"><input type="radio" name="privacy" id="privpri" value="private" <?php echo $privacypriv; ?> ><span>Private Note</span></div>
+                        <div class="sep-div"><input type="radio" name="privacy" id="privpub" value="0" <?php echo $privacypub; ?> ><span>Public Note</span></div>
+                        <div class="sep-div"><input type="radio" name="privacy" id="privview" value="2" <?php echo $privacyview; ?> ><span>View Only Note</span></div>
+                        <div class="sep-div"><input type="radio" name="privacy" id="privpri" value="1" <?php echo $privacypriv; ?> ><span>Private Note</span></div>
                     </div>
                     <div class="sub-settings">
                         <div class="sep-div">
@@ -86,7 +87,7 @@
                         </div>
                     </div>
                     <div class="sub-settings zoom-buttons">
-                        <button id="tzmin"><i class="fas fa-minus"></i></button> <span>zoom</span><span id='tzpercent'>100%</span><button id="tzplus"><i class="fas fa-plus"></i></button>
+                        <button id="tzmin"><i class="fas fa-minus"></i></button><!--  <span>zoom</span> --><span id='tzpercent'>100%</span><button id="tzplus"><i class="fas fa-plus"></i></button>
                     </div>
                     
                 </div>
@@ -149,6 +150,13 @@
         
         let loggedUser ="<?php echo empty($loggedUser)?'':$loggedUser?>";
         let noteid = '<?php echo $noteID; ?>';
+        let oldpvc = '<?php echo $oldpvc; ?>';
+        let noteOwner = '<?php echo $noteOwner; ?>';
+        if(oldpvc == 2){
+            if(loggedUser != noteOwner){
+                $('#pad').attr('readonly','true');
+            }
+        }
     </script>
     <div class="throwlert">
             <div class="alert-box">

@@ -269,7 +269,8 @@
                                         $text = $res['text'];
                                         $text = sliceText($text);
                                         $privacy = $res['notePrivacy'];
-                                        $privacy = $privacy == 0 ? "Public" : "Private";   
+                                        // $privacy = $privacy == 0 ? "Public" : "Private";   
+                                        $privacy = $privacy == 0 ? "Public" : ($privacy == 2 ? "View Only" : "Private");   
                                     echo
                                     "<tr>
                                         <div class='trdiv'>
