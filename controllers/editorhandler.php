@@ -120,7 +120,6 @@
         $con = getCon();
         $noteID = sanitizer($_POST['noteID']);
         $xpire =  (int)sanitizer($_POST['xpire']);
-        echo $_POST['updateNotePrivacy'];
         
         if(/* !empty($_POST['updateNotePrivacy']) &&  */!empty($noteID))
         {

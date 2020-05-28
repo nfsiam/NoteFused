@@ -155,7 +155,6 @@ $('.privacy-radio-holder input').change(function () {
     } else {
         privacy = 1;
     }
-    console.log(noteid);
     $.ajax({
         url: 'controllers/editorhandler.php',
         method: 'POST',
