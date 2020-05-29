@@ -18,7 +18,7 @@
     }
 
 
-    $results_per_page = 50;
+    $results_per_page = 10;
 
     $query= "SELECT * FROM urlmap;";
     $result = get($query);
@@ -118,7 +118,7 @@
             <section class="ad-container">
                 <div class="mini-ad-container">
                     <div class="search-row">
-                        <input type="text" placeholder="search for user" />
+                        <input type="text" placeholder="search by user or long url" />
                     </div>
                     <div class="note-plate-row">
 
@@ -158,7 +158,7 @@
                                         $prev_page = $page - 1;
                 
                                         echo "<div class='paging-button-holder'>
-                                                <a href='notesmoderation?p=$prev_page'>Newer</a>
+                                                <a href='urlsmoderation?p=$prev_page'>Newer</a>
                                             </div>";
                                     }
                                         
@@ -169,7 +169,7 @@
                                     {
                                         $next_page = $page + 1;
                                         echo "<div class='paging-button-holder'>
-                                                <a href='notesmoderation?p=$next_page'>Older</a>
+                                                <a href='urlsmoderation?p=$next_page'>Older</a>
                                             </div>";
                                     }
                 
@@ -237,6 +237,58 @@
                     },
                 });
             });
+
+            $('.search-row input').keyup(function () {
+                $.ajax({
+                    url: 'controllers/urlsmoderationhandler.php',
+                    method: 'POST',
+                    data: {
+                        searchKeyword: $('.search-row input').val(),
+                    },
+                    success: function (data) {
+                        $('.note-plate-row').html(data);
+                    },
+                });
+            });
+            $('.note-plate-row').on('click', '#newer', function (e) {
+                e.preventDefault();
+                $('.semiloader').fadeIn();
+
+                let that = $(this);
+
+                $.ajax({
+                    url: 'controllers/urlsmoderationhandler.php',
+                    method: 'POST',
+                    data: {
+                        searchKeyword: $('.search-row input').val(),
+                        p: $(this).data('p'),
+                    },
+                    success: function (data) {
+                        $('.note-plate-row').html(data);
+                        $('.semiloader').fadeOut();
+                    },
+                });
+            });
+            $('.note-plate-row').on('click', '#older', function (e) {
+                e.preventDefault();
+                $('.semiloader').fadeIn();
+
+                let that = $(this);
+
+                $.ajax({
+                    url: 'controllers/urlsmoderationhandler.php',
+                    method: 'POST',
+                    data: {
+                        searchKeyword: $('.search-row input').val(),
+                        p: $(this).data('p'),
+                    },
+                    success: function (data) {
+                        $('.note-plate-row').html(data);
+                        $('.semiloader').fadeOut();
+                    },
+                });
+            });
+
             
         </script>
     </body>

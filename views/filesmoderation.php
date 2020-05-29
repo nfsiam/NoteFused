@@ -18,7 +18,7 @@
     }
 
 
-    $results_per_page = 50;
+    $results_per_page = 10;
 
     $query= "SELECT * FROM files;";
     $result = get($query);
@@ -118,7 +118,7 @@
             <section class="ad-container">
                 <div class="mini-ad-container">
                     <div class="search-row">
-                        <input type="text" placeholder="search for user" />
+                        <input type="text" placeholder="search by username or file name" />
                     </div>
                     <div class="note-plate-row">
 
@@ -158,28 +158,28 @@
 
                     ?>
                                 <?php
-                                    echo "<div class='pagination'>"; //start of pagination
-                                    if($page > 1)
-                                    {
-                                        $prev_page = $page - 1;
-                
-                                        echo "<div class='paging-button-holder'>
-                                                <a href='notesmoderation?p=$prev_page'>Newer</a>
+                                        echo "<div class='pagination'>"; //start of pagination
+                                        if($page > 1)
+                                        {
+                                            $prev_page = $page - 1;
+
+                                            echo "<div class='paging-button-holder'>
+                                                    <a href='filesmoderation?p=$prev_page'>Newer</a>
+                                                </div>";
+                                        }
+                                            
+                                            echo "<div class='current-button-holder'>
+                                                        Page $page out of $number_of_pages Pages
                                             </div>";
-                                    }
-                                        
-                                        echo "<div class='current-button-holder'>
-                                                Page $page out of $number_of_pages Pages
-                                            </div>";
-                                    if($page < $number_of_pages)
-                                    {
-                                        $next_page = $page + 1;
-                                        echo "<div class='paging-button-holder'>
-                                                <a href='notesmoderation?p=$next_page'>Older</a>
-                                            </div>";
-                                    }
-                
-                                    echo "</div>"; //end of pagination
+                                        if($page < $number_of_pages)
+                                        {
+                                            $next_page = $page + 1;
+                                            echo "<div class='paging-button-holder'>
+                                                    <a href='filesmoderation?p=$next_page'>Older</a>
+                                                </div>";
+                                        }
+
+                                        echo "</div>"; //end of pagination
                                 ?>
 
                     </div>
@@ -221,6 +221,18 @@
             //         },
             //     });
             // });
+            $('.search-row input').keyup(function () {
+                $.ajax({
+                    url: 'controllers/filesmoderationhandler.php',
+                    method: 'POST',
+                    data: {
+                        searchKeyword: $('.search-row input').val(),
+                    },
+                    success: function (data) {
+                        $('.note-plate-row').html(data);
+                    },
+                });
+            });
 
             $('.note-plate-row').on('click', '.delete-button', function (e) {
                 e.preventDefault();
@@ -239,6 +251,45 @@
                         } else {
                             throwlert(0, 'Something went wrong!');
                         }
+                    },
+                });
+            });
+
+            $('.note-plate-row').on('click', '#newer', function (e) {
+                e.preventDefault();
+                $('.semiloader').fadeIn();
+
+                let that = $(this);
+
+                $.ajax({
+                    url: 'controllers/filesmoderationhandler.php',
+                    method: 'POST',
+                    data: {
+                        searchKeyword: $('.search-row input').val(),
+                        p: $(this).data('p'),
+                    },
+                    success: function (data) {
+                        $('.note-plate-row').html(data);
+                        $('.semiloader').fadeOut();
+                    },
+                });
+            });
+            $('.note-plate-row').on('click', '#older', function (e) {
+                e.preventDefault();
+                $('.semiloader').fadeIn();
+
+                let that = $(this);
+
+                $.ajax({
+                    url: 'controllers/filesmoderationhandler.php',
+                    method: 'POST',
+                    data: {
+                        searchKeyword: $('.search-row input').val(),
+                        p: $(this).data('p'),
+                    },
+                    success: function (data) {
+                        $('.note-plate-row').html(data);
+                        $('.semiloader').fadeOut();
                     },
                 });
             });
