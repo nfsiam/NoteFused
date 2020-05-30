@@ -1,5 +1,7 @@
 <?php
     session_start();
+
+    require_once dirname(__FILE__).'/../controllers/permissionmodule.php';
     
     //preventing access from view route
     if (strpos($_SERVER['REQUEST_URI'], '/views/') !== false) {
@@ -19,7 +21,7 @@
     {
         header("Location:login");
     }
-
+    $permit = getPermit('url');
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +43,7 @@
     <link rel="stylesheet" href="views/styles/userdashcard.css">
     <link rel="stylesheet" href="views/styles/sidebar.css">
     <link rel="stylesheet" href="views/styles/semiloader.css">
+    <link rel="stylesheet" href="views/styles/nopermit.css">
 
 
     <script src="views/js/jquery341.js"></script>
@@ -71,6 +74,10 @@
             </div>
             <div class="fuse">
                 <div class="mini-container">
+<?php
+    if($permit !== false && $permit === 1)
+    {
+?>                 
                     <div class="row2">
                         <div class="example-span">
                             <span id="exampleSpan">Enter your URL below</span>
@@ -100,9 +107,23 @@
                                 <span>link copied to your clipboard</span>
                         </div>
                     </div>
-
+<?php
+    }
+    else
+    {
+?>
+                    <div class="no-permit">
+                        <div>
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div>
+                            You are not allowed to shorten any new link but you can still access old short links from <a href="myurls">myurls</a>
+                        </div>
                     </div>
-                </div>
+<?php
+    }
+?>
+                </div> <!-- mini-container -->
                 
             </div>
             <div class="alter-options">

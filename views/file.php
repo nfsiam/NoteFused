@@ -1,5 +1,7 @@
 <?php
     session_start();
+    require_once dirname(__FILE__).'/../controllers/permissionmodule.php';
+
 
     //preventing access from view route
     if (strpos($_SERVER['REQUEST_URI'], '/views/') !== false) {
@@ -10,7 +12,7 @@
     {
         header("Location:login");
     }
-    
+    $permit = getPermit('file');
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +34,8 @@
     <link rel="stylesheet" href="views/styles/userdashcard.css">
     <link rel="stylesheet" href="views/styles/throwlert.css" />
     <link rel="stylesheet" href="views/styles/sidebar.css" />
+    <link rel="stylesheet" href="views/styles/nopermit.css">
+
 
 
     <script src="views/js/jquery341.js"></script>
@@ -62,6 +66,10 @@
             </div>
             <div class="fuse">
                 <div class="mini-container">
+<?php
+    if($permit !== false && $permit === 1)
+    {
+?>
                     <div>
                         <div class="row1">
                             Upload files
@@ -97,7 +105,23 @@
                             <div class="res-child-link"><a href="">some</a></div>
                         </div> -->
                     </div>
-                </div>
+<?php
+    }
+    else
+    {
+?>
+                    <div class="no-permit">
+                        <div>
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div>
+                            You are not allowed to upload any new file but you can still access old files from <a href="myfiles">myfiles</a>
+                        </div>
+                    </div>
+<?php
+    }
+?>
+                </div> <!-- mini-container -->
             </div>
             <div class="alter-options">
                 <div class="option-toggler" id="optionToggler">

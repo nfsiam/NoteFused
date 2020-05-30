@@ -166,9 +166,10 @@ $('.privacy-radio-holder input').change(function () {
         },
         success: function (data) {
             if ('loginfirst' in data) {
-                $(
-                    `.privacy-radio-holder input:radio[value='${oldprivacy}']`
-                ).prop('checked', true);
+                $(`.privacy-radio-holder input:radio[value='${oldpvc}']`).prop(
+                    'checked',
+                    true
+                );
                 throwlert(
                     0,
                     'Login or create an account for advanced features'
@@ -183,14 +184,23 @@ $('.privacy-radio-holder input').change(function () {
                     'You have exceeded maximum limit of private notes. Upgrade your plan or delete some old notes'
                 );
 
-                $(
-                    `.privacy-radio-holder input:radio[value='${oldprivacy}']`
-                ).prop('checked', true);
+                $(`.privacy-radio-holder input:radio[value='${oldpvc}']`).prop(
+                    'checked',
+                    true
+                );
+            } else if ('permitError' in data) {
+                throwlert(0, 'You are not allowed to create private notes!');
+
+                $(`.privacy-radio-holder input:radio[value='${oldpvc}']`).prop(
+                    'checked',
+                    true
+                );
             } else {
                 // console.log('Something Went wrong');
-                $(
-                    `.privacy-radio-holder input:radio[value='${oldprivacy}']`
-                ).prop('checked', true);
+                $(`.privacy-radio-holder input:radio[value='${oldpvc}']`).prop(
+                    'checked',
+                    true
+                );
             }
         },
     });

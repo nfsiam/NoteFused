@@ -6,6 +6,8 @@
     require_once dirname(__FILE__).'/../models/db/dbcon.php';
     require_once dirname(__FILE__).'/planmodule.php';
     require_once dirname(__FILE__).'/userstatmodule.php';
+    require_once dirname(__FILE__).'/permissionmodule.php';
+
 
 
     $loggedUser = "";
@@ -147,25 +149,36 @@
             }
             elseif($_POST['updateNotePrivacy'] == '1')
             {
-                $limit = getLimit('note');
-                $pnotecount = getCounts('pnote');
+                $permit = getPermit('note');
 
-                if($pnotecount < $limit)
+                if($permit !== false && $permit == 1)
                 {
-                    if(updatePrivacy(1,$noteID,$xpire) === true)
+                    $limit = getLimit('note');
+                    $pnotecount = getCounts('pnote');
+    
+                    if($pnotecount < $limit)
                     {
-                        $data['success'] = 'true';
+                        if(updatePrivacy(1,$noteID,$xpire) === true)
+                        {
+                            $data['success'] = 'true';
+                        }
+                        else
+                        {
+                            $data['error'] = "something went wrong";
+                        }
                     }
                     else
                     {
-                        $data['error'] = "something went wrong";
+                        //limit exceeded
+                        $data['limitError'] = "Private note limit exceeded";
                     }
                 }
                 else
                 {
-                    //limit exceeded
-                    $data['limitError'] = "Private note limit exceeded";
+                    //no permission
+                    $data['permitError'] = "You are not allowed to create private note";
                 }
+
             }
             else
             {
