@@ -219,6 +219,9 @@
                     $query = "INSERT INTO profiles (username, name, email, pass, plan, `level`,`status`)
                         VALUES ('$uname', '$name', '$email','$mpass','0','0','0')";
                     execute($query);
+                    $query = "INSERT INTO permission (username) values('$uname');";
+                    execute($query);
+
         
                     if(autoLogin($uname,$pass) === true )
                     {

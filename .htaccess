@@ -42,6 +42,7 @@ RewriteRule ^planmoderation$  views/planmoderation.php [L]
 RewriteRule ^notesmoderation$  views/notesmoderation.php [L]
 RewriteRule ^filesmoderation$  views/filesmoderation.php [L]
 RewriteRule ^urlsmoderation$  views/urlsmoderation.php [L]
+RewriteRule ^permissionmoderation$  views/permissionmoderation.php [L]
 
 
 
