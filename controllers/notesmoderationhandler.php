@@ -30,6 +30,22 @@
         return date('d/m/Y',$longDate);
     }
 
+    if(isset($_POST['deleteall']))
+    {
+        $data = array();
+        try
+        {
+            $query = "DELETE from notes;";
+            execute($query);
+            $data['success'] = "All notes deleted";
+        }
+        catch(Error $e)
+        {
+
+        }
+        echo json_encode($data);
+    }
+
     if(isset($_POST['delete']))
     {
         $data = array();

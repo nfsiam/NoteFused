@@ -31,6 +31,33 @@
         return date('d/m/Y',$longDate);
     }
 
+    if(isset($_POST['deleteall']))
+    {
+        $data = array();
+        try
+        {
+            $query = "DELETE from files;";
+            execute($query);
+            //fwork
+            $files = glob(dirname(__FILE__).'/../models/upload/*');
+            $count = count($files);
+            foreach($files as $file)
+            { 
+                if(is_file($file))
+                {
+                    unlink($file);
+                }
+            }
+
+            $data['success'] = "$count file(s) deleted";
+        }
+        catch(Error $e)
+        {
+
+        }
+        echo json_encode($data);
+    }
+
     if(isset($_POST['delete']))
     {
         $data = array();

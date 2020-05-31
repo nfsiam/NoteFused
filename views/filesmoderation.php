@@ -85,22 +85,42 @@
         <link rel="stylesheet" href="views/styles/pagination.css" />
         <link rel="stylesheet" href="views/styles/notesmoderation.css" />
         <link rel="stylesheet" href="views/styles/throwlert.css" />
+        <link rel="stylesheet" href="views/styles/semiloader.css">
+
 
         <script src="views/js/jquery341.js"></script>
         <script src="views/js/throwlert.js" defer></script>
-        <script
-            type="text/javascript"
-            src="https://www.gstatic.com/charts/loader.js"
-        ></script>
-        <script></script>
+
     </head>
     <body>
+        <div class="semiloader">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+            <div class="four"></div>
+        </div>
         <section class="ad-holder">
             <?php require "adsidebar.php"; ?>
             <section class="ad-container">
                 <div class="mini-ad-container">
                     <div class="search-row">
                         <input type="text" placeholder="search by username or file name" />
+                    </div>
+                    <div class="sitewide-action">
+                        <div class="r1">
+                            <div>Delete All Files</div>
+                            <div>
+                                <button id="deleteall">Confirm <i class="fas fa-arrow-alt-circle-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="r2">
+                            <div>
+                                Delete All Files Older than <input type="number" name="" id="" placeholder="ex: 3"> days
+                            </div>
+                            <div>
+                                <button id="olderthanbtn">Confirm <i class="fas fa-arrow-alt-circle-right"></i></button>
+                            </div>
+                        </div>
                     </div>
                     <div class="note-plate-row">
 
@@ -272,6 +292,29 @@
                     success: function (data) {
                         $('.note-plate-row').html(data);
                         $('.semiloader').fadeOut();
+                    },
+                });
+            });
+
+            $('#deleteall').click(function(){
+                $('.semiloader').fadeIn();
+                let that = $(this);
+
+                $.ajax({
+                    url: 'controllers/filesmoderationhandler.php',
+                    method: 'POST',
+                    dataType: 'JSON',
+                    data: {
+                        deleteall: 1,
+                    },
+                    success: function (data) {
+                        $('.semiloader').fadeOut(function(){
+                            if('success' in data){
+                                $('.note-plate').remove();
+                                throwlert(1,data.success);
+
+                            }
+                        });
                     },
                 });
             });
