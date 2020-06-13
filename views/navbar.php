@@ -35,6 +35,9 @@
                         <li><a href="myurls">My Short URLs</a></li>
                     </ul>
                 </li>
+                <li class="top-li" id="short-li">
+                    <a href="contact">Contact&nbsp;Us</a>
+                </li>
             </ul>
         </div>
     </div>

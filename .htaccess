@@ -33,6 +33,8 @@ RewriteRule ^myurls$  views/myurls.php [L]
 RewriteRule ^resetform$  views/resetform.php [L]
 RewriteRule ^resetconfirm$  views/resetconfirm.php [L]
 
+RewriteRule ^attachments/(.*) models/images/$1 [L]
+
 
 
 #admin
@@ -43,6 +45,11 @@ RewriteRule ^notesmoderation$  views/notesmoderation.php [L]
 RewriteRule ^filesmoderation$  views/filesmoderation.php [L]
 RewriteRule ^urlsmoderation$  views/urlsmoderation.php [L]
 RewriteRule ^permissionmoderation$  views/permissionmoderation.php [L]
+RewriteRule ^messages$  views/messages.php [L]
+RewriteRule ^message2$  views/message2.php [L]
+
+
+RewriteRule ^contact$  views/contact2.php [L]
 
 
 

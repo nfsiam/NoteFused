@@ -125,6 +125,9 @@
     /* border: none; */
     margin-right: 15px;
 }
+.top-li:last-child::before {
+    border: none;
+}
 
 .ham-sec {
     display: none;

@@ -14,6 +14,7 @@
             <li><a href="filesmoderation">File Moderation</a></li>
             <li><a href="urlsmoderation">URL Moderation</a></li>
             <li><a href="permissionmoderation">Permission Moderation</a></li>
+            <li><a href="messages">Messages</a></li>
             <li>
                 <a href="controllers/destroysessionmodule.php"
                     >Logout</a

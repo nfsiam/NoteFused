@@ -23,8 +23,7 @@ $('#choose').change(function () {
         fileInfoAsElem += `<div>${file.name}</div>`;
     }
     totalSize = Math.ceil(totalSize / 1024);
-    // console.log(totalSize);
-    // console.log(fileInfo);
+
     if (totalSize > 1024 * 10) {
         throwlert(0, 'You can not upload file more than 10MB at a time');
 
